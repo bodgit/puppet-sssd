@@ -1,0 +1,68 @@
+{
+  "name": "bodgit-sssd",
+  "version": "1.0.0",
+  "author": "bodgit",
+  "summary": "Puppet Module for managing SSSD",
+  "license": "Apache-2.0",
+  "source": "https://github.com/bodgit/puppet-sssd",
+  "project_page": "https://github.com/bodgit/puppet-sssd",
+  "issues_url": "https://github.com/bodgit/puppet-sssd/issues",
+  "operatingsystem_support": [
+    {
+      "operatingsystem": "RedHat",
+      "operatingsystemrelease": [
+        "7"
+      ]
+    },
+    {
+      "operatingsystem": "CentOS",
+      "operatingsystemrelease": [
+        "7"
+      ]
+    },
+    {
+      "operatingsystem": "OracleLinux",
+      "operatingsystemrelease": [
+        "7"
+      ]
+    },
+    {
+      "operatingsystem": "Scientific",
+      "operatingsystemrelease": [
+        "7"
+      ]
+    }
+  ],
+  "requirements": [
+    {
+      "name": "puppet",
+      "version_requirement": ">=3.0.0 <5.0.0"
+    },
+    {
+      "name": "pe",
+      "version_requirement": ">=3.7.0 <2015.4.0"
+    }
+  ],
+  "tags": [
+    "sssd",
+    "ldap"
+  ],
+  "dependencies": [
+    {
+      "name": "puppetlabs/stdlib",
+      "version_requirement": ">=4.6.0 <5.0.0"
+    },
+    {
+      "name": "richardc/datacat",
+      "version_requirement": ">=0.6.1 <1.0.0"
+    },
+    {
+      "name": "herculesteam/augeasproviders_core",
+      "version_requirement": ">=2.1.0 <3.0.0"
+    },
+    {
+      "name": "bodgit/dbus",
+      "version_requirement": ">=1.0.0 <2.0.0"
+    }
+  ]
+}
