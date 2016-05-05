@@ -41,7 +41,9 @@ describe 'sssd' do
         ldap_default_authtok      => 'secret',
       }
 
-      Class['::openldap'] -> Class['::sssd']
+      include ::nsswitch
+
+      Class['::openldap'] -> Class['::sssd'] -> Class['::nsswitch']
     EOS
 
     apply_manifest(pp, :catch_failures => true)
