@@ -1,5 +1,6 @@
 #
 define sssd::domain (
+  $id_provider,
   # options for any section
   $debug_level                                   = undef,
   $debug_timestamps                              = undef,
@@ -24,7 +25,6 @@ define sssd::domain (
   $cache_credentials_minimal_first_factor_length = undef,
   $account_cache_expiration                      = undef,
   $pwd_expiration_warning                        = undef,
-  $id_provider                                   = undef,
   $use_fully_qualified_names                     = undef,
   $ignore_group_members                          = undef,
   $auth_provider                                 = undef,
@@ -283,6 +283,8 @@ define sssd::domain (
     fail('You must include the sssd base class before using any sssd defined resources') # lint:ignore:80chars
   }
 
+  validate_re($id_provider, '^(proxy|local|ldap|ipa|ad)$')
+
   if $debug_level {
     validate_re($debug_level, ['^\d+$', '^0x[\da-fA-F]+$'])
   }
@@ -349,9 +351,6 @@ define sssd::domain (
   }
   if $pwd_expiration_warning {
     validate_integer($pwd_expiration_warning, '', 0)
-  }
-  if $id_provider {
-    validate_re($id_provider, '^(proxy|local|ldap|ipa|ad)$')
   }
   if $use_fully_qualified_names {
     validate_bool($use_fully_qualified_names)
@@ -860,6 +859,7 @@ define sssd::domain (
   validate_string($ipa_group_override_object_class)
 
   $config = delete_undef_values({
+    'id_provider'                                   => $id_provider,
     'debug_level'                                   => $debug_level,
     'debug_timestamps'                              => $debug_timestamps,
     'debug_microseconds'                            => $debug_microseconds,
@@ -885,7 +885,6 @@ define sssd::domain (
     'cache_credentials_minimal_first_factor_length' => $cache_credentials_minimal_first_factor_length,
     'account_cache_expiration'                      => $account_cache_expiration,
     'pwd_expiration_warning'                        => $pwd_expiration_warning,
-    'id_provider'                                   => $id_provider,
     'use_fully_qualified_names'                     => $use_fully_qualified_names,
     'ignore_group_members'                          => $ignore_group_members,
     'auth_provider'                                 => $auth_provider,
