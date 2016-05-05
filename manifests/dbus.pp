@@ -1,5 +1,6 @@
 #
 class sssd::dbus (
+  $package_name         = $::sssd::params::dbus_package_name,
   # options for any section
   $debug_level          = undef,
   $debug_timestamps     = undef,
@@ -21,6 +22,8 @@ class sssd::dbus (
   if ! defined(Class['::sssd']) {
     fail('You must include the sssd base class before using the sssd::dbus class') # lint:ignore:80chars
   }
+
+  validate_string($package_name)
 
   include ::sssd::dbus::install
   include ::sssd::dbus::config
