@@ -37,7 +37,7 @@ define sssd::service (
   $pam_verbosity                  = undef,
   $pam_id_timeout                 = undef,
   $pam_pwd_expiration_warning     = undef,
-  $get_domains_timeout            = undef,
+  # $get_domains_timeout (already defined for nss)
   $pam_trusted_users              = undef,
   $pam_public_domains             = undef,
   $pam_account_expired_message    = undef,
@@ -52,8 +52,8 @@ define sssd::service (
   # options for [pac] section
   $allowed_uids                   = undef,
   # options for [ifp] section
-  $allowed_uids                   = undef,
-  $user_attributes                = undef,
+  # $allowed_uids (already defined for pac)
+  # $user_attributes (already defined for nss)
   $wildcard_limit                 = undef,
 ) {
 
