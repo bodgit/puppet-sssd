@@ -41,7 +41,11 @@ describe 'sssd' do
         ldap_default_authtok      => 'secret',
       }
 
-      include ::nsswitch
+      class { '::nsswitch':
+        passwd => ['files', 'sss'],
+        shadow => ['files', 'sss'],
+        group  => ['files', 'sss'],
+      }
 
       Class['::openldap'] -> Class['::sssd'] -> Class['::nsswitch']
     EOS
@@ -80,7 +84,7 @@ describe 'sssd' do
   end
 
   # There's some sort of negative/offline caching going on, bounce sssd
-  describe command('systemctl restart sssd.service') do
+  describe command('service sssd restart') do
     its(:exit_status) { should eq 0 }
   end
 
