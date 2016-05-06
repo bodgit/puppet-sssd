@@ -331,7 +331,7 @@ define sssd::service (
   Sssd_conf {
     target  => $::sssd::conf_file,
     require => File[$::sssd::conf_file],
-    notify  => Class['::sssd::daemon']
+    notify  => Class['::sssd::daemon'],
   }
 
   create_resources(sssd_conf, hash(zip($titles, $values)), {'ensure' => 'present'})
