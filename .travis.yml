@@ -4,6 +4,8 @@ sudo: false
 language: ruby
 cache: bundler
 bundler_args: --without development
+install:
+  - "travis_retry ./.travis.sh"
 script: "bundle exec rake test"
 matrix:
   fast_finish: true
