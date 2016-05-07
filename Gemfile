@@ -28,6 +28,7 @@ group :development, :test do
   gem 'rspec-puppet-facts', '>= 1.1.1',                   :require => false
   gem 'coveralls',                                        :require => false
   gem 'specinfra', '>= 2.42.1',                           :require => false
+  gem 'ruby-augeas',                                      :require => false
 end
 
 if facterversion = ENV['FACTER_GEM_VERSION']

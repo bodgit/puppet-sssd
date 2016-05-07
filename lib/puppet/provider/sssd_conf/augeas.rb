@@ -1,5 +1,5 @@
 Puppet::Type.type(:sssd_conf).provide(:augeas, :parent => Puppet::Type.type(:augeasprovider).provider(:default)) do
-  desc ''
+  desc 'Uses Augeas API to update an sssd.conf setting.'
 
   default_file { '/etc/sssd/sssd.conf' }
 
