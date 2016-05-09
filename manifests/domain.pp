@@ -1223,9 +1223,8 @@ define sssd::domain (
   $values = parsejson(inline_template('<%= @config.values.map { |x| { "value" => x } }.to_json %>'))
 
   Sssd_conf {
-    target  => $::sssd::conf_file,
-    require => File[$::sssd::conf_file],
-    notify  => Class['::sssd::daemon'],
+    target => $::sssd::conf_file,
+    notify => Class['::sssd::daemon'],
   }
 
   create_resources(sssd_conf, hash(zip($titles, $values)), {'ensure' => 'present'})

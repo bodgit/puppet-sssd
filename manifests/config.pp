@@ -28,8 +28,7 @@ class sssd::config {
   }
 
   Sssd_conf {
-    target  => $::sssd::conf_file,
-    require => File[$::sssd::conf_file],
+    target => $::sssd::conf_file,
   }
 
   resources { 'sssd_conf':
