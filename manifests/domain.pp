@@ -473,21 +473,28 @@ define sssd::domain (
   validate_string($userdel_cmd)
   if $ldap_uri {
     validate_array($ldap_uri)
+    validate_ldap_uri($ldap_uri)
   }
   if $ldap_backup_uri {
     validate_array($ldap_backup_uri)
+    validate_ldap_uri($ldap_backup_uri)
   }
   if $ldap_chpass_uri {
     validate_array($ldap_chpass_uri)
+    validate_ldap_uri($ldap_chpass_uri)
   }
   if $ldap_chpass_backup_uri {
     validate_array($ldap_chpass_backup_uri)
+    valdiate_ldap_uri($ldap_chpass_backup_uri)
   }
   validate_string($ldap_search_base)
   if $ldap_schema {
     validate_re($ldap_schema, '^(rfc2307(bis)?|ipa|ad)$')
   }
-  validate_string($ldap_default_bind_dn)
+  if $ldap_default_bind_dn {
+    validate_string($ldap_default_bind_dn)
+    validate_ldap_dn($ldap_default_bind_dn)
+  }
   if $ldap_default_authtok_type {
     validate_re($ldap_default_authtok_type, '^(obfuscated_)?password$')
   }
@@ -664,7 +671,10 @@ define sssd::domain (
   if $ldap_chpass_update_last_change {
     validate_bool($ldap_chpass_update_last_change)
   }
-  validate_string($ldap_access_filter)
+  if $ldap_access_filter {
+    validate_string($ldap_access_filter)
+    validate_ldap_filter($ldap_access_filter)
+  }
   if $ldap_account_expire_policy {
     validate_re($ldap_account_expire_policy, '^(shadow|ad|rhds|ipa|389ds|nds)$')
   }
