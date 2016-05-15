@@ -2,6 +2,33 @@ require 'spec_helper_acceptance'
 
 describe 'sssd::dbus' do
 
+  it 'install dependencies' do
+    case fact('osfamily')
+    when 'RedHat'
+      case fact('operatingsystemmajrelease')
+      when '6'
+        pp = <<-EOS
+          package { 'ruby-devel':
+            ensure => present,
+          }
+          package { 'oniguruma-devel':
+            ensure => present,
+          }
+          package { 'oniguruma':
+            ensure   => present,
+            provider => 'gem',
+            require  => [
+              Package['ruby-devel'],
+              Package['oniguruma-devel'],
+            ]
+          }
+        EOS
+
+        apply_manifest(pp, :catch_failures => true)
+      end
+    end
+  end
+
   it 'should work with no errors' do
 
     pp = <<-EOS

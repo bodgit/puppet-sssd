@@ -9,7 +9,6 @@ describe 'validate_sssd_search_base' do
   it { expect { should run.with_params('dc=example,dc=com?invalid?') }.to raise_error(/is not a valid SSSD search base/) }
   it { expect { should run.with_params('dc=example,dc=com?subtree?invalid') }.to raise_error(/is not a valid SSSD search base/) }
   it { expect { should run.with_params(['invalid']) }.to raise_error(/is not a valid SSSD search base/) }
-  # Taken from the RFC 2253 examples
   it { should run.with_params('dc=example,dc=com') }
   it { should run.with_params('dc=example,dc=com?subtree?') }
   it { should run.with_params('cn=host_specific,dc=example,dc=com?subtree?(host=thishost)?dc=example.com?subtree?') }

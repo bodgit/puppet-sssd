@@ -617,7 +617,7 @@ Class['::sssd'] -> Class['::nsswitch']
 
 ### Functions
 
-* [`validate_sssd_search_base`](#function-validatesssdsearchbase): Parameter
+* [`validate_sssd_search_base`](#function-validate_sssd_search_base): Parameter
   validation.
 
 ### Native Types
