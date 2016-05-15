@@ -487,7 +487,10 @@ define sssd::domain (
     validate_array($ldap_chpass_backup_uri)
     valdiate_ldap_uri($ldap_chpass_backup_uri)
   }
-  validate_string($ldap_search_base)
+  if $ldap_search_base {
+    validate_string($ldap_search_base)
+    validate_sssd_search_base($ldap_search_base)
+  }
   if $ldap_schema {
     validate_re($ldap_schema, '^(rfc2307(bis)?|ipa|ad)$')
   }
@@ -572,7 +575,10 @@ define sssd::domain (
   validate_string($ldap_service_name)
   validate_string($ldap_service_port)
   validate_string($ldap_service_proto)
-  validate_string($ldap_service_search_base)
+  if $ldap_service_search_base {
+    validate_string($ldap_service_search_base)
+    validate_sssd_search_base($ldap_service_search_base)
+  }
   if $ldap_search_timeout {
     validate_integer($ldap_search_timeout, '', 0)
   }
@@ -726,11 +732,26 @@ define sssd::domain (
   validate_string($ldap_autofs_entry_object_class)
   validate_string($ldap_autofs_entry_key)
   validate_string($ldap_autofs_entry_value)
-  validate_string($ldap_netgroup_search_base)
-  validate_string($ldap_user_search_base)
-  validate_string($ldap_group_search_base)
-  validate_string($ldap_sudo_search_base)
-  validate_string($ldap_autofs_search_base)
+  if $ldap_netgroup_search_base {
+    validate_string($ldap_netgroup_search_base)
+    validate_sssd_search_base($ldap_netgroup_search_base)
+  }
+  if $ldap_user_search_base {
+    validate_string($ldap_user_search_base)
+    validate_sssd_search_base($ldap_user_search_base)
+  }
+  if $ldap_group_search_base {
+    validate_string($ldap_group_search_base)
+    validate_sssd_search_base($ldap_group_search_base)
+  }
+  if $ldap_sudo_search_base {
+    validate_string($ldap_sudo_search_base)
+    validate_sssd_search_base($ldap_sudo_search_base)
+  }
+  if $ldap_autofs_search_base {
+    validate_string($ldap_autofs_search_base)
+    validate_sssd_search_base($ldap_autofs_search_base)
+  }
   if $krb5_server {
     validate_array($krb5_server)
   }

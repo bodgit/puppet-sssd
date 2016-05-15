@@ -470,6 +470,19 @@ The following parameters map 1:1 to their equivalent in `sssd.conf(5)` for the
 * `allowed_uids`
 * `wildcard_limit`
 
+### Functions
+
+#### Function: `validate_sssd_search_base`
+
+Validate a string or array of strings are valid SSSD search bases.
+
+~~~
+validate_sssd_search_base('dc=example,dc=com')
+validate_sssd_search_base('dc=example,dc=com?subtree?')
+validate_sssd_search_base('cn=host_specific,dc=example,dc=com?subtree?(host=thishost)?dc=example.com?subtree?')
+validate_sssd_search_base(['dc=example,dc=com'])
+~~~
+
 ### Native Types
 
 #### Native Type: `sssd_conf`
@@ -601,6 +614,11 @@ Class['::sssd'] -> Class['::nsswitch']
 * [`sssd::domain`](#defined-type-sssddomain): Handles per-domain configuration.
 * [`sssd::service`](#defined-type-sssdservice): Handles per-service
   configuration.
+
+### Functions
+
+* [`validate_sssd_search_base`](#function-validatesssdsearchbase): Parameter
+  validation.
 
 ### Native Types
 
