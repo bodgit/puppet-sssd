@@ -18,6 +18,7 @@ RSpec.configure do |c|
   c.before(:each) do
     Puppet.features.stubs(:root? => true)
   end
+  c.default_facts = { :dbus_startup_provider => 'init' }
 end
 
 dir = Pathname.new(__FILE__).parent
