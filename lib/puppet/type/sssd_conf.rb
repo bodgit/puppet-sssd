@@ -27,19 +27,18 @@ global [sssd] section.'
   end
 
   def self.title_patterns
-    identity = lambda { |x| x }
     [
       [
         /^(\S+)\/(\S+)$/,
         [
-          [ :section, identity ],
-          [ :setting, identity ],
+          [ :section ],
+          [ :setting ],
         ]
       ],
       [
         /(.*)/,
         [
-          [ :name, identity ],
+          [ :name ],
         ]
       ]
     ]
