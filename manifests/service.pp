@@ -335,8 +335,8 @@ define sssd::service (
 
   create_resources(sssd_conf, hash(zip($titles, $values)), {'ensure' => 'present'})
 
-  datacat_fragment { "sssd service ${name}":
-    target => 'sssd services',
+  datacat_fragment { "${module_name} service ${name}":
+    target => "${module_name} services",
     data   => {
       'service' => [$name],
     },

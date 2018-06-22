@@ -1260,8 +1260,8 @@ define sssd::domain (
 
   create_resources(sssd_conf, hash(zip($titles, $values)), {'ensure' => 'present'})
 
-  datacat_fragment { "sssd domain ${name}":
-    target => 'sssd domains',
+  datacat_fragment { "${module_name} domain ${name}":
+    target => "${module_name} domains",
     data   => {
       'domain' => [$name],
     },

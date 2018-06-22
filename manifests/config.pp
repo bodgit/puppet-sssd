@@ -57,15 +57,15 @@ class sssd::config {
 
   create_resources(sssd_conf, hash(zip($titles, $values)), {'ensure' => 'present'})
 
-  datacat_collector { 'sssd services':
-    template_body   => '<%= @data["service"].sort.join(", ") %>',
+  datacat_collector { "${module_name} services":
+    template_body   => '<%= @data["service"] and @data["service"].sort.join(", ") %>',
     target_resource => Sssd_conf['sssd/services'],
     target_field    => 'value',
     before          => Sssd_conf['sssd/services'],
   }
 
-  datacat_collector { 'sssd domains':
-    template_body   => '<%= @data["domain"].sort.join(", ") %>',
+  datacat_collector { "${module_name} domains":
+    template_body   => '<%= @data["domain"] and @data["domain"].sort.join(", ") %>',
     target_resource => Sssd_conf['sssd/domains'],
     target_field    => 'value',
     before          => Sssd_conf['sssd/domains'],
