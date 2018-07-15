@@ -1,63 +1,70 @@
+# Manage SSSD.
 #
+# @example Declaring the class
+#   include ::sssd
+#   ::sssd::service { 'nss': }
+#   ::sssd::domain { 'example.com':
+#     id_provider => 'ldap',
+#     ...
+#   }
+#
+# @param conf_dir
+# @param conf_file
+# @param package_name
+# @param service_name
+# @param debug
+# @param debug_level
+# @param debug_timestamps
+# @param debug_microseconds
+# @param config_file_version
+# @param reconnection_retries
+# @param re_expression
+# @param full_name_format
+# @param try_inotify
+# @param krb5_rcache_dir
+# @param user
+# @param default_domain_suffix
+# @param override_space
+# @param certificate_verification
+# @param disable_netlink
+# @param enable_files_domain
+# @param domain_resolution_order
+#
+# @see puppet_classes::sssd::dbus ::sssd::dbus
+# @see puppet_defined_types::sssd::domain ::sssd::domain
+# @see puppet_defined_types::sssd::service ::sssd::service
+#
+# @since 1.0.0
 class sssd (
-  $conf_dir              = $::sssd::params::conf_dir,
-  $conf_file             = $::sssd::params::conf_file,
-  $package_name          = $::sssd::params::package_name,
-  $service_name          = $::sssd::params::service_name,
+  Stdlib::Absolutepath                                                  $conf_dir                 = $::sssd::params::conf_dir,
+  Stdlib::Absolutepath                                                  $conf_file                = $::sssd::params::conf_file,
+  String                                                                $package_name             = $::sssd::params::package_name,
+  String                                                                $service_name             = $::sssd::params::service_name,
   # options for any section
-  $debug_level           = undef,
-  $debug_timestamps      = undef,
-  $debug_microseconds    = undef,
+  Optional[Integer[0]]                                                  $debug                    = undef,
+  Optional[Integer[0]]                                                  $debug_level              = undef,
+  Optional[Boolean]                                                     $debug_timestamps         = undef,
+  Optional[Boolean]                                                     $debug_microseconds       = undef,
   # options for [sssd] section
-  $config_file_version   = 2,
-  $reconnection_retries  = undef,
-  $re_expression         = undef,
-  $full_name_format      = undef,
-  $try_inotify           = undef,
-  $krb5_rcache_dir       = undef,
-  $default_domain_suffix = undef,
-  $override_space        = undef,
-  $user                  = undef,
+  Integer[2]                                                            $config_file_version      = 2,
+  Optional[Integer[0]]                                                  $reconnection_retries     = undef,
+  Optional[String]                                                      $re_expression            = undef,
+  Optional[String]                                                      $full_name_format         = undef,
+  Optional[Boolean]                                                     $try_inotify              = undef,
+  Optional[Variant[Stdlib::Absolutepath, Enum['__LIBKRB5_DEFAULTS__']]] $krb5_rcache_dir          = undef,
+  Optional[String]                                                      $user                     = undef,
+  Optional[String]                                                      $default_domain_suffix    = undef,
+  Optional[String]                                                      $override_space           = undef,
+  Optional[Array[SSSD::Certificate::Verification, 1]]                   $certificate_verification = undef,
+  Optional[Boolean]                                                     $disable_netlink          = undef,
+  Optional[Boolean]                                                     $enable_files_domain      = undef,
+  Optional[Array[String, 1]]                                            $domain_resolution_order  = undef,
 ) inherits ::sssd::params {
 
-  validate_absolute_path($conf_dir)
-  validate_absolute_path($conf_file)
-  validate_string($package_name)
-  validate_string($service_name)
+  contain ::sssd::install
+  contain ::sssd::config
+  contain ::sssd::daemon
 
-  if $debug_level {
-    validate_re($debug_level, ['^\d+$', '^0x[\da-fA-F]+$'])
-  }
-  if $debug_timestamps {
-    validate_bool($debug_timestamps)
-  }
-  if $debug_microseconds {
-    validate_bool($debug_microseconds)
-  }
-
-  validate_integer($config_file_version, '', 2)
-  if $reconnection_retries {
-    validate_integer($reconnection_retries, '', 0)
-  }
-  validate_string($re_expression)
-  validate_string($full_name_format)
-  if $try_inotify {
-    validate_bool($try_inotify)
-  }
-  if $krb5_rcache_dir {
-    validate_absolute_path($krb5_rcache_dir)
-  }
-  validate_string($default_domain_suffix)
-  validate_string($override_space)
-  validate_string($user)
-
-  include ::sssd::install
-  include ::sssd::config
-  include ::sssd::daemon
-
-  anchor { 'sssd::begin': }
-  anchor { 'sssd::end': }
-
-  Anchor['sssd::begin'] -> Class['::sssd::install'] ~> Class['::sssd::config']
-    ~> Class['::sssd::daemon'] -> Anchor['sssd::end']
+  Class['::sssd::install'] ~> Class['::sssd::config']
+    ~> Class['::sssd::daemon']
 }

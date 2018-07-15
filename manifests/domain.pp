@@ -1,900 +1,602 @@
+# Define an SSSD domain.
 #
+# @example Define an LDAP domain
+#   include ::sssd
+#   ::sssd::domain { 'example.com':
+#     id_provider           => 'ldap',
+#     ldap_schema           => 'rfc2307',
+#     ldap_uri              => ['ldap://192.0.2.1'],
+#     ldap_search_base      => 'dc=example,dc=com',
+#     ldap_tls_reqcert      => 'never',
+#     ldap_id_use_start_tls => false,
+#     ldap_default_bind_dn  => 'cn=Manager,dc=example,dc=com',
+#     ldap_default_authtok  => 'secret',
+#   }
+#
+# @param id_provider
+# @param domain
+# @param debug
+# @param debug_level
+# @param debug_timestamps
+# @param debug_microseconds
+# @param timeout
+# @param domain_type
+# @param max_id
+# @param min_id
+# @param enumerate
+# @param subdomain_enumerate
+# @param entry_cache_timeout
+# @param entry_cache_user_timeout
+# @param entry_cache_group_timeout
+# @param entry_cache_netgroup_timeout
+# @param entry_cache_service_timeout
+# @param entry_cache_sudo_timeout
+# @param entry_cache_autofs_timeout
+# @param entry_cache_ssh_host_timeout
+# @param refresh_expired_interval
+# @param cache_credentials
+# @param cache_credentials_minimal_first_factor_length
+# @param account_cache_expiration
+# @param pwd_expiration_warning
+# @param use_fully_qualified_names
+# @param ignore_group_members
+# @param auth_provider
+# @param access_provider
+# @param chpass_provider
+# @param sudo_provider
+# @param selinux_provider
+# @param subdomains_provider
+# @param autofs_provider
+# @param hostid_provider
+# @param re_expression
+# @param full_name_format
+# @param lookup_family_order
+# @param dns_resolver_timeout
+# @param dns_discovery_domain
+# @param override_gid
+# @param case_sensitive
+# @param subdomain_inherit
+# @param subdomain_homedir
+# @param realmd_tags
+# @param cached_auth_timeout
+# @param dyndns_update
+# @param dyndns_ttl
+# @param dyndns_iface
+# @param dyndns_refresh_interval
+# @param dyndns_update_ptr
+# @param dyndns_force_tcp
+# @param dyndns_auth
+# @param dyndns_server
+# @param override_homedir
+# @param homedir_substring
+# @param wildcard_limit
+# @param simple_allow_users
+# @param simple_deny_users
+# @param simple_allow_groups
+# @param simple_deny_groups
+# @param proxy_pam_target
+# @param proxy_lib_name
+# @param proxy_fast_alias
+# @param proxy_max_children
+# @param default_shell
+# @param base_directory
+# @param create_homedir
+# @param remove_homedir
+# @param homedir_umask
+# @param skel_dir
+# @param mail_dir
+# @param userdel_cmd
+# @param ldap_uri
+# @param ldap_backup_uri
+# @param ldap_chpass_uri
+# @param ldap_chpass_backup_uri
+# @param ldap_search_base
+# @param ldap_schema
+# @param ldap_default_bind_dn
+# @param ldap_default_authtok_type
+# @param ldap_default_authtok
+# @param ldap_user_object_class
+# @param ldap_user_name
+# @param ldap_user_uid_number
+# @param ldap_user_gid_number
+# @param ldap_user_gecos
+# @param ldap_user_home_directory
+# @param ldap_user_shell
+# @param ldap_user_uuid
+# @param ldap_user_objectsid
+# @param ldap_user_modify_timestamp
+# @param ldap_user_shadow_last_change
+# @param ldap_user_shadow_min
+# @param ldap_user_shadow_max
+# @param ldap_user_shadow_warning
+# @param ldap_user_shadow_inactive
+# @param ldap_user_shadow_expire
+# @param ldap_user_krb_last_pwd_change
+# @param ldap_user_krb_password_expiration
+# @param ldap_user_ad_account_expires
+# @param ldap_user_ad_user_account_control
+# @param ldap_ns_account_lock
+# @param ldap_user_nds_login_disabled
+# @param ldap_user_nds_login_expiration_time
+# @param ldap_user_nds_login_allowed_time_map
+# @param ldap_user_principal
+# @param ldap_user_extra_attrs
+# @param ldap_user_ssh_public_key
+# @param ldap_force_upper_case_realm
+# @param ldap_enumeration_refresh_timeout
+# @param ldap_purge_cache_timeout
+# @param ldap_user_fullname
+# @param ldap_user_member_of
+# @param ldap_user_authorized_service
+# @param ldap_user_authorized_host
+# @param ldap_user_certificate
+# @param ldap_group_object_class
+# @param ldap_group_name
+# @param ldap_group_gid_number
+# @param ldap_group_member
+# @param ldap_group_uuid
+# @param ldap_group_objectsid
+# @param ldap_group_modify_timestamp
+# @param ldap_group_type
+# @param ldap_group_external_member
+# @param ldap_group_nesting_level
+# @param ldap_groups_use_matching_rule_in_chain
+# @param ldap_initgroups_use_matching_rule_in_chain
+# @param ldap_use_tokengroups
+# @param ldap_netgroup_object_class
+# @param ldap_netgroup_name
+# @param ldap_netgroup_member
+# @param ldap_netgroup_triple
+# @param ldap_netgroup_modify_timestamp
+# @param ldap_service_object_class
+# @param ldap_service_name
+# @param ldap_service_port
+# @param ldap_service_proto
+# @param ldap_service_search_base
+# @param ldap_search_timeout
+# @param ldap_enumeration_search_timeout
+# @param ldap_network_timeout
+# @param ldap_opt_timeout
+# @param ldap_connection_expire_timeout
+# @param ldap_page_size
+# @param ldap_disable_paging
+# @param ldap_disable_range_retrieval
+# @param ldap_sasl_minssf
+# @param ldap_deref_threshold
+# @param ldap_tls_reqcert
+# @param ldap_tls_cacert
+# @param ldap_tls_cacertdir
+# @param ldap_tls_cert
+# @param ldap_tls_key
+# @param ldap_tls_cipher_suite
+# @param ldap_id_use_start_tls
+# @param ldap_id_mapping
+# @param ldap_idmap_range_min
+# @param ldap_idmap_range_max
+# @param ldap_idmap_range_size
+# @param ldap_idmap_default_domain_sid
+# @param ldap_idmap_default_domain
+# @param ldap_idmap_autorid_compat
+# @param ldap_idmap_helper_table_size
+# @param ldap_max_id
+# @param ldap_min_id
+# @param ldap_sasl_mech
+# @param ldap_sasl_authid
+# @param ldap_sasl_realm
+# @param ldap_sasl_canonicalize
+# @param ldap_krb5_keytab
+# @param ldap_krb5_init_creds
+# @param ldap_krb5_ticket_lifetime
+# @param ldap_pwd_policy
+# @param ldap_referrals
+# @param ldap_dns_service_name
+# @param ldap_chpass_dns_service_name
+# @param ldap_chpass_update_last_change
+# @param ldap_access_filter
+# @param ldap_account_expire_policy
+# @param ldap_access_order
+# @param ldap_pwdlockout_dn
+# @param ldap_deref
+# @param ldap_rfc2307_fallback_to_local_users
+# @param ldap_sudorule_object_class
+# @param ldap_sudorule_name
+# @param ldap_sudorule_command
+# @param ldap_sudorule_host
+# @param ldap_sudorule_user
+# @param ldap_sudorule_option
+# @param ldap_sudorule_runasuser
+# @param ldap_sudorule_runasgroup
+# @param ldap_sudorule_notbefore
+# @param ldap_sudorule_notafter
+# @param ldap_sudorule_order
+# @param ldap_sudo_full_refresh_interval
+# @param ldap_sudo_smart_refresh_interval
+# @param ldap_sudo_use_host_filter
+# @param ldap_sudo_hostnames
+# @param ldap_sudo_ip
+# @param ldap_sudo_include_netgroups
+# @param ldap_sudo_include_regexp
+# @param ldap_autofs_map_master_name
+# @param ldap_autofs_map_object_class
+# @param ldap_autofs_map_name
+# @param ldap_autofs_entry_object_class
+# @param ldap_autofs_entry_key
+# @param ldap_autofs_entry_value
+# @param ldap_netgroup_search_base
+# @param ldap_user_search_base
+# @param ldap_group_search_base
+# @param ldap_sudo_search_base
+# @param ldap_autofs_search_base
+# @param krb5_server
+# @param krb5_backup_server
+# @param krb5_realm
+# @param krb5_kpasswd
+# @param krb5_backup_kpasswd
+# @param krb5_ccachedir
+# @param krb5_ccname_template
+# @param krb5_auth_timeout
+# @param krb5_validate
+# @param krb5_keytab
+# @param krb5_store_password_if_offline
+# @param krb5_renewable_lifetime
+# @param krb5_lifetime
+# @param krb5_renew_interval
+# @param krb5_use_fast
+# @param krb5_fast_principal
+# @param krb5_canonicalize
+# @param krb5_use_kdcinfo
+# @param krb5_use_enterprise_principal
+# @param krb5_map_user
+# @param krb5_confd_path
+# @param ad_domain
+# @param ad_enabled_domains
+# @param ad_server
+# @param ad_backup_server
+# @param ad_hostname
+# @param ad_enable_dns_sites
+# @param ad_access_filter
+# @param ad_site
+# @param ad_enable_gc
+# @param ad_gpo_access_control
+# @param ad_gpo_cache_timeout
+# @param ad_gpo_map_interactive
+# @param ad_gpo_map_remote_interactive
+# @param ad_gpo_map_network
+# @param ad_gpo_map_batch
+# @param ad_gpo_map_service
+# @param ad_gpo_map_permit
+# @param ad_gpo_map_deny
+# @param ad_gpo_default_right
+# @param ad_maximum_machine_account_password_age
+# @param ad_machine_account_password_renewal_opts
+# @param ipa_domain
+# @param ipa_server
+# @param ipa_backup_server
+# @param ipa_hostname
+# @param ipa_enable_dns_sites
+# @param ipa_hbac_search_base
+# @param ipa_host_search_base
+# @param ipa_selinux_search_base
+# @param ipa_subdomains_search_base
+# @param ipa_master_domain_search_base
+# @param ipa_views_search_base
+# @param ipa_hbac_refresh
+# @param ipa_hbac_selinux
+# @param ipa_server_mode
+# @param ipa_automount_location
+# @param ipa_view_class
+# @param ipa_view_name
+# @param ipa_override_object_class
+# @param ipa_anchor_uuid
+# @param ipa_user_override_object_class
+# @param ipa_group_override_object_class
+#
+# @see puppet_classes::sssd ::sssd
+#
+# @since 1.0.0
 define sssd::domain (
-  $id_provider,
+  SSSD::Provider::ID                                                                    $id_provider,
+  String                                                                                $domain                                        = $title,
   # options for any section
-  $debug_level                                   = undef,
-  $debug_timestamps                              = undef,
-  $debug_microseconds                            = undef,
+  Optional[Integer[0]]                                                                  $debug                                         = undef,
+  Optional[Integer[0]]                                                                  $debug_level                                   = undef,
+  Optional[Boolean]                                                                     $debug_timestamps                              = undef,
+  Optional[Boolean]                                                                     $debug_microseconds                            = undef,
   # generic domain options
-  $timeout                                       = undef,
-  $max_id                                        = undef,
-  $min_id                                        = undef,
-  $enumerate                                     = undef,
-  $subdomain_enumerate                           = undef,
-  $force_timeout                                 = undef,
-  $entry_cache_timeout                           = undef,
-  $entry_cache_user_timeout                      = undef,
-  $entry_cache_group_timeout                     = undef,
-  $entry_cache_netgroup_timeout                  = undef,
-  $entry_cache_service_timeout                   = undef,
-  $entry_cache_sudo_timeout                      = undef,
-  $entry_cache_autofs_timeout                    = undef,
-  $entry_cache_ssh_host_timeout                  = undef,
-  $refresh_expired_interval                      = undef,
-  $cache_credentials                             = undef,
-  $cache_credentials_minimal_first_factor_length = undef,
-  $account_cache_expiration                      = undef,
-  $pwd_expiration_warning                        = undef,
-  $use_fully_qualified_names                     = undef,
-  $ignore_group_members                          = undef,
-  $auth_provider                                 = undef,
-  $access_provider                               = undef,
-  $chpass_provider                               = undef,
-  $sudo_provider                                 = undef,
-  $selinux_provider                              = undef,
-  $subdomains_provider                           = undef,
-  $autofs_provider                               = undef,
-  $hostid_provider                               = undef,
-  $re_expression                                 = undef,
-  $full_name_format                              = undef,
-  $lookup_family_order                           = undef,
-  $dns_resolver_timeout                          = undef,
-  $dns_discovery_domain                          = undef,
-  $override_gid                                  = undef,
-  $case_sensitive                                = undef,
-  $proxy_fast_alias                              = undef,
-  $subdomain_homedir                             = undef,
-  $realmd_tags                                   = undef,
-  $cached_auth_timeout                           = undef,
-  $dyndns_update                                 = undef,
-  $dyndns_ttl                                    = undef,
-  $dyndns_iface                                  = undef,
-  $dyndns_refresh_interval                       = undef,
-  $dyndns_update_ptr                             = undef,
-  $dyndns_force_tcp                              = undef,
-  $dyndns_server                                 = undef,
-  $override_homedir                              = undef,
-  $homedir_substring                             = undef,
-  $wildcard_limit                                = undef,
+  Optional[Integer[0]]                                                                  $timeout                                       = undef,
+  Optional[Enum['posix', 'application']]                                                $domain_type                                   = undef,
+  Optional[Integer[0]]                                                                  $max_id                                        = undef,
+  Optional[Integer[0]]                                                                  $min_id                                        = undef,
+  Optional[Boolean]                                                                     $enumerate                                     = undef,
+  Optional[Array[String, 1]]                                                            $subdomain_enumerate                           = undef,
+  Optional[Integer[0]]                                                                  $entry_cache_timeout                           = undef,
+  Optional[Integer[0]]                                                                  $entry_cache_user_timeout                      = undef,
+  Optional[Integer[0]]                                                                  $entry_cache_group_timeout                     = undef,
+  Optional[Integer[0]]                                                                  $entry_cache_netgroup_timeout                  = undef,
+  Optional[Integer[0]]                                                                  $entry_cache_service_timeout                   = undef,
+  Optional[Integer[0]]                                                                  $entry_cache_sudo_timeout                      = undef,
+  Optional[Integer[0]]                                                                  $entry_cache_autofs_timeout                    = undef,
+  Optional[Integer[0]]                                                                  $entry_cache_ssh_host_timeout                  = undef,
+  Optional[Integer[0]]                                                                  $refresh_expired_interval                      = undef,
+  Optional[Boolean]                                                                     $cache_credentials                             = undef,
+  Optional[Integer[0]]                                                                  $cache_credentials_minimal_first_factor_length = undef,
+  Optional[Integer[0]]                                                                  $account_cache_expiration                      = undef,
+  Optional[Integer[0]]                                                                  $pwd_expiration_warning                        = undef,
+  Optional[Boolean]                                                                     $use_fully_qualified_names                     = undef,
+  Optional[Boolean]                                                                     $ignore_group_members                          = undef,
+  Optional[SSSD::Provider::Auth]                                                        $auth_provider                                 = undef,
+  Optional[SSSD::Provider::Access]                                                      $access_provider                               = undef,
+  Optional[SSSD::Provider::Chpass]                                                      $chpass_provider                               = undef,
+  Optional[SSSD::Provider::Sudo]                                                        $sudo_provider                                 = undef,
+  Optional[SSSD::Provider::SELinux]                                                     $selinux_provider                              = undef,
+  Optional[SSSD::Provider::Subdomains]                                                  $subdomains_provider                           = undef,
+  Optional[SSSD::Provider::AutoFS]                                                      $autofs_provider                               = undef,
+  Optional[SSSD::Provider::HostID]                                                      $hostid_provider                               = undef,
+  Optional[String]                                                                      $re_expression                                 = undef,
+  Optional[String]                                                                      $full_name_format                              = undef,
+  Optional[Enum['ipv4_first', 'ipv4_only', 'ipv6_first', 'ipv6_only']]                  $lookup_family_order                           = undef,
+  Optional[Integer[0]]                                                                  $dns_resolver_timeout                          = undef,
+  Optional[Bodgitlib::Domain]                                                           $dns_discovery_domain                          = undef,
+  Optional[Integer[0]]                                                                  $override_gid                                  = undef,
+  Optional[Variant[Boolean, Enum['preserving']]]                                        $case_sensitive                                = undef,
+  Optional[Array[SSSD::Subdomain::Inherit, 1]]                                          $subdomain_inherit                             = undef,
+  Optional[Stdlib::Absolutepath]                                                        $subdomain_homedir                             = undef,
+  Optional[Array[String, 1]]                                                            $realmd_tags                                   = undef,
+  Optional[Integer[0]]                                                                  $cached_auth_timeout                           = undef,
+  Optional[Boolean]                                                                     $dyndns_update                                 = undef,
+  Optional[Integer[0]]                                                                  $dyndns_ttl                                    = undef,
+  Optional[Array[String, 1]]                                                            $dyndns_iface                                  = undef,
+  Optional[Integer[0]]                                                                  $dyndns_refresh_interval                       = undef,
+  Optional[Boolean]                                                                     $dyndns_update_ptr                             = undef,
+  Optional[Boolean]                                                                     $dyndns_force_tcp                              = undef,
+  Optional[String]                                                                      $dyndns_auth                                   = undef,
+  Optional[Bodgitlib::Host]                                                             $dyndns_server                                 = undef,
+  Optional[Stdlib::Absolutepath]                                                        $override_homedir                              = undef,
+  Optional[Stdlib::Absolutepath]                                                        $homedir_substring                             = undef,
+  Optional[Integer[0]]                                                                  $wildcard_limit                                = undef,
   # simple access provider
-  $simple_allow_users                            = undef,
-  $simple_deny_users                             = undef,
-  $simple_allow_groups                           = undef,
-  $simple_deny_groups                            = undef,
+  Optional[Array[String, 1]]                                                            $simple_allow_users                            = undef,
+  Optional[Array[String, 1]]                                                            $simple_deny_users                             = undef,
+  Optional[Array[String, 1]]                                                            $simple_allow_groups                           = undef,
+  Optional[Array[String, 1]]                                                            $simple_deny_groups                            = undef,
   # proxy
-  $proxy_pam_target                              = undef,
-  $proxy_lib_name                                = undef,
+  Optional[String]                                                                      $proxy_pam_target                              = undef,
+  Optional[String]                                                                      $proxy_lib_name                                = undef,
+  Optional[Boolean]                                                                     $proxy_fast_alias                              = undef,
+  Optional[Integer[0]]                                                                  $proxy_max_children                            = undef,
   # local
-  $default_shell                                 = undef,
-  $base_directory                                = undef,
-  $create_homedir                                = undef,
-  $remove_homedir                                = undef,
-  $homedir_umask                                 = undef,
-  $skel_dir                                      = undef,
-  $mail_dir                                      = undef,
-  $userdel_cmd                                   = undef,
+  Optional[Stdlib::Absolutepath]                                                        $default_shell                                 = undef,
+  Optional[Stdlib::Absolutepath]                                                        $base_directory                                = undef,
+  Optional[Boolean]                                                                     $create_homedir                                = undef,
+  Optional[Boolean]                                                                     $remove_homedir                                = undef,
+  Optional[Pattern[/^[0-7]{3}$/]]                                                       $homedir_umask                                 = undef,
+  Optional[Stdlib::Absolutepath]                                                        $skel_dir                                      = undef,
+  Optional[Stdlib::Absolutepath]                                                        $mail_dir                                      = undef,
+  Optional[Stdlib::Absolutepath]                                                        $userdel_cmd                                   = undef,
   # ldap
-  $ldap_uri                                      = undef,
-  $ldap_backup_uri                               = undef,
-  $ldap_chpass_uri                               = undef,
-  $ldap_chpass_backup_uri                        = undef,
-  $ldap_search_base                              = undef,
-  $ldap_schema                                   = undef,
-  $ldap_default_bind_dn                          = undef,
-  $ldap_default_authtok_type                     = undef,
-  $ldap_default_authtok                          = undef,
-  $ldap_user_object_class                        = undef,
-  $ldap_user_name                                = undef,
-  $ldap_user_uid_number                          = undef,
-  $ldap_user_gid_number                          = undef,
-  $ldap_user_gecos                               = undef,
-  $ldap_user_home_directory                      = undef,
-  $ldap_user_shell                               = undef,
-  $ldap_user_uuid                                = undef,
-  $ldap_user_objectsid                           = undef,
-  $ldap_user_modify_timestamp                    = undef,
-  $ldap_user_shadow_last_change                  = undef,
-  $ldap_user_shadow_min                          = undef,
-  $ldap_user_shadow_max                          = undef,
-  $ldap_user_shadow_warning                      = undef,
-  $ldap_user_shadow_inactive                     = undef,
-  $ldap_user_shadow_expire                       = undef,
-  $ldap_user_krb_last_pwd_change                 = undef,
-  $ldap_user_krb_password_expiration             = undef,
-  $ldap_user_ad_account_expires                  = undef,
-  $ldap_user_ad_user_account_control             = undef,
-  $ldap_ns_account_lock                          = undef,
-  $ldap_user_nds_login_disabled                  = undef,
-  $ldap_user_nds_login_expiration_time           = undef,
-  $ldap_user_nds_login_allowed_time_map          = undef,
-  $ldap_user_principal                           = undef,
-  $ldap_user_extra_attrs                         = undef,
-  $ldap_user_ssh_public_key                      = undef,
-  $ldap_force_upper_case_realm                   = undef,
-  $ldap_enumeration_refresh_timeout              = undef,
-  $ldap_purge_cache_timeout                      = undef,
-  $ldap_user_fullname                            = undef,
-  $ldap_user_member_of                           = undef,
-  $ldap_user_authorized_service                  = undef,
-  $ldap_user_authorized_host                     = undef,
-  $ldap_user_certificate                         = undef,
-  $ldap_group_object_class                       = undef,
-  $ldap_group_name                               = undef,
-  $ldap_group_gid_number                         = undef,
-  $ldap_group_member                             = undef,
-  $ldap_group_uuid                               = undef,
-  $ldap_group_objectsid                          = undef,
-  $ldap_group_modify_timestamp                   = undef,
-  $ldap_group_type                               = undef,
-  $ldap_group_external_member                    = undef,
-  $ldap_group_nesting_level                      = undef,
-  $ldap_groups_use_matching_rule_in_chain        = undef,
-  $ldap_initgroups_use_matching_rule_in_chain    = undef,
-  $ldap_use_tokengroups                          = undef,
-  $ldap_netgroup_object_class                    = undef,
-  $ldap_netgroup_name                            = undef,
-  $ldap_netgroup_member                          = undef,
-  $ldap_netgroup_triple                          = undef,
-  $ldap_netgroup_modify_timestamp                = undef,
-  $ldap_service_object_class                     = undef,
-  $ldap_service_name                             = undef,
-  $ldap_service_port                             = undef,
-  $ldap_service_proto                            = undef,
-  $ldap_service_search_base                      = undef,
-  $ldap_search_timeout                           = undef,
-  $ldap_enumeration_search_timeout               = undef,
-  $ldap_network_timeout                          = undef,
-  $ldap_opt_timeout                              = undef,
-  $ldap_connection_expire_timeout                = undef,
-  $ldap_page_size                                = undef,
-  $ldap_disable_paging                           = undef,
-  $ldap_disable_range_retrieval                  = undef,
-  $ldap_sasl_minssf                              = undef,
-  $ldap_deref_threshold                          = undef,
-  $ldap_tls_reqcert                              = undef,
-  $ldap_tls_cacert                               = undef,
-  $ldap_tls_cacertdir                            = undef,
-  $ldap_tls_cert                                 = undef,
-  $ldap_tls_key                                  = undef,
-  $ldap_tls_cipher_suite                         = undef,
-  $ldap_id_use_start_tls                         = undef,
-  $ldap_id_mapping                               = undef,
-  $ldap_idmap_range_min                          = undef,
-  $ldap_idmap_range_max                          = undef,
-  $ldap_idmap_range_size                         = undef,
-  $ldap_idmap_default_domain_sid                 = undef,
-  $ldap_idmap_default_domain                     = undef,
-  $ldap_idmap_autorid_compat                     = undef,
-  $ldap_min_id                                   = undef,
-  $ldap_max_id                                   = undef,
-  $ldap_sasl_mech                                = undef,
-  $ldap_sasl_authid                              = undef,
-  $ldap_sasl_realm                               = undef,
-  $ldap_sasl_canonicalize                        = undef,
-  $ldap_krb5_keytab                              = undef,
-  $ldap_krb5_init_creds                          = undef,
-  $ldap_krb5_ticket_lifetime                     = undef,
-  $ldap_pwd_policy                               = undef,
-  $ldap_referrals                                = undef,
-  $ldap_dns_service_name                         = undef,
-  $ldap_chpass_dns_service_name                  = undef,
-  $ldap_chpass_update_last_change                = undef,
-  $ldap_access_filter                            = undef,
-  $ldap_account_expire_policy                    = undef,
-  $ldap_access_order                             = undef,
-  $ldap_pwdlockout_dn                            = undef,
-  $ldap_deref                                    = undef,
-  $ldap_rfc2307_fallback_to_local_users          = undef,
-  $ldap_sudorule_object_class                    = undef,
-  $ldap_sudorule_name                            = undef,
-  $ldap_sudorule_command                         = undef,
-  $ldap_sudorule_host                            = undef,
-  $ldap_sudorule_user                            = undef,
-  $ldap_sudorule_option                          = undef,
-  $ldap_sudorule_runasuser                       = undef,
-  $ldap_sudorule_runasgroup                      = undef,
-  $ldap_sudorule_notbefore                       = undef,
-  $ldap_sudorule_notafter                        = undef,
-  $ldap_sudorule_order                           = undef,
-  $ldap_sudo_full_refresh_interval               = undef,
-  $ldap_sudo_smart_refresh_interval              = undef,
-  $ldap_sudo_use_host_filter                     = undef,
-  $ldap_sudo_hostnames                           = undef,
-  $ldap_sudo_ip                                  = undef,
-  $ldap_sudo_include_netgroups                   = undef,
-  $ldap_sudo_include_regexp                      = undef,
-  $ldap_autofs_map_master_name                   = undef,
-  $ldap_autofs_map_object_class                  = undef,
-  $ldap_autofs_map_name                          = undef,
-  $ldap_autofs_entry_object_class                = undef,
-  $ldap_autofs_entry_key                         = undef,
-  $ldap_autofs_entry_value                       = undef,
-  $ldap_netgroup_search_base                     = undef,
-  $ldap_user_search_base                         = undef,
-  $ldap_group_search_base                        = undef,
-  $ldap_sudo_search_base                         = undef,
-  $ldap_autofs_search_base                       = undef,
+  Optional[Array[Bodgitlib::LDAP::URI::Simple, 1]]                                      $ldap_uri                                      = undef,
+  Optional[Array[Bodgitlib::LDAP::URI::Simple, 1]]                                      $ldap_backup_uri                               = undef,
+  Optional[Array[Bodgitlib::LDAP::URI::Simple, 1]]                                      $ldap_chpass_uri                               = undef,
+  Optional[Array[Bodgitlib::LDAP::URI::Simple, 1]]                                      $ldap_chpass_backup_uri                        = undef,
+  Optional[SSSD::Search::Base]                                                          $ldap_search_base                              = undef,
+  Optional[Enum['rfc2307', 'rfc2307bis', 'ipa', 'ad']]                                  $ldap_schema                                   = undef,
+  Optional[Bodgitlib::LDAP::DN]                                                         $ldap_default_bind_dn                          = undef,
+  Optional[Enum['password', 'obfuscated_password']]                                     $ldap_default_authtok_type                     = undef,
+  Optional[String]                                                                      $ldap_default_authtok                          = undef,
+  Optional[String]                                                                      $ldap_user_object_class                        = undef,
+  Optional[String]                                                                      $ldap_user_name                                = undef,
+  Optional[String]                                                                      $ldap_user_uid_number                          = undef,
+  Optional[String]                                                                      $ldap_user_gid_number                          = undef,
+  Optional[String]                                                                      $ldap_user_gecos                               = undef,
+  Optional[String]                                                                      $ldap_user_home_directory                      = undef,
+  Optional[String]                                                                      $ldap_user_shell                               = undef,
+  Optional[String]                                                                      $ldap_user_uuid                                = undef,
+  Optional[String]                                                                      $ldap_user_objectsid                           = undef,
+  Optional[String]                                                                      $ldap_user_modify_timestamp                    = undef,
+  Optional[String]                                                                      $ldap_user_shadow_last_change                  = undef,
+  Optional[String]                                                                      $ldap_user_shadow_min                          = undef,
+  Optional[String]                                                                      $ldap_user_shadow_max                          = undef,
+  Optional[String]                                                                      $ldap_user_shadow_warning                      = undef,
+  Optional[String]                                                                      $ldap_user_shadow_inactive                     = undef,
+  Optional[String]                                                                      $ldap_user_shadow_expire                       = undef,
+  Optional[String]                                                                      $ldap_user_krb_last_pwd_change                 = undef,
+  Optional[String]                                                                      $ldap_user_krb_password_expiration             = undef,
+  Optional[String]                                                                      $ldap_user_ad_account_expires                  = undef,
+  Optional[String]                                                                      $ldap_user_ad_user_account_control             = undef,
+  Optional[String]                                                                      $ldap_ns_account_lock                          = undef,
+  Optional[String]                                                                      $ldap_user_nds_login_disabled                  = undef,
+  Optional[String]                                                                      $ldap_user_nds_login_expiration_time           = undef,
+  Optional[String]                                                                      $ldap_user_nds_login_allowed_time_map          = undef,
+  Optional[String]                                                                      $ldap_user_principal                           = undef,
+  Optional[Array[String, 1]]                                                            $ldap_user_extra_attrs                         = undef,
+  Optional[String]                                                                      $ldap_user_ssh_public_key                      = undef,
+  Optional[Boolean]                                                                     $ldap_force_upper_case_realm                   = undef,
+  Optional[Integer[0]]                                                                  $ldap_enumeration_refresh_timeout              = undef,
+  Optional[Integer[0]]                                                                  $ldap_purge_cache_timeout                      = undef,
+  Optional[String]                                                                      $ldap_user_fullname                            = undef,
+  Optional[String]                                                                      $ldap_user_member_of                           = undef,
+  Optional[String]                                                                      $ldap_user_authorized_service                  = undef,
+  Optional[String]                                                                      $ldap_user_authorized_host                     = undef,
+  Optional[String]                                                                      $ldap_user_certificate                         = undef,
+  Optional[String]                                                                      $ldap_group_object_class                       = undef,
+  Optional[String]                                                                      $ldap_group_name                               = undef,
+  Optional[String]                                                                      $ldap_group_gid_number                         = undef,
+  Optional[String]                                                                      $ldap_group_member                             = undef,
+  Optional[String]                                                                      $ldap_group_uuid                               = undef,
+  Optional[String]                                                                      $ldap_group_objectsid                          = undef,
+  Optional[String]                                                                      $ldap_group_modify_timestamp                   = undef,
+  Optional[String]                                                                      $ldap_group_type                               = undef,
+  Optional[String]                                                                      $ldap_group_external_member                    = undef,
+  Optional[Integer[0]]                                                                  $ldap_group_nesting_level                      = undef,
+  Optional[Boolean]                                                                     $ldap_groups_use_matching_rule_in_chain        = undef,
+  Optional[Boolean]                                                                     $ldap_initgroups_use_matching_rule_in_chain    = undef,
+  Optional[Boolean]                                                                     $ldap_use_tokengroups                          = undef,
+  Optional[String]                                                                      $ldap_netgroup_object_class                    = undef,
+  Optional[String]                                                                      $ldap_netgroup_name                            = undef,
+  Optional[String]                                                                      $ldap_netgroup_member                          = undef,
+  Optional[String]                                                                      $ldap_netgroup_triple                          = undef,
+  Optional[String]                                                                      $ldap_netgroup_modify_timestamp                = undef,
+  Optional[String]                                                                      $ldap_service_object_class                     = undef,
+  Optional[String]                                                                      $ldap_service_name                             = undef,
+  Optional[String]                                                                      $ldap_service_port                             = undef,
+  Optional[String]                                                                      $ldap_service_proto                            = undef,
+  Optional[SSSD::Search::Base]                                                          $ldap_service_search_base                      = undef,
+  Optional[Integer[0]]                                                                  $ldap_search_timeout                           = undef,
+  Optional[Integer[0]]                                                                  $ldap_enumeration_search_timeout               = undef,
+  Optional[Integer[0]]                                                                  $ldap_network_timeout                          = undef,
+  Optional[Integer[0]]                                                                  $ldap_opt_timeout                              = undef,
+  Optional[Integer[0]]                                                                  $ldap_connection_expire_timeout                = undef,
+  Optional[Integer[0]]                                                                  $ldap_page_size                                = undef,
+  Optional[Boolean]                                                                     $ldap_disable_paging                           = undef,
+  Optional[Boolean]                                                                     $ldap_disable_range_retrieval                  = undef,
+  Optional[Integer[0]]                                                                  $ldap_sasl_minssf                              = undef,
+  Optional[Integer[0]]                                                                  $ldap_deref_threshold                          = undef,
+  Optional[Enum['never', 'allow', 'try', 'demand', 'hard']]                             $ldap_tls_reqcert                              = undef,
+  Optional[Stdlib::Absolutepath]                                                        $ldap_tls_cacert                               = undef,
+  Optional[Stdlib::Absolutepath]                                                        $ldap_tls_cacertdir                            = undef,
+  Optional[Stdlib::Absolutepath]                                                        $ldap_tls_cert                                 = undef,
+  Optional[Stdlib::Absolutepath]                                                        $ldap_tls_key                                  = undef,
+  Optional[String]                                                                      $ldap_tls_cipher_suite                         = undef,
+  Optional[Boolean]                                                                     $ldap_id_use_start_tls                         = undef,
+  Optional[Boolean]                                                                     $ldap_id_mapping                               = undef,
+  Optional[Integer[0]]                                                                  $ldap_idmap_range_min                          = undef,
+  Optional[Integer[0]]                                                                  $ldap_idmap_range_max                          = undef,
+  Optional[Integer[0]]                                                                  $ldap_idmap_range_size                         = undef,
+  Optional[String]                                                                      $ldap_idmap_default_domain_sid                 = undef,
+  Optional[String]                                                                      $ldap_idmap_default_domain                     = undef,
+  Optional[Boolean]                                                                     $ldap_idmap_autorid_compat                     = undef,
+  Optional[Integer[0]]                                                                  $ldap_idmap_helper_table_size                  = undef,
+  Optional[Integer[0]]                                                                  $ldap_max_id                                   = undef,
+  Optional[Integer[0]]                                                                  $ldap_min_id                                   = undef,
+  Optional[String]                                                                      $ldap_sasl_mech                                = undef,
+  Optional[String]                                                                      $ldap_sasl_authid                              = undef,
+  Optional[String]                                                                      $ldap_sasl_realm                               = undef,
+  Optional[Boolean]                                                                     $ldap_sasl_canonicalize                        = undef,
+  Optional[Stdlib::Absolutepath]                                                        $ldap_krb5_keytab                              = undef,
+  Optional[Boolean]                                                                     $ldap_krb5_init_creds                          = undef,
+  Optional[Integer[0]]                                                                  $ldap_krb5_ticket_lifetime                     = undef,
+  Optional[Enum['none', 'shadow', 'mit_kerberos']]                                      $ldap_pwd_policy                               = undef,
+  Optional[Boolean]                                                                     $ldap_referrals                                = undef,
+  Optional[String]                                                                      $ldap_dns_service_name                         = undef,
+  Optional[String]                                                                      $ldap_chpass_dns_service_name                  = undef,
+  Optional[Boolean]                                                                     $ldap_chpass_update_last_change                = undef,
+  Optional[Bodgitlib::LDAP::Filter]                                                     $ldap_access_filter                            = undef,
+  Optional[Enum['shadow', 'ad', 'rhds', 'ipa', '389ds', 'nds']]                         $ldap_account_expire_policy                    = undef,
+  Optional[Array[SSSD::LDAP::Access::Order, 1]]                                         $ldap_access_order                             = undef,
+  Optional[Bodgitlib::LDAP::DN]                                                         $ldap_pwdlockout_dn                            = undef,
+  Optional[Enum['never', 'searching', 'finding', 'always']]                             $ldap_deref                                    = undef,
+  Optional[Boolean]                                                                     $ldap_rfc2307_fallback_to_local_users          = undef,
+  Optional[String]                                                                      $ldap_sudorule_object_class                    = undef,
+  Optional[String]                                                                      $ldap_sudorule_name                            = undef,
+  Optional[String]                                                                      $ldap_sudorule_command                         = undef,
+  Optional[String]                                                                      $ldap_sudorule_host                            = undef,
+  Optional[String]                                                                      $ldap_sudorule_user                            = undef,
+  Optional[String]                                                                      $ldap_sudorule_option                          = undef,
+  Optional[String]                                                                      $ldap_sudorule_runasuser                       = undef,
+  Optional[String]                                                                      $ldap_sudorule_runasgroup                      = undef,
+  Optional[String]                                                                      $ldap_sudorule_notbefore                       = undef,
+  Optional[String]                                                                      $ldap_sudorule_notafter                        = undef,
+  Optional[String]                                                                      $ldap_sudorule_order                           = undef,
+  Optional[Integer[0]]                                                                  $ldap_sudo_full_refresh_interval               = undef,
+  Optional[Integer[0]]                                                                  $ldap_sudo_smart_refresh_interval              = undef,
+  Optional[Boolean]                                                                     $ldap_sudo_use_host_filter                     = undef,
+  Optional[Array[String, 1]]                                                            $ldap_sudo_hostnames                           = undef,
+  Optional[Array[IP::Address, 1]]                                                       $ldap_sudo_ip                                  = undef,
+  Optional[Boolean]                                                                     $ldap_sudo_include_netgroups                   = undef,
+  Optional[Boolean]                                                                     $ldap_sudo_include_regexp                      = undef,
+  Optional[String]                                                                      $ldap_autofs_map_master_name                   = undef,
+  Optional[String]                                                                      $ldap_autofs_map_object_class                  = undef,
+  Optional[String]                                                                      $ldap_autofs_map_name                          = undef,
+  Optional[String]                                                                      $ldap_autofs_entry_object_class                = undef,
+  Optional[String]                                                                      $ldap_autofs_entry_key                         = undef,
+  Optional[String]                                                                      $ldap_autofs_entry_value                       = undef,
+  Optional[SSSD::Search::Base]                                                          $ldap_netgroup_search_base                     = undef,
+  Optional[SSSD::Search::Base]                                                          $ldap_user_search_base                         = undef,
+  Optional[SSSD::Search::Base]                                                          $ldap_group_search_base                        = undef,
+  Optional[SSSD::Search::Base]                                                          $ldap_sudo_search_base                         = undef,
+  Optional[SSSD::Search::Base]                                                          $ldap_autofs_search_base                       = undef,
   # krb5
-  $krb5_server                                   = undef,
-  $krb5_backup_server                            = undef,
-  $krb5_realm                                    = undef,
-  $krb5_canonicalize                             = undef,
-  $krb5_use_kdcinfo                              = undef,
-  $krb5_kpasswd                                  = undef,
-  $krb5_backup_kpasswd                           = undef,
-  $krb5_ccachedir                                = undef,
-  $krb5_ccname_template                          = undef,
-  $krb5_auth_timeout                             = undef,
-  $krb5_validate                                 = undef,
-  $krb5_keytab                                   = undef,
-  $krb5_store_password_if_offline                = undef,
-  $krb5_renewable_lifetime                       = undef,
-  $krb5_lifetime                                 = undef,
-  $krb5_renew_interval                           = undef,
-  $krb5_use_fast                                 = undef,
-  $krb5_fast_principal                           = undef,
-  $krb5_use_enterprise_principal                 = undef,
-  $krb5_map_user                                 = undef,
-  $krb5_confd_path                               = undef,
+  Optional[Array[Bodgitlib::Host, 1]]                                                   $krb5_server                                   = undef,
+  Optional[Array[Bodgitlib::Host, 1]]                                                   $krb5_backup_server                            = undef,
+  Optional[String]                                                                      $krb5_realm                                    = undef,
+  Optional[Array[Variant[Bodgitlib::Host, Tuple[Bodgitlib::Host, Bodgitlib::Port]], 1]] $krb5_kpasswd                                  = undef,
+  Optional[Array[Variant[Bodgitlib::Host, Tuple[Bodgitlib::Host, Bodgitlib::Port]], 1]] $krb5_backup_kpasswd                           = undef,
+  Optional[Stdlib::Absolutepath]                                                        $krb5_ccachedir                                = undef,
+  Optional[String]                                                                      $krb5_ccname_template                          = undef,
+  Optional[Integer[0]]                                                                  $krb5_auth_timeout                             = undef,
+  Optional[Boolean]                                                                     $krb5_validate                                 = undef,
+  Optional[Stdlib::Absolutepath]                                                        $krb5_keytab                                   = undef,
+  Optional[Boolean]                                                                     $krb5_store_password_if_offline                = undef,
+  Optional[Variant[Integer[0], Pattern[/(?x) ^ \d+ [smhd]? $/]]]                        $krb5_renewable_lifetime                       = undef,
+  Optional[Variant[Integer[0], Pattern[/(?x) ^ \d+ [smhd]? $/]]]                        $krb5_lifetime                                 = undef,
+  Optional[Variant[Integer[0], Pattern[/(?x) ^ \d+ [smhd]? $/]]]                        $krb5_renew_interval                           = undef,
+  Optional[Enum['never', 'try', 'demand']]                                              $krb5_use_fast                                 = undef,
+  Optional[String]                                                                      $krb5_fast_principal                           = undef,
+  Optional[Boolean]                                                                     $krb5_canonicalize                             = undef,
+  Optional[Boolean]                                                                     $krb5_use_kdcinfo                              = undef,
+  Optional[Boolean]                                                                     $krb5_use_enterprise_principal                 = undef,
+  Optional[Array[String, 1]]                                                            $krb5_map_user                                 = undef,
+  Optional[Stdlib::Absolutepath]                                                        $krb5_confd_path                               = undef,
   # ad
-  $ad_domain                                     = undef,
-  $ad_server                                     = undef,
-  $ad_backup_server                              = undef,
-  $ad_hostname                                   = undef,
-  $ad_enable_dns_sites                           = undef,
-  $ad_access_filter                              = undef,
-  $ad_site                                       = undef,
-  $ad_enable_gc                                  = undef,
-  $ad_gpo_access_control                         = undef,
-  $ad_gpo_cache_timeout                          = undef,
-  $ad_gpo_map_interactive                        = undef,
-  $ad_gpo_map_remote_interactive                 = undef,
-  $ad_gpo_map_network                            = undef,
-  $ad_gpo_map_batch                              = undef,
-  $ad_gpo_map_service                            = undef,
-  $ad_gpo_map_permit                             = undef,
-  $ad_gpo_map_deny                               = undef,
-  $ad_gpo_default_right                          = undef,
+  Optional[String]                                                                      $ad_domain                                     = undef,
+  Optional[Array[Bodgitlib::Domain, 1]]                                                 $ad_enabled_domains                            = undef,
+  Optional[Array[Bodgitlib::Host, 1]]                                                   $ad_server                                     = undef,
+  Optional[Array[Bodgitlib::Host, 1]]                                                   $ad_backup_server                              = undef,
+  Optional[Bodgitlib::Hostname]                                                         $ad_hostname                                   = undef,
+  Optional[Boolean]                                                                     $ad_enable_dns_sites                           = undef,
+  Optional[SSSD::AD::Access::Filter]                                                    $ad_access_filter                              = undef,
+  Optional[String]                                                                      $ad_site                                       = undef,
+  Optional[Boolean]                                                                     $ad_enable_gc                                  = undef,
+  Optional[Enum['disabled', 'enforcing', 'permissive']]                                 $ad_gpo_access_control                         = undef,
+  Optional[Integer[0]]                                                                  $ad_gpo_cache_timeout                          = undef,
+  Optional[Array[String, 1]]                                                            $ad_gpo_map_interactive                        = undef,
+  Optional[Array[String, 1]]                                                            $ad_gpo_map_remote_interactive                 = undef,
+  Optional[Array[String, 1]]                                                            $ad_gpo_map_network                            = undef,
+  Optional[Array[String, 1]]                                                            $ad_gpo_map_batch                              = undef,
+  Optional[Array[String, 1]]                                                            $ad_gpo_map_service                            = undef,
+  Optional[Array[String, 1]]                                                            $ad_gpo_map_permit                             = undef,
+  Optional[Array[String, 1]]                                                            $ad_gpo_map_deny                               = undef,
+  Optional[SSSD::AD::GPO::Default::Right]                                               $ad_gpo_default_right                          = undef,
+  Optional[Integer[0]]                                                                  $ad_maximum_machine_account_password_age       = undef,
+  Optional[Tuple[Integer[0], 2, 2]]                                                     $ad_machine_account_password_renewal_opts      = undef,
   # ipa
-  $ipa_domain                                    = undef,
-  $ipa_server                                    = undef,
-  $ipa_backup_server                             = undef,
-  $ipa_hostname                                  = undef,
-  $ipa_enable_dns_sites                          = undef,
-  $ipa_hbac_search_base                          = undef,
-  $ipa_host_search_base                          = undef,
-  $ipa_selinux_search_base                       = undef,
-  $ipa_subdomains_search_base                    = undef,
-  $ipa_master_domain_search_base                 = undef,
-  $ipa_views_search_base                         = undef,
-  $ipa_hbac_refresh                              = undef,
-  $ipa_hbac_selinux                              = undef,
-  $ipa_server_mode                               = undef,
-  $ipa_automount_location                        = undef,
-  $ipa_view_class                                = undef,
-  $ipa_view_name                                 = undef,
-  $ipa_override_object_class                     = undef,
-  $ipa_anchor_uuid                               = undef,
-  $ipa_user_override_object_class                = undef,
-  $ipa_group_override_object_class               = undef,
+  Optional[String]                                                                      $ipa_domain                                    = undef,
+  Optional[Array[Bodgitlib::Host, 1]]                                                   $ipa_server                                    = undef,
+  Optional[Array[Bodgitlib::Host, 1]]                                                   $ipa_backup_server                             = undef,
+  Optional[Bodgitlib::Hostname]                                                         $ipa_hostname                                  = undef,
+  Optional[Boolean]                                                                     $ipa_enable_dns_sites                          = undef,
+  Optional[Bodgitlib::LDAP::DN]                                                         $ipa_hbac_search_base                          = undef,
+  Optional[Bodgitlib::LDAP::DN]                                                         $ipa_host_search_base                          = undef,
+  Optional[Bodgitlib::LDAP::DN]                                                         $ipa_selinux_search_base                       = undef,
+  Optional[Bodgitlib::LDAP::DN]                                                         $ipa_subdomains_search_base                    = undef,
+  Optional[Bodgitlib::LDAP::DN]                                                         $ipa_master_domain_search_base                 = undef,
+  Optional[Bodgitlib::LDAP::DN]                                                         $ipa_views_search_base                         = undef,
+  Optional[Integer[0]]                                                                  $ipa_hbac_refresh                              = undef,
+  Optional[Integer[0]]                                                                  $ipa_hbac_selinux                              = undef,
+  Optional[Boolean]                                                                     $ipa_server_mode                               = undef,
+  Optional[String]                                                                      $ipa_automount_location                        = undef,
+  Optional[String]                                                                      $ipa_view_class                                = undef,
+  Optional[String]                                                                      $ipa_view_name                                 = undef,
+  Optional[String]                                                                      $ipa_override_object_class                     = undef,
+  Optional[String]                                                                      $ipa_anchor_uuid                               = undef,
+  Optional[String]                                                                      $ipa_user_override_object_class                = undef,
+  Optional[String]                                                                      $ipa_group_override_object_class               = undef,
 ) {
 
   if ! defined(Class['::sssd']) {
-    fail('You must include the sssd base class before using any sssd defined resources') # lint:ignore:80chars
+    fail('You must include the sssd base class before using any sssd defined resources')
   }
-
-  validate_re($id_provider, '^(proxy|local|ldap|ipa|ad)$')
-
-  if $debug_level {
-    validate_re($debug_level, ['^\d+$', '^0x[\da-fA-F]+$'])
-  }
-  if $debug_timestamps {
-    validate_bool($debug_timestamps)
-  }
-  if $debug_microseconds {
-    validate_bool($debug_microseconds)
-  }
-  if $timeout {
-    validate_integer($timeout, '', 0)
-  }
-
-  if $max_id {
-    validate_integer($max_id, '', 0)
-  }
-  if $min_id {
-    validate_integer($min_id, '', 0)
-  }
-  if $enumerate {
-    validate_bool($enumerate)
-  }
-  if $subdomain_enumerate {
-    validate_array($subdomain_enumerate)
-  }
-  if $force_timeout {
-    validate_integer($force_timeout, '', 0)
-  }
-  if $entry_cache_timeout {
-    validate_integer($entry_cache_timeout, '', 0)
-  }
-  if $entry_cache_user_timeout {
-    validate_integer($entry_cache_user_timeout, '', 0)
-  }
-  if $entry_cache_group_timeout {
-    validate_integer($entry_cache_group_timeout, '', 0)
-  }
-  if $entry_cache_netgroup_timeout {
-    validate_integer($entry_cache_netgroup_timeout, '', 0)
-  }
-  if $entry_cache_service_timeout {
-    validate_integer($entry_cache_service_timeout, '', 0)
-  }
-  if $entry_cache_sudo_timeout {
-    validate_integer($entry_cache_sudo_timeout, '', 0)
-  }
-  if $entry_cache_autofs_timeout {
-    validate_integer($entry_cache_autofs_timeout, '', 0)
-  }
-  if $entry_cache_ssh_host_timeout {
-    validate_integer($entry_cache_ssh_host_timeout, '', 0)
-  }
-  if $refresh_expired_interval {
-    validate_integer($refresh_expired_interval, '', 0)
-  }
-  if $cache_credentials {
-    validate_bool($cache_credentials)
-  }
-  if $cache_credentials_minimal_first_factor_length {
-    validate_integer($cache_credentials_minimal_first_factor_length, '', 0)
-  }
-  if $account_cache_expiration {
-    validate_integer($account_cache_expiration, '', 0)
-  }
-  if $pwd_expiration_warning {
-    validate_integer($pwd_expiration_warning, '', 0)
-  }
-  if $use_fully_qualified_names {
-    validate_bool($use_fully_qualified_names)
-  }
-  if $ignore_group_members {
-    validate_bool($ignore_group_members)
-  }
-  if $auth_provider {
-    validate_re($auth_provider, '^(ldap|krb5|ipa|ad|proxy|local|none)$')
-  }
-  if $access_provider {
-    validate_re($access_provider, '^(permit|deny|ldap|ipa|ad|simple)$')
-  }
-  if $chpass_provider {
-    validate_re($chpass_provider, '^(ldap|krb5|ipa|ad|proxy|none)$')
-  }
-  if $sudo_provider {
-    validate_re($sudo_provider, '^(ldap|ipa|ad|none)$')
-  }
-  if $selinux_provider {
-    validate_re($selinux_provider, '^(ipa|none)$')
-  }
-  if $subdomains_provider {
-    validate_re($subdomains_provider, '^(ipa|ad|none)$')
-  }
-  if $autofs_provider {
-    validate_re($autofs_provider, '^(ldap|ipa|none)$')
-  }
-  if $hostid_provider {
-    validate_re($hostid_provider, '^(ipa|none)$')
-  }
-  validate_string($re_expression)
-  validate_string($full_name_format)
-  if $lookup_family_order {
-    validate_re($lookup_family_order, '^ipv[46]_(first|only)$')
-  }
-  if $dns_resolver_timeout {
-    validate_integer($dns_resolver_timeout, '', 0)
-  }
-  validate_string($dns_discovery_domain)
-  if $override_gid {
-    validate_integer($override_gid, '', 0)
-  }
-  if $case_sensitive {
-    validate_re($case_sensitive, '^(true|false|preserving)$')
-  }
-  if $proxy_fast_alias {
-    validate_bool($proxy_fast_alias)
-  }
-  if $subdomain_homedir {
-    validate_absolute_path($subdomain_homedir)
-  }
-  if $realmd_tags {
-    validate_array($realmd_tags)
-  }
-  if $cached_auth_timeout {
-    validate_integer($cached_auth_timeout, '', 0)
-  }
-  if $dyndns_update {
-    validate_bool($dyndns_update)
-  }
-  if $dyndns_ttl {
-    validate_integer($dyndns_ttl, '', 0)
-  }
-  validate_string($dyndns_iface)
-  if $dyndns_refresh_interval {
-    validate_integer($dyndns_refresh_interval, '', 0)
-  }
-  if $dyndns_update_ptr {
-    validate_bool($dyndns_update_ptr)
-  }
-  if $dyndns_force_tcp {
-    validate_bool($dyndns_force_tcp)
-  }
-  validate_string($dyndns_server)
-  if $override_homedir {
-    validate_absolute_path($override_homedir)
-  }
-  if $homedir_substring {
-    validate_absolute_path($homedir_substring)
-  }
-  if $wildcard_limit {
-    validate_integer($wildcard_limit, '', 0)
-  }
-  if $simple_allow_users {
-    validate_array($simple_allow_users)
-  }
-  if $simple_deny_users {
-    validate_array($simple_deny_users)
-  }
-  if $simple_allow_groups {
-    validate_array($simple_allow_groups)
-  }
-  if $simple_deny_groups {
-    validate_array($simple_deny_groups)
-  }
-  validate_string($proxy_pam_target)
-  validate_string($proxy_lib_name)
-  if $default_shell {
-    validate_absolute_path($default_shell)
-  }
-  if $base_directory {
-    validate_absolute_path($base_directory)
-  }
-  if $create_homedir {
-    validate_bool($create_homedir)
-  }
-  if $remove_homedir {
-    validate_bool($remove_homedir)
-  }
-  if $homedir_umask {
-    validate_re($homedir_umask, '^[0-7]{3}$')
-  }
-  if $skel_dir {
-    validate_absolute_path($skel_dir)
-  }
-  if $mail_dir {
-    validate_absolute_path($mail_dir)
-  }
-  validate_string($userdel_cmd)
-  if $ldap_uri {
-    validate_array($ldap_uri)
-    validate_ldap_uri($ldap_uri)
-  }
-  if $ldap_backup_uri {
-    validate_array($ldap_backup_uri)
-    validate_ldap_uri($ldap_backup_uri)
-  }
-  if $ldap_chpass_uri {
-    validate_array($ldap_chpass_uri)
-    validate_ldap_uri($ldap_chpass_uri)
-  }
-  if $ldap_chpass_backup_uri {
-    validate_array($ldap_chpass_backup_uri)
-    valdiate_ldap_uri($ldap_chpass_backup_uri)
-  }
-  if $ldap_search_base {
-    validate_string($ldap_search_base)
-    validate_sssd_search_base($ldap_search_base)
-  }
-  if $ldap_schema {
-    validate_re($ldap_schema, '^(rfc2307(bis)?|ipa|ad)$')
-  }
-  if $ldap_default_bind_dn {
-    validate_string($ldap_default_bind_dn)
-    validate_ldap_dn($ldap_default_bind_dn)
-  }
-  if $ldap_default_authtok_type {
-    validate_re($ldap_default_authtok_type, '^(obfuscated_)?password$')
-  }
-  validate_string($ldap_default_authtok)
-  validate_string($ldap_user_object_class)
-  validate_string($ldap_user_name)
-  validate_string($ldap_user_uid_number)
-  validate_string($ldap_user_gid_number)
-  validate_string($ldap_user_gecos)
-  validate_string($ldap_user_home_directory)
-  validate_string($ldap_user_shell)
-  validate_string($ldap_user_uuid)
-  validate_string($ldap_user_objectsid)
-  validate_string($ldap_user_modify_timestamp)
-  validate_string($ldap_user_shadow_last_change)
-  validate_string($ldap_user_shadow_min)
-  validate_string($ldap_user_shadow_max)
-  validate_string($ldap_user_shadow_warning)
-  validate_string($ldap_user_shadow_inactive)
-  validate_string($ldap_user_shadow_expire)
-  validate_string($ldap_user_krb_last_pwd_change)
-  validate_string($ldap_user_krb_password_expiration)
-  validate_string($ldap_user_ad_account_expires)
-  validate_string($ldap_user_ad_user_account_control)
-  validate_string($ldap_ns_account_lock)
-  validate_string($ldap_user_nds_login_disabled)
-  validate_string($ldap_user_nds_login_expiration_time)
-  validate_string($ldap_user_nds_login_allowed_time_map)
-  validate_string($ldap_user_principal)
-  if $ldap_user_extra_attrs {
-    validate_array($ldap_user_extra_attrs)
-  }
-  validate_string($ldap_user_ssh_public_key)
-  if $ldap_force_upper_case_realm {
-    validate_bool($ldap_force_upper_case_realm)
-  }
-  if $ldap_enumeration_refresh_timeout {
-    validate_integer($ldap_enumeration_refresh_timeout, '', 0)
-  }
-  if $ldap_purge_cache_timeout {
-    validate_integer($ldap_purge_cache_timeout, '', 0)
-  }
-  validate_string($ldap_user_fullname)
-  validate_string($ldap_user_member_of)
-  validate_string($ldap_user_authorized_service)
-  validate_string($ldap_user_authorized_host)
-  validate_string($ldap_user_certificate)
-  validate_string($ldap_group_object_class)
-  validate_string($ldap_group_name)
-  validate_string($ldap_group_gid_number)
-  validate_string($ldap_group_member)
-  validate_string($ldap_group_uuid)
-  validate_string($ldap_group_objectsid)
-  validate_string($ldap_group_modify_timestamp)
-  validate_string($ldap_group_type)
-  validate_string($ldap_group_external_member)
-  if $ldap_group_nesting_level {
-    validate_integer($ldap_group_nesting_level, '', 0)
-  }
-  if $ldap_groups_use_matching_rule_in_chain {
-    validate_bool($ldap_groups_use_matching_rule_in_chain)
-  }
-  if $ldap_initgroups_use_matching_rule_in_chain {
-    validate_bool($ldap_initgroups_use_matching_rule_in_chain)
-  }
-  if $ldap_use_tokengroups {
-    validate_bool($ldap_use_tokengroups)
-  }
-  validate_string($ldap_netgroup_object_class)
-  validate_string($ldap_netgroup_name)
-  validate_string($ldap_netgroup_member)
-  validate_string($ldap_netgroup_triple)
-  validate_string($ldap_netgroup_modify_timestamp)
-  validate_string($ldap_service_object_class)
-  validate_string($ldap_service_name)
-  validate_string($ldap_service_port)
-  validate_string($ldap_service_proto)
-  if $ldap_service_search_base {
-    validate_string($ldap_service_search_base)
-    validate_sssd_search_base($ldap_service_search_base)
-  }
-  if $ldap_search_timeout {
-    validate_integer($ldap_search_timeout, '', 0)
-  }
-  if $ldap_enumeration_search_timeout {
-    validate_integer($ldap_enumeration_search_timeout, '', 0)
-  }
-  if $ldap_network_timeout {
-    validate_integer($ldap_network_timeout, '', 0)
-  }
-  if $ldap_opt_timeout {
-    validate_integer($ldap_opt_timeout, '', 0)
-  }
-  if $ldap_connection_expire_timeout {
-    validate_integer($ldap_connection_expire_timeout, '', 0)
-  }
-  if $ldap_page_size {
-    validate_integer($ldap_page_size, '', 0)
-  }
-  if $ldap_disable_paging {
-    validate_bool($ldap_disable_paging)
-  }
-  if $ldap_disable_range_retrieval {
-    validate_bool($ldap_disable_range_retrieval)
-  }
-  if $ldap_sasl_minssf {
-    validate_integer($ldap_sasl_minssf, '', 0)
-  }
-  if $ldap_deref_threshold {
-    validate_integer($ldap_deref_threshold, '', 0)
-  }
-  if $ldap_tls_reqcert {
-    validate_re($ldap_tls_reqcert, '^(never|allow|try|demand|hard)$')
-  }
-  if $ldap_tls_cacert {
-    validate_absolute_path($ldap_tls_cacert)
-  }
-  if $ldap_tls_cacertdir {
-    validate_absolute_path($ldap_tls_cacertdir)
-  }
-  if $ldap_tls_cert {
-    validate_absolute_path($ldap_tls_cert)
-  }
-  if $ldap_tls_key {
-    validate_absolute_path($ldap_tls_key)
-  }
-  validate_string($ldap_tls_cipher_suite)
-  if $ldap_id_use_start_tls {
-    validate_bool($ldap_id_use_start_tls)
-  }
-  if $ldap_id_mapping {
-    validate_bool($ldap_id_mapping)
-  }
-  if $ldap_idmap_range_min {
-    validate_integer($ldap_idmap_range_min, '', 0)
-  }
-  if $ldap_idmap_range_max {
-    validate_integer($ldap_idmap_range_max, '', 0)
-  }
-  if $ldap_idmap_range_size {
-    validate_integer($ldap_idmap_range_size, '', 0)
-  }
-  validate_string($ldap_idmap_default_domain_sid)
-  validate_string($ldap_idmap_default_domain)
-  if $ldap_idmap_autorid_compat {
-    validate_bool($ldap_idmap_autorid_compat)
-  }
-  if $ldap_max_id {
-    validate_integer($ldap_max_id, '', 0)
-  }
-  if $ldap_min_id {
-    validate_integer($ldap_min_id, '', 0)
-  }
-  validate_string($ldap_sasl_mech)
-  validate_string($ldap_sasl_authid)
-  validate_string($ldap_sasl_realm)
-  if $ldap_sasl_canonicalize {
-    validate_bool($ldap_sasl_canonicalize)
-  }
-  if $ldap_krb5_keytab {
-    validate_absolute_path($ldap_krb5_keytab)
-  }
-  if $ldap_krb5_init_creds {
-    validate_bool($ldap_krb5_init_creds)
-  }
-  if $ldap_krb5_ticket_lifetime {
-    validate_integer($ldap_krb5_ticket_lifetime, '', 0)
-  }
-  if $ldap_pwd_policy {
-    validate_re($ldap_pwd_policy, '^(none|shadow|mit_kerberos)$')
-  }
-  if $ldap_referrals {
-    validate_bool($ldap_referrals)
-  }
-  validate_string($ldap_dns_service_name)
-  validate_string($ldap_chpass_dns_service_name)
-  if $ldap_chpass_update_last_change {
-    validate_bool($ldap_chpass_update_last_change)
-  }
-  if $ldap_access_filter {
-    validate_string($ldap_access_filter)
-    validate_ldap_filter($ldap_access_filter)
-  }
-  if $ldap_account_expire_policy {
-    validate_re($ldap_account_expire_policy, '^(shadow|ad|rhds|ipa|389ds|nds)$')
-  }
-  if $ldap_access_order {
-    validate_array($ldap_access_order)
-  }
-  validate_string($ldap_pwdlockout_dn)
-  if $ldap_deref {
-    validate_re($ldap_deref, '^(never|searching|finding|always)$')
-  }
-  if $ldap_rfc2307_fallback_to_local_users {
-    validate_bool($ldap_rfc2307_fallback_to_local_users)
-  }
-  validate_string($ldap_sudorule_object_class)
-  validate_string($ldap_sudorule_name)
-  validate_string($ldap_sudorule_command)
-  validate_string($ldap_sudorule_host)
-  validate_string($ldap_sudorule_user)
-  validate_string($ldap_sudorule_option)
-  validate_string($ldap_sudorule_runasuser)
-  validate_string($ldap_sudorule_runasgroup)
-  validate_string($ldap_sudorule_notbefore)
-  validate_string($ldap_sudorule_notafter)
-  validate_string($ldap_sudorule_order)
-  if $ldap_sudo_full_refresh_interval {
-    validate_integer($ldap_sudo_full_refresh_interval, '', 0)
-  }
-  if $ldap_sudo_smart_refresh_interval {
-    validate_integer($ldap_sudo_smart_refresh_interval, '', 0)
-  }
-  if $ldap_sudo_use_host_filter {
-    validate_bool($ldap_sudo_use_host_filter)
-  }
-  if $ldap_sudo_hostnames {
-    validate_array($ldap_sudo_hostnames)
-  }
-  if $ldap_sudo_ip {
-    validate_array($ldap_sudo_ip)
-  }
-  if $ldap_sudo_include_netgroups {
-    validate_bool($ldap_sudo_include_netgroups)
-  }
-  if $ldap_sudo_include_regexp {
-    validate_bool($ldap_sudo_include_regexp)
-  }
-  validate_string($ldap_autofs_map_master_name)
-  validate_string($ldap_autofs_map_object_class)
-  validate_string($ldap_autofs_map_name)
-  validate_string($ldap_autofs_entry_object_class)
-  validate_string($ldap_autofs_entry_key)
-  validate_string($ldap_autofs_entry_value)
-  if $ldap_netgroup_search_base {
-    validate_string($ldap_netgroup_search_base)
-    validate_sssd_search_base($ldap_netgroup_search_base)
-  }
-  if $ldap_user_search_base {
-    validate_string($ldap_user_search_base)
-    validate_sssd_search_base($ldap_user_search_base)
-  }
-  if $ldap_group_search_base {
-    validate_string($ldap_group_search_base)
-    validate_sssd_search_base($ldap_group_search_base)
-  }
-  if $ldap_sudo_search_base {
-    validate_string($ldap_sudo_search_base)
-    validate_sssd_search_base($ldap_sudo_search_base)
-  }
-  if $ldap_autofs_search_base {
-    validate_string($ldap_autofs_search_base)
-    validate_sssd_search_base($ldap_autofs_search_base)
-  }
-  if $krb5_server {
-    validate_array($krb5_server)
-  }
-  if $krb5_backup_server {
-    validate_array($krb5_backup_server)
-  }
-  validate_string($krb5_realm)
-  if $krb5_kpasswd {
-    validate_array($krb5_kpasswd)
-  }
-  if $krb5_backup_kpasswd {
-    validate_array($krb5_backup_kpasswd)
-  }
-  if $krb5_ccachedir {
-    validate_absolute_path($krb5_ccachedir)
-  }
-  validate_string($krb5_ccname_template)
-  if $krb5_auth_timeout {
-    validate_integer($krb5_auth_timeout, '', 0)
-  }
-  if $krb5_validate {
-    validate_bool($krb5_validate)
-  }
-  if $krb5_keytab {
-    validate_absolute_path($krb5_keytab)
-  }
-  if $krb5_store_password_if_offline {
-    validate_bool($krb5_store_password_if_offline)
-  }
-  if $krb5_renewable_lifetime {
-    validate_re($krb5_renewable_lifetime, '^\d+[smhd]?$')
-  }
-  if $krb5_lifetime {
-    validate_re($krb5_lifetime, '^\d+[smhd]?$')
-  }
-  if $krb5_renew_interval {
-    validate_re($krb5_renew_interval, '^\d+[smhd]?$')
-  }
-  if $krb5_use_fast {
-    validate_re($krb5_use_fast, '^(never|try|demand)$')
-  }
-  validate_string($krb5_fast_principal)
-  if $krb5_canonicalize {
-    validate_bool($krb5_canonicalize)
-  }
-  if $krb5_use_kdcinfo {
-    validate_bool($krb5_use_kdcinfo)
-  }
-  if $krb5_use_enterprise_principal {
-    validate_bool($krb5_use_enterprise_principal)
-  }
-  if $krb5_map_user {
-    validate_array($krb5_map_user)
-  }
-  if $krb5_confd_path {
-    validate_absolute_path($krb5_confd_path)
-  }
-  validate_string($ad_domain)
-  if $ad_server {
-    validate_array($ad_server)
-  }
-  if $ad_backup_server {
-    validate_array($ad_backup_server)
-  }
-  validate_string($ad_hostname)
-  if $ad_enable_dns_sites {
-    validate_bool($ad_enable_dns_sites)
-  }
-  validate_string($ad_access_filter)
-  validate_string($ad_site)
-  if $ad_enable_gc {
-    validate_bool($ad_enable_gc)
-  }
-  if $ad_gpo_access_control {
-    validate_re($ad_gpo_access_control, '^(disabled|enforcing|permissive)$')
-  }
-  if $ad_gpo_cache_timeout {
-    validate_integer($ad_gpo_cache_timeout, '', 0)
-  }
-  if $ad_gpo_map_interactive {
-    validate_array($ad_gpo_map_interactive)
-  }
-  if $ad_gpo_map_remote_interactive {
-    validate_array($ad_gpo_map_remote_interactive)
-  }
-  if $ad_gpo_map_network {
-    validate_array($ad_gpo_map_network)
-  }
-  if $ad_gpo_map_batch {
-    validate_array($ad_gpo_map_batch)
-  }
-  if $ad_gpo_map_service {
-    validate_array($ad_gpo_map_service)
-  }
-  if $ad_gpo_map_permit {
-    validate_array($ad_gpo_map_permit)
-  }
-  if $ad_gpo_map_deny {
-    validate_array($ad_gpo_map_deny)
-  }
-  if $ad_gpo_default_right {
-    validate_re($ad_gpo_default_right, '^((remote_)?interactive|network|batch|service|permit|deny)$')
-  }
-  validate_string($ipa_domain)
-  if $ipa_server {
-    validate_array($ipa_server)
-  }
-  if $ipa_backup_server {
-    validate_array($ipa_backup_server)
-  }
-  validate_string($ipa_hostname)
-  if $ipa_enable_dns_sites {
-    validate_bool($ipa_enable_dns_sites)
-  }
-  validate_string($ipa_hbac_search_base)
-  validate_string($ipa_host_search_base)
-  validate_string($ipa_selinux_search_base)
-  validate_string($ipa_subdomains_search_base)
-  validate_string($ipa_master_domain_search_base)
-  validate_string($ipa_views_search_base)
-  if $ipa_hbac_refresh {
-    validate_integer($ipa_hbac_refresh, '', 0)
-  }
-  if $ipa_hbac_selinux {
-    validate_integer($ipa_hbac_selinux, '', 0)
-  }
-  if $ipa_server_mode {
-    validate_bool($ipa_server_mode)
-  }
-  validate_string($ipa_automount_location)
-  validate_string($ipa_view_class)
-  validate_string($ipa_view_name)
-  validate_string($ipa_override_object_class)
-  validate_string($ipa_anchor_uuid)
-  validate_string($ipa_user_override_object_class)
-  validate_string($ipa_group_override_object_class)
 
   $config = delete_undef_values({
     'id_provider'                                   => $id_provider,
+    # options for any section
+    'debug'                                         => $debug,
     'debug_level'                                   => $debug_level,
     'debug_timestamps'                              => $debug_timestamps,
     'debug_microseconds'                            => $debug_microseconds,
     'timeout'                                       => $timeout,
+    # generic domain options
+    'domain_type'                                   => $domain_type,
     'max_id'                                        => $max_id,
     'min_id'                                        => $min_id,
     'enumerate'                                     => $enumerate,
@@ -902,7 +604,6 @@ define sssd::domain (
       undef   => undef,
       default => join($subdomain_enumerate, ', '),
     },
-    'force_timeout'                                 => $force_timeout,
     'entry_cache_timeout'                           => $entry_cache_timeout,
     'entry_cache_user_timeout'                      => $entry_cache_user_timeout,
     'entry_cache_group_timeout'                     => $entry_cache_group_timeout,
@@ -933,7 +634,10 @@ define sssd::domain (
     'dns_discovery_domain'                          => $dns_discovery_domain,
     'override_gid'                                  => $override_gid,
     'case_sensitive'                                => $case_sensitive,
-    'proxy_fast_alias'                              => $proxy_fast_alias,
+    'subdomain_inherit'                             => $subdomain_inherit ? {
+      undef   => undef,
+      default => join($subdomain_inherit, ', '),
+    },
     'subdomain_homedir'                             => $subdomain_homedir,
     'realmd_tags'                                   => $realmd_tags ? {
       undef   => undef,
@@ -946,10 +650,12 @@ define sssd::domain (
     'dyndns_refresh_interval'                       => $dyndns_refresh_interval,
     'dyndns_update_ptr'                             => $dyndns_update_ptr,
     'dyndns_force_tcp'                              => $dyndns_force_tcp,
+    'dyndns_auth'                                   => $dyndns_auth,
     'dyndns_server'                                 => $dyndns_server,
     'override_homedir'                              => $override_homedir,
     'homedir_substring'                             => $homedir_substring,
     'wildcard_limit'                                => $wildcard_limit,
+    # simple access provider
     'simple_allow_users'                            => $simple_allow_users ? {
       undef   => undef,
       default => join($simple_allow_users, ', '),
@@ -966,8 +672,12 @@ define sssd::domain (
       undef   => undef,
       default => join($simple_deny_groups, ', '),
     },
+    # proxy
     'proxy_pam_target'                              => $proxy_pam_target,
     'proxy_lib_name'                                => $proxy_lib_name,
+    'proxy_fast_alias'                              => $proxy_fast_alias,
+    'proxy_max_children'                            => $proxy_max_children,
+    # local
     'default_shell'                                 => $default_shell,
     'base_directory'                                => $base_directory,
     'create_homedir'                                => $create_homedir,
@@ -976,6 +686,7 @@ define sssd::domain (
     'skel_dir'                                      => $skel_dir,
     'mail_dir'                                      => $mail_dir,
     'userdel_cmd'                                   => $userdel_cmd,
+    # ldap
     'ldap_uri'                                      => $ldap_uri ? {
       undef   => undef,
       default => join($ldap_uri, ', '),
@@ -1082,8 +793,9 @@ define sssd::domain (
     'ldap_idmap_default_domain_sid'                 => $ldap_idmap_default_domain_sid,
     'ldap_idmap_default_domain'                     => $ldap_idmap_default_domain,
     'ldap_idmap_autorid_compat'                     => $ldap_idmap_autorid_compat,
-    'ldap_min_id'                                   => $ldap_min_id,
+    'ldap_idmap_helper_table_size'                  => $ldap_idmap_helper_table_size,
     'ldap_max_id'                                   => $ldap_max_id,
+    'ldap_min_id'                                   => $ldap_min_id,
     'ldap_sasl_mech'                                => $ldap_sasl_mech,
     'ldap_sasl_authid'                              => $ldap_sasl_authid,
     'ldap_sasl_realm'                               => $ldap_sasl_realm,
@@ -1140,6 +852,7 @@ define sssd::domain (
     'ldap_group_search_base'                        => $ldap_group_search_base,
     'ldap_sudo_search_base'                         => $ldap_sudo_search_base,
     'ldap_autofs_search_base'                       => $ldap_autofs_search_base,
+    # krb5
     'krb5_server'                                   => $krb5_server ? {
       undef   => undef,
       default => join($krb5_server, ', '),
@@ -1149,8 +862,6 @@ define sssd::domain (
       default => join($krb5_backup_server, ', '),
     },
     'krb5_realm'                                    => $krb5_realm,
-    'krb5_canonicalize'                             => $krb5_canonicalize,
-    'krb5_use_kdcinfo'                              => $krb5_use_kdcinfo,
     'krb5_kpasswd'                                  => $krb5_kpasswd ? {
       undef   => undef,
       default => join($krb5_kpasswd, ', '),
@@ -1170,13 +881,20 @@ define sssd::domain (
     'krb5_renew_interval'                           => $krb5_renew_interval,
     'krb5_use_fast'                                 => $krb5_use_fast,
     'krb5_fast_principal'                           => $krb5_fast_principal,
+    'krb5_canonicalize'                             => $krb5_canonicalize,
+    'krb5_use_kdcinfo'                              => $krb5_use_kdcinfo,
     'krb5_use_enterprise_principal'                 => $krb5_use_enterprise_principal,
     'krb5_map_user'                                 => $krb5_map_user ? {
       undef   => undef,
       default => join($krb5_map_user, ', '),
     },
     'krb5_confd_path'                               => $krb5_confd_path,
+    # ad
     'ad_domain'                                     => $ad_domain,
+    'ad_enabled_domains'                            => $ad_enabled_domains ? {
+      undef   => undef,
+      default => join($ad_enabled_domains, ', '),
+    },
     'ad_server'                                     => $ad_server ? {
       undef   => undef,
       default => join($ad_server, ', '),
@@ -1221,6 +939,12 @@ define sssd::domain (
       default => join($ad_gpo_map_deny, ', '),
     },
     'ad_gpo_default_right'                          => $ad_gpo_default_right,
+    'ad_maximum_machine_account_password_age'       => $ad_maximum_machine_account_password_age,
+    'ad_machine_account_password_renewal_opts'      => $ad_machine_account_password_renewal_opts ? {
+      undef   => undef,
+      default => join($ad_machine_account_password_renewal_opts, ':'),
+    },
+    # ipa
     'ipa_domain'                                    => $ipa_domain,
     'ipa_server'                                    => $ipa_server ? {
       undef   => undef,
@@ -1250,20 +974,18 @@ define sssd::domain (
     'ipa_group_override_object_class'               => $ipa_group_override_object_class,
   })
 
-  $titles = prefix(keys($config), "domain/${name}/")
-  $values = parsejson(inline_template('<%= @config.values.map { |x| { "value" => x } }.to_json %>'))
-
-  Sssd_conf {
-    target => $::sssd::conf_file,
-    notify => Class['::sssd::daemon'],
+  $config.each |String $setting, Any $value| {
+    sssd_conf { "domain/${domain}/${setting}":
+      target => $::sssd::conf_file,
+      value  => $value,
+      notify => Class['::sssd::daemon'],
+    }
   }
 
-  create_resources(sssd_conf, hash(zip($titles, $values)), {'ensure' => 'present'})
-
-  datacat_fragment { "${module_name} domain ${name}":
+  datacat_fragment { "${module_name} domain ${domain}":
     target => "${module_name} domains",
     data   => {
-      'domain' => [$name],
+      'domain' => [$domain],
     },
   }
 }

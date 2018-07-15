@@ -1,4 +1,4 @@
-#
+# @!visibility private
 class sssd::params {
 
   case $::osfamily {
@@ -10,7 +10,7 @@ class sssd::params {
       $service_name      = 'sssd'
     }
     default: {
-      fail("The ${module_name} module is not supported on an ${::osfamily} based system.") # lint:ignore:80chars
+      fail("The ${module_name} module is not supported on an ${::osfamily} based system.")
     }
   }
 }

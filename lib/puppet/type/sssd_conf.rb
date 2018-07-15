@@ -5,9 +5,7 @@ The resource name can be used as a shortcut for specifying the section and
 setting parameters by using the form `<section>/<setting>` otherwise it can be
 left as a normal string.'
 
-  ensurable do
-    defaultvalues
-  end
+  ensurable
 
   newparam(:name) do
     desc 'The name of the section and setting separated by `/`, or a unique
