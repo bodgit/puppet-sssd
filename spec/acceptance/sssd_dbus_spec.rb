@@ -2,33 +2,6 @@ require 'spec_helper_acceptance'
 
 describe 'sssd::dbus' do
 
-  it 'install dependencies' do
-    case fact('osfamily')
-    when 'RedHat'
-      case fact('operatingsystemmajrelease')
-      when '6'
-        pp = <<-EOS
-          package { 'ruby-devel':
-            ensure => present,
-          }
-          package { 'oniguruma-devel':
-            ensure => present,
-          }
-          package { 'oniguruma':
-            ensure   => present,
-            provider => 'gem',
-            require  => [
-              Package['ruby-devel'],
-              Package['oniguruma-devel'],
-            ]
-          }
-        EOS
-
-        apply_manifest(pp, :catch_failures => true)
-      end
-    end
-  end
-
   it 'should work with no errors' do
 
     pp = <<-EOS
@@ -47,6 +20,9 @@ describe 'sssd::dbus' do
       include ::sssd::dbus
     EOS
 
+    # If SSSD pulls in an updated D-Bus package it can take an extra run
+    # to converge
+    apply_manifest(pp, :catch_failures => true)
     apply_manifest(pp, :catch_failures => true)
     apply_manifest(pp, :catch_changes  => true)
   end

@@ -2,57 +2,59 @@ require 'spec_helper_acceptance'
 
 describe 'sssd' do
 
-  it 'install dependencies' do
-    case fact('osfamily')
-    when 'RedHat'
-      case fact('operatingsystemmajrelease')
-      when '6'
-        pp = <<-EOS
-          package { 'ruby-devel':
-            ensure => present,
-          }
-          package { 'oniguruma-devel':
-            ensure => present,
-          }
-          package { 'oniguruma':
-            ensure   => present,
-            provider => 'gem',
-            require  => [
-              Package['ruby-devel'],
-              Package['oniguruma-devel'],
-            ]
-          }
-        EOS
-
-        apply_manifest(pp, :catch_failures => true)
-      end
-    end
-  end
-
   it 'should work with no errors' do
 
     pp = <<-EOS
       include ::openldap
       include ::openldap::client
       class { '::openldap::server':
-        root_dn              => 'cn=Manager,dc=example,dc=com',
-        root_password        => 'secret',
-        suffix               => 'dc=example,dc=com',
-        access               => [
-          'to attrs=userPassword by self =xw by anonymous auth',
-          'to * by dn.base="gidNumber=0+uidNumber=0,cn=peercred,cn=external,cn=auth" manage by users read',
+        root_dn       => 'cn=Manager,dc=example,dc=com',
+        root_password => 'secret',
+        suffix        => 'dc=example,dc=com',
+        access        => [
+          [
+            {
+              'attrs' => ['userPassword'],
+            },
+            [
+              {
+                'who'    => ['self'],
+                'access' => '=xw',
+              },
+              {
+                'who'    => ['anonymous'],
+                'access' => 'auth',
+              },
+            ],
+          ],
+          [
+            {
+              'dn' => '*',
+            },
+            [
+              {
+                'who'    => ['dn.base="gidNumber=0+uidNumber=0,cn=peercred,cn=external,cn=auth"'],
+                'access' => 'manage',
+              },
+              {
+                'who'    => ['users'],
+                'access' => 'read',
+              },
+            ],
+          ],
         ],
-        ldap_interfaces      => ['#{default.ip}'],
-        local_ssf            => 256,
       }
+
       ::openldap::server::schema { 'cosine':
-        position => 1,
+        ensure => present,
       }
       ::openldap::server::schema { 'inetorgperson':
-        position => 2,
+        ensure  => present,
+        require => ::Openldap::Server::Schema['cosine'],
       }
       ::openldap::server::schema { 'nis':
-        position => 3,
+        ensure  => present,
+        require => ::Openldap::Server::Schema['inetorgperson'],
       }
 
       include ::sssd
@@ -60,7 +62,7 @@ describe 'sssd' do
       ::sssd::domain { 'example.com':
         id_provider               => 'ldap',
         ldap_schema               => 'rfc2307',
-        ldap_uri                  => ['ldap://#{default.ip}'],
+        ldap_uri                  => ['ldap://127.0.0.1'],
         ldap_search_base          => 'dc=example,dc=com',
         ldap_tls_reqcert          => 'never',
         ldap_id_use_start_tls     => false,
