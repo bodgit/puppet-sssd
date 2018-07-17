@@ -4,6 +4,14 @@ describe 'sssd' do
 
   let(:params) do
     {
+      :domains                  => {
+        'test' => {
+          'id_provider' => 'ldap',
+        },
+      },
+      :services                 => {
+        'nss' => {},
+      },
       :debug                    => 0x77f0,
       :debug_level              => 0x77f0,
       :debug_timestamps         => true,

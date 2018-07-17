@@ -10,8 +10,10 @@
 #
 # @param conf_dir
 # @param conf_file
+# @param domains
 # @param package_name
 # @param service_name
+# @param services
 # @param socket_services
 # @param use_socket_activation
 # @param debug
@@ -40,8 +42,10 @@
 class sssd (
   Stdlib::Absolutepath                                                  $conf_dir                 = $::sssd::params::conf_dir,
   Stdlib::Absolutepath                                                  $conf_file                = $::sssd::params::conf_file,
+  Hash[String, Hash[String, Any]]                                       $domains                  = {},
   String                                                                $package_name             = $::sssd::params::package_name,
   String                                                                $service_name             = $::sssd::params::service_name,
+  Hash[String, Hash[String, Any]]                                       $services                 = {},
   Hash[SSSD::Type, Variant[String, Array[String, 1]]]                   $socket_services          = $::sssd::params::socket_services,
   Boolean                                                               $use_socket_activation    = $::sssd::params::use_socket_activation,
   # options for any section

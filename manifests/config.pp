@@ -82,4 +82,16 @@ class sssd::config {
     target_field    => 'value',
     before          => Sssd_conf['sssd/domains'],
   }
+
+  $::sssd::domains.each |$resource, $attributes| {
+    ::sssd::domain { $resource:
+      * => $attributes,
+    }
+  }
+
+  $::sssd::services.each |$resource, $attributes| {
+    ::sssd::service { $resource:
+      * => $attributes,
+    }
+  }
 }
