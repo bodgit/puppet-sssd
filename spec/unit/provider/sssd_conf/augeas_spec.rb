@@ -50,6 +50,41 @@ describe provider_class do
       expect(inst[0]).to eq({:name => 'sssd/services', :ensure => :present, :section => 'sssd', :setting => 'services', :value => 'nss, pam'})
     end
 
+    describe 'when changing settings' do
+      it 'should change a setting' do
+        expr = "target[. = 'sssd']/services"
+        aug_open(target, 'Sssd.lns') do |aug|
+          expect(aug.get(expr)).to eq('nss, pam')
+        end
+
+        apply!(Puppet::Type.type(:sssd_conf).new(
+          :name     => 'test',
+          :section  => 'sssd',
+          :setting  => 'services',
+          :value    => 'nss, pam, ifp',
+          :target   => target,
+          :provider => 'augeas',
+        ))
+
+        aug_open(target, 'Sssd.lns') do |aug|
+          expect(aug.get(expr)).to eq('nss, pam, ifp')
+        end
+
+        apply!(Puppet::Type.type(:sssd_conf).new(
+          :name     => 'test',
+          :section  => 'sssd',
+          :setting  => 'services',
+          :value    => '',
+          :target   => target,
+          :provider => 'augeas',
+        ))
+
+        aug_open(target, 'Sssd.lns') do |aug|
+          expect(aug.get(expr)).to eq(nil)
+        end
+      end
+    end
+
     describe 'when deleting settings' do
       it 'should delete a setting' do
         expr = "target[. = 'sssd']/services"

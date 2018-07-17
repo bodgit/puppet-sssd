@@ -45,7 +45,7 @@ global [sssd] section.'
   newproperty(:value) do
     desc 'Value to change the setting to.'
     munge do |value|
-      value.to_s
+      value.to_s.strip
     end
   end
 
