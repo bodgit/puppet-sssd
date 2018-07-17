@@ -10,7 +10,7 @@ describe 'sssd::dbus' do
       ::sssd::domain { 'example.com':
         id_provider               => 'ldap',
         ldap_schema               => 'rfc2307',
-        ldap_uri                  => ['ldap://#{default.ip}'],
+        ldap_uri                  => ['ldap://127.0.0.1'],
         ldap_search_base          => 'dc=example,dc=com',
         ldap_tls_reqcert          => 'never',
         ldap_id_use_start_tls     => false,

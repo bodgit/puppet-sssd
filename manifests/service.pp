@@ -5,6 +5,7 @@
 #   ::sssd::service { 'nss': }
 #
 # @param service
+# @param use_socket_activation
 # @param debug
 # @param debug_level
 # @param debug_timestamps
@@ -65,6 +66,7 @@
 # @since 1.0.0
 define sssd::service (
   SSSD::Type                                                   $service                        = $title,
+  Boolean                                                      $use_socket_activation          = $::sssd::use_socket_activation,
   # options for any section
   Optional[Integer[0]]                                         $debug                          = undef,
   Optional[Integer[0]]                                         $debug_level                    = undef,
@@ -134,6 +136,10 @@ define sssd::service (
 
   if ! defined(Class['::sssd']) {
     fail('You must include the sssd base class before using any sssd defined resources')
+  }
+
+  if $use_socket_activation and $::service_provider != 'systemd' {
+    fail('Systemd is required for socket-activated services')
   }
 
   $global_config = delete_undef_values({
@@ -271,10 +277,34 @@ define sssd::service (
     }
   }
 
-  datacat_fragment { "${module_name} service ${service}":
-    target => "${module_name} services",
-    data   => {
-      'service' => [$service],
-    },
+  if $use_socket_activation {
+
+    if has_key($::sssd::socket_services, $service) {
+      Array($::sssd::socket_services[$service], true).each |String $x| {
+        service { $x:
+          enable => true,
+        }
+      }
+    }
+  } else {
+
+    if $::service_provider == 'systemd' {
+
+      if has_key($::sssd::socket_services, $service) {
+        Array($::sssd::socket_services[$service], true).each |String $x| {
+          service { $x:
+            ensure => stopped,
+            enable => false,
+          }
+        }
+      }
+    }
+
+    datacat_fragment { "${module_name} service ${service}":
+      target => "${module_name} services",
+      data   => {
+        'service' => [$service],
+      },
+    }
   }
 }

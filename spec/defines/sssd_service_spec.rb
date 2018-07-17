@@ -29,7 +29,7 @@ describe 'sssd::service' do
           'nss'
         end
 
-        it { is_expected.to compile.and_raise_error(%r{must include the sssd base class}) }
+        it { is_expected.to compile.and_raise_error(%r{Unknown variable}) }
       end
 
       context 'with sssd class included' do
@@ -77,7 +77,6 @@ describe 'sssd::service' do
           end
 
           it { is_expected.to compile.with_all_deps }
-          it { is_expected.to contain_datacat_fragment('sssd service nss') }
           it { is_expected.to contain_sssd__service('nss') }
           it { is_expected.to contain_sssd_conf('nss/filter_users_in_groups').with_value('true') }
           it { is_expected.to contain_sssd_conf('nss/allowed_shells').with_value('/bin/bash, /bin/zsh') }
@@ -109,6 +108,14 @@ describe 'sssd::service' do
           it { is_expected.to contain_sssd_conf('nss/timeout').with_value('10') }
           it { is_expected.to contain_sssd_conf('nss/user_attributes').with_value('+telephoneNumber') }
           it { is_expected.to contain_sssd_conf('nss/vetoed_shells').with_value('/bin/csh') }
+
+          case facts[:operatingsystemmajrelease]
+          when '6'
+            it { is_expected.to contain_datacat_fragment('sssd service nss') }
+          else
+            it { is_expected.to contain_service('sssd-nss.socket').with_enable(true) }
+            it { is_expected.to have_datacat_fragment_resource_count(0) }
+          end
         end
 
         context 'pam service' do
@@ -140,7 +147,6 @@ describe 'sssd::service' do
           end
 
           it { is_expected.to compile.with_all_deps }
-          it { is_expected.to contain_datacat_fragment('sssd service pam') }
           it { is_expected.to contain_sssd__service('pam') }
           it { is_expected.to contain_sssd_conf('pam/cache_first').with_value(false) }
           it { is_expected.to contain_sssd_conf('pam/client_idle_timeout').with_value('60') }
@@ -168,6 +174,15 @@ describe 'sssd::service' do
           it { is_expected.to contain_sssd_conf('pam/reconnection_retries').with_value('3') }
           it { is_expected.to contain_sssd_conf('pam/responder_idle_timeout').with_value('300') }
           it { is_expected.to contain_sssd_conf('pam/timeout').with_value('10') }
+
+          case facts[:operatingsystemmajrelease]
+          when '6'
+            it { is_expected.to contain_datacat_fragment('sssd service pam') }
+          else
+            it { is_expected.to contain_service('sssd-pam.socket').with_enable(true) }
+            it { is_expected.to contain_service('sssd-pam-priv.socket').with_enable(true) }
+            it { is_expected.to have_datacat_fragment_resource_count(0) }
+          end
         end
 
         context 'sudo service' do
@@ -184,7 +199,6 @@ describe 'sssd::service' do
           end
 
           it { is_expected.to compile.with_all_deps }
-          it { is_expected.to contain_datacat_fragment('sssd service sudo') }
           it { is_expected.to contain_sssd__service('sudo') }
           it { is_expected.to contain_sssd_conf('sudo/cache_first').with_value(false) }
           it { is_expected.to contain_sssd_conf('sudo/client_idle_timeout').with_value('60') }
@@ -198,6 +212,14 @@ describe 'sssd::service' do
           it { is_expected.to contain_sssd_conf('sudo/responder_idle_timeout').with_value('300') }
           it { is_expected.to contain_sssd_conf('sudo/sudo_timed').with_value('false') }
           it { is_expected.to contain_sssd_conf('sudo/timeout').with_value('10') }
+
+          case facts[:operatingsystemmajrelease]
+          when '6'
+            it { is_expected.to contain_datacat_fragment('sssd service sudo') }
+          else
+            it { is_expected.to contain_service('sssd-sudo.socket').with_enable(true) }
+            it { is_expected.to have_datacat_fragment_resource_count(0) }
+          end
         end
 
         context 'autofs service' do
@@ -214,7 +236,6 @@ describe 'sssd::service' do
           end
 
           it { is_expected.to compile.with_all_deps }
-          it { is_expected.to contain_datacat_fragment('sssd service autofs') }
           it { is_expected.to contain_sssd__service('autofs') }
           it { is_expected.to contain_sssd_conf('autofs/autofs_negative_timeout').with_value('15') }
           it { is_expected.to contain_sssd_conf('autofs/cache_first').with_value(false) }
@@ -228,6 +249,14 @@ describe 'sssd::service' do
           it { is_expected.to contain_sssd_conf('autofs/reconnection_retries').with_value('3') }
           it { is_expected.to contain_sssd_conf('autofs/responder_idle_timeout').with_value('300') }
           it { is_expected.to contain_sssd_conf('autofs/timeout').with_value('10') }
+
+          case facts[:operatingsystemmajrelease]
+          when '6'
+            it { is_expected.to contain_datacat_fragment('sssd service autofs') }
+          else
+            it { is_expected.to contain_service('sssd-autofs.socket').with_enable(true) }
+            it { is_expected.to have_datacat_fragment_resource_count(0) }
+          end
         end
 
         context 'ssh service' do
@@ -246,7 +275,6 @@ describe 'sssd::service' do
           end
 
           it { is_expected.to compile.with_all_deps }
-          it { is_expected.to contain_datacat_fragment('sssd service ssh') }
           it { is_expected.to contain_sssd__service('ssh') }
           it { is_expected.to contain_sssd_conf('ssh/ca_db').with_value('/etc/pki/nssdb') }
           it { is_expected.to contain_sssd_conf('ssh/cache_first').with_value(false) }
@@ -262,6 +290,14 @@ describe 'sssd::service' do
           it { is_expected.to contain_sssd_conf('ssh/ssh_hash_known_hosts').with_value('true') }
           it { is_expected.to contain_sssd_conf('ssh/ssh_known_hosts_timeout').with_value('180') }
           it { is_expected.to contain_sssd_conf('ssh/timeout').with_value('10') }
+
+          case facts[:operatingsystemmajrelease]
+          when '6'
+            it { is_expected.to contain_datacat_fragment('sssd service ssh') }
+          else
+            it { is_expected.to contain_service('sssd-ssh.socket').with_enable(true) }
+            it { is_expected.to have_datacat_fragment_resource_count(0) }
+          end
         end
 
         context 'pac service' do
@@ -279,7 +315,6 @@ describe 'sssd::service' do
           end
 
           it { is_expected.to compile.with_all_deps }
-          it { is_expected.to contain_datacat_fragment('sssd service pac') }
           it { is_expected.to contain_sssd__service('pac') }
           it { is_expected.to contain_sssd_conf('pac/allowed_uids').with_value('0') }
           it { is_expected.to contain_sssd_conf('pac/cache_first').with_value(false) }
@@ -294,6 +329,14 @@ describe 'sssd::service' do
           it { is_expected.to contain_sssd_conf('pac/reconnection_retries').with_value('3') }
           it { is_expected.to contain_sssd_conf('pac/responder_idle_timeout').with_value('300') }
           it { is_expected.to contain_sssd_conf('pac/timeout').with_value('10') }
+
+          case facts[:operatingsystemmajrelease]
+          when '6'
+            it { is_expected.to contain_datacat_fragment('sssd service pac') }
+          else
+            it { is_expected.to contain_service('sssd-pac.socket').with_enable(true) }
+            it { is_expected.to have_datacat_fragment_resource_count(0) }
+          end
         end
 
         context 'ifp service' do
@@ -312,7 +355,6 @@ describe 'sssd::service' do
           end
 
           it { is_expected.to compile.with_all_deps }
-          it { is_expected.to contain_datacat_fragment('sssd service ifp') }
           it { is_expected.to contain_sssd__service('ifp') }
           it { is_expected.to contain_sssd_conf('ifp/allowed_uids').with_value('0') }
           it { is_expected.to contain_sssd_conf('ifp/cache_first').with_value(false) }
@@ -328,6 +370,54 @@ describe 'sssd::service' do
           it { is_expected.to contain_sssd_conf('ifp/timeout').with_value('10') }
           it { is_expected.to contain_sssd_conf('ifp/user_attributes').with_value('+telephoneNumber') }
           it { is_expected.to contain_sssd_conf('ifp/wildcard_limit').with_value('1000') }
+
+          case facts[:operatingsystemmajrelease]
+          when '6'
+            it { is_expected.to contain_datacat_fragment('sssd service ifp') }
+          else
+            it { is_expected.to have_datacat_fragment_resource_count(0) }
+          end
+        end
+      end
+
+      context 'with sssd class included and enabling socket activation' do
+        let(:pre_condition) do
+          'class { "::sssd": use_socket_activation => true }'
+        end
+
+        context 'nss service' do
+          let(:title) do
+            'nss'
+          end
+
+          case facts[:operatingsystemmajrelease]
+          when '6'
+            it { is_expected.to compile.and_raise_error(%r{Systemd is required for socket-activated services}) }
+          else
+            it { is_expected.to compile.with_all_deps }
+            it { is_expected.to contain_service('sssd-nss.socket').with_enable(true) }
+          end
+        end
+      end
+
+      context 'with sssd class included and disabling socket activation' do
+        let(:pre_condition) do
+          'class { "::sssd": use_socket_activation => false }'
+        end
+
+        context 'nss service' do
+          let(:title) do
+            'nss'
+          end
+
+          it { is_expected.to compile.with_all_deps }
+
+          case facts[:operatingsystemmajrelease]
+          when '6'
+            # noop
+          else
+            it { is_expected.to contain_service('sssd-nss.socket').with_enable(false).with_ensure('stopped') }
+          end
         end
       end
     end

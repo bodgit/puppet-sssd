@@ -12,6 +12,8 @@
 # @param conf_file
 # @param package_name
 # @param service_name
+# @param socket_services
+# @param use_socket_activation
 # @param debug
 # @param debug_level
 # @param debug_timestamps
@@ -40,6 +42,8 @@ class sssd (
   Stdlib::Absolutepath                                                  $conf_file                = $::sssd::params::conf_file,
   String                                                                $package_name             = $::sssd::params::package_name,
   String                                                                $service_name             = $::sssd::params::service_name,
+  Hash[SSSD::Type, Variant[String, Array[String, 1]]]                   $socket_services          = $::sssd::params::socket_services,
+  Boolean                                                               $use_socket_activation    = $::sssd::params::use_socket_activation,
   # options for any section
   Optional[Integer[0]]                                                  $debug                    = undef,
   Optional[Integer[0]]                                                  $debug_level              = undef,

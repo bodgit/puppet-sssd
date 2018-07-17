@@ -6,6 +6,7 @@
 #   include ::sssd::dbus
 #
 # @param package_name
+# @param use_socket_activation
 # @param debug
 # @param debug_level
 # @param debug_timestamps
@@ -27,6 +28,7 @@
 # @since 1.0.0
 class sssd::dbus (
   String                                          $package_name           = $::sssd::params::dbus_package_name,
+  Boolean                                         $use_socket_activation  = $::sssd::use_socket_activation,
   # options for any section
   Optional[Integer[0]]                            $debug                  = undef,
   Optional[Integer[0]]                            $debug_level            = undef,

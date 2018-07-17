@@ -36,7 +36,7 @@ describe 'sssd::dbus' do
       end
 
       context 'without sssd class included' do
-        it { is_expected.to compile.and_raise_error(%r{must include the sssd base class}) }
+        it { is_expected.to compile.and_raise_error(%r{Unknown variable}) }
       end
 
       context 'with sssd class included' do

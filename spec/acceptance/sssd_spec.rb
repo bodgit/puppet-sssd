@@ -103,13 +103,20 @@ describe 'sssd' do
     it { should be_mode 600 }
     it { should be_owned_by 'root' }
     it { should be_grouped_into 'root' }
-    its(:content) { should match /^\[sssd\]$/ }
-    its(:content) { should match /^\[domain\/example\.com\]$/ }
+    its(:content) { should match %r{^ \[ sssd \] $}x }
+    its(:content) { should match %r{^ domains = example\.com $}x }
+    its(:content) { should match %r{^ services = nss $}x } if fact('operatingsystemmajrelease').eql?('6')
+    its(:content) { should match %r{^ services = $}x } unless fact('operatingsystemmajrelease').eql?('6')
+    its(:content) { should match %r{^ \[ domain/example\.com \] $}x }
   end
 
   describe service('sssd') do
     it { should be_enabled }
     it { should be_running }
+  end
+
+  describe service('sssd-nss.socket'), unless: fact('operatingsystemmajrelease').eql?('6') do
+    it { should be_enabled }
   end
 
   # There's some sort of negative/offline caching going on, bounce sssd
