@@ -59,6 +59,21 @@
 # @param allowed_uids
 # @param pac_lifetime
 # @param wildcard_limit
+# @param provider
+# @param container_nest_level
+# @param max_secrets
+# @param max_payload_size
+# @param proxy_url
+# @param auth_type
+# @param auth_header_name
+# @param auth_header_value
+# @param forward_headers
+# @param verify_peer
+# @param verify_host
+# @param capath
+# @param cacert
+# @param cert
+# @param key
 #
 # @see puppet_classes::sssd ::sssd
 # @see puppet_classes::sssd::dbus ::sssd::dbus
@@ -132,6 +147,22 @@ define sssd::service (
   # $allowed_uids (already defined for pac)
   # $user_attributes (already defined for nss)
   Optional[Integer[0]]                                         $wildcard_limit                 = undef,
+  # options for [secrets] section
+  Optional[Enum['local', 'proxy']]                             $provider                       = undef,
+  Optional[Integer[0]]                                         $container_nest_level           = undef,
+  Optional[Integer[0]]                                         $max_secrets                    = undef,
+  Optional[Integer[0]]                                         $max_payload_size               = undef,
+  Optional[String]                                             $proxy_url                      = undef,
+  Optional[Enum['basic_auth', 'header']]                       $auth_type                      = undef,
+  Optional[String]                                             $auth_header_name               = undef,
+  Optional[String]                                             $auth_header_value              = undef,
+  Optional[Array[String, 1]]                                   $forward_headers                = undef,
+  Optional[Boolean]                                            $verify_peer                    = undef,
+  Optional[Boolean]                                            $verify_host                    = undef,
+  Optional[Stdlib::Absolutepath]                               $capath                         = undef,
+  Optional[Stdlib::Absolutepath]                               $cacert                         = undef,
+  Optional[Stdlib::Absolutepath]                               $cert                           = undef,
+  Optional[Stdlib::Absolutepath]                               $key                            = undef,
 ) {
 
   if ! defined(Class['::sssd']) {
@@ -140,6 +171,10 @@ define sssd::service (
 
   if $use_socket_activation and $::service_provider != 'systemd' {
     fail('Systemd is required for socket-activated services')
+  }
+
+  if ! $use_socket_activation and $service == 'secrets' {
+    fail('Socket-activation is required for the secrets service')
   }
 
   $global_config = delete_undef_values({
@@ -260,6 +295,28 @@ define sssd::service (
           default => join($user_attributes, ', '),
         },
         'wildcard_limit'  => $wildcard_limit,
+      })
+    }
+    'secrets': {
+      $service_config = delete_undef_values({
+        'provider'             => $provider,
+        'container_nest_level' => $container_nest_level,
+        'max_secrets'          => $max_secrets,
+        'max_payload_size'     => $max_payload_size,
+        'proxy_url'            => $proxy_url,
+        'auth_type'            => $auth_type,
+        'auth_header_name'     => $auth_header_name,
+        'auth_header_value'    => $auth_header_value,
+        'forward_headers'      => $forward_headers ? {
+          undef   => undef,
+          default => join($forward_headers, ', '),
+        },
+        'verify_peer'          => $verify_peer,
+        'verify_host'          => $verify_host,
+        'capath'               => $capath,
+        'cacert'               => $cacert,
+        'cert'                 => $cert,
+        'key'                  => $key,
       })
     }
     default: {

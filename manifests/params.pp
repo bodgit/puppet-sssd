@@ -8,7 +8,7 @@ class sssd::params {
       $dbus_package_name     = 'sssd-dbus'
       $package_name          = 'sssd'
       $service_name          = 'sssd'
-      $socket_services       = ['nss', 'pam', 'sudo', 'autofs', 'ssh', 'pac'].reduce({}) |Hash $memo, SSSD::Type $service| {
+      $socket_services       = ['nss', 'pam', 'sudo', 'autofs', 'ssh', 'pac', 'secrets'].reduce({}) |Hash $memo, SSSD::Type $service| {
         $memo + {
           $service => $service ? {
             'pam'   => [

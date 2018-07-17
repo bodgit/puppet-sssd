@@ -378,6 +378,71 @@ describe 'sssd::service' do
             it { is_expected.to have_datacat_fragment_resource_count(0) }
           end
         end
+
+        context 'secrets service' do
+          let(:title) do
+            'secrets'
+          end
+
+          let(:params) do
+            super().merge(
+              {
+                :provider             => 'local',
+                :container_nest_level => 4,
+                :max_secrets          => 1024,
+                :max_payload_size     => 16,
+                :proxy_url            => 'http://localhost:8080',
+                :auth_type            => 'header',
+                :auth_header_name     => 'MYSECRETNAME',
+                :auth_header_value    => 'mysecret',
+                :forward_headers      => [
+                  'X-Forwarded-For',
+                ],
+                :verify_peer          => true,
+                :verify_host          => true,
+                :capath               => '/tmp/certs',
+                :cacert               => '/tmp/cacert.pem',
+                :cert                 => '/tmp/cert.pem',
+                :key                  => '/tmp/key.pem',
+              }
+            )
+          end
+
+          case facts[:operatingsystemmajrelease]
+          when '6'
+            it { is_expected.to compile.and_raise_error(%r{Socket-activation is required for the secrets service}) }
+          else
+            it { is_expected.to compile.with_all_deps }
+            it { is_expected.to contain_service('sssd-secrets.socket').with_enable(true) }
+            it { is_expected.to contain_sssd__service('secrets') }
+            it { is_expected.to contain_sssd_conf('secrets/auth_header_name').with_value('MYSECRETNAME') }
+            it { is_expected.to contain_sssd_conf('secrets/auth_header_value').with_value('mysecret') }
+            it { is_expected.to contain_sssd_conf('secrets/auth_type').with_value('header') }
+            it { is_expected.to contain_sssd_conf('secrets/cacert').with_value('/tmp/cacert.pem') }
+            it { is_expected.to contain_sssd_conf('secrets/cache_first').with_value(false) }
+            it { is_expected.to contain_sssd_conf('secrets/capath').with_value('/tmp/certs') }
+            it { is_expected.to contain_sssd_conf('secrets/cert').with_value('/tmp/cert.pem') }
+            it { is_expected.to contain_sssd_conf('secrets/client_idle_timeout').with_value('60') }
+            it { is_expected.to contain_sssd_conf('secrets/container_nest_level').with_value(4) }
+            it { is_expected.to contain_sssd_conf('secrets/debug').with_value(30704) }
+            it { is_expected.to contain_sssd_conf('secrets/debug_level').with_value(30704) }
+            it { is_expected.to contain_sssd_conf('secrets/debug_microseconds').with_value('true') }
+            it { is_expected.to contain_sssd_conf('secrets/debug_timestamps').with_value('true') }
+            it { is_expected.to contain_sssd_conf('secrets/fd_limit').with_value('8192') }
+            it { is_expected.to contain_sssd_conf('secrets/forward_headers').with_value('X-Forwarded-For') }
+            it { is_expected.to contain_sssd_conf('secrets/key').with_value('/tmp/key.pem') }
+            it { is_expected.to contain_sssd_conf('secrets/max_payload_size').with_value(16) }
+            it { is_expected.to contain_sssd_conf('secrets/max_secrets').with_value(1024) }
+            it { is_expected.to contain_sssd_conf('secrets/offline_timeout').with_value('60') }
+            it { is_expected.to contain_sssd_conf('secrets/provider').with_value('local') }
+            it { is_expected.to contain_sssd_conf('secrets/proxy_url').with_value('http://localhost:8080') }
+            it { is_expected.to contain_sssd_conf('secrets/reconnection_retries').with_value('3') }
+            it { is_expected.to contain_sssd_conf('secrets/responder_idle_timeout').with_value('300') }
+            it { is_expected.to contain_sssd_conf('secrets/timeout').with_value('10') }
+            it { is_expected.to contain_sssd_conf('secrets/verify_host').with_value(true) }
+            it { is_expected.to contain_sssd_conf('secrets/verify_peer').with_value(true) }
+          end
+        end
       end
 
       context 'with sssd class included and enabling socket activation' do
@@ -418,6 +483,14 @@ describe 'sssd::service' do
           else
             it { is_expected.to contain_service('sssd-nss.socket').with_enable(false).with_ensure('stopped') }
           end
+        end
+
+        context 'secrets service' do
+          let(:title) do
+            'secrets'
+          end
+
+          it { is_expected.to compile.and_raise_error(%r{Socket-activation is required for the secrets service}) }
         end
       end
     end
