@@ -42,7 +42,7 @@ describe 'sssd::service' do
             'invalid'
           end
 
-          it { is_expected.to compile.and_raise_error(%r{got 'invalid'}) }
+          it { is_expected.to compile.and_raise_error(%r{got (?:'invalid'|String)}) }
         end
 
         context 'nss service' do
