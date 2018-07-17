@@ -1,3 +1,7 @@
+RSpec.configure do |c|
+  c.mock_with :mocha # using :rspec makes the augeas_spec blow up
+end
+
 require 'pathname'
 dir = Pathname.new(__FILE__).parent
 $LOAD_PATH.unshift(dir, File.join(dir, 'fixtures/modules/augeasproviders_core/spec/lib'), File.join(dir, '..', 'lib'))
@@ -14,10 +18,9 @@ end
 
 include RspecPuppetFacts
 
+add_custom_fact :service_provider, lambda { |os, facts| os =~ /-7-/ ? 'systemd' : 'init' }
+
 RSpec.configure do |c|
-  c.before(:each) do
-    Puppet.features.stubs(:root? => true)
-  end
   c.default_facts = { :dbus_startup_provider => 'init' }
 end
 
@@ -25,10 +28,6 @@ dir = Pathname.new(__FILE__).parent
 
 Puppet[:modulepath] = File.join(dir, 'fixtures', 'modules')
 Puppet[:libdir] = File.join(Puppet[:modulepath], 'augeasproviders_core', 'lib')
-
-shared_examples :compile, :compile => true do
-  it { should compile.with_all_deps }
-end
 
 at_exit { RSpec::Puppet::Coverage.report! }
 
