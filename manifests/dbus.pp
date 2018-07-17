@@ -1,38 +1,61 @@
+# Manage the SSSD InfoPipe responder
 #
+# @example Declaring the class
+#   include ::dbus
+#   include ::sssd
+#   include ::sssd::dbus
+#
+# @param package_name
+# @param use_socket_activation
+# @param debug
+# @param debug_level
+# @param debug_timestamps
+# @param debug_microseconds
+# @param timeout
+# @param reconnection_retries
+# @param fd_limit
+# @param client_idle_timeout
+# @param offline_timeout
+# @param responder_idle_timeout
+# @param cache_first
+# @param allowed_uids
+# @param user_attributes
+# @param wildcard_limit
+#
+# @see puppet_classes::sssd ::sssd
+# @see puppet_defined_types::sssd::service ::sssd::service
+#
+# @since 1.0.0
 class sssd::dbus (
-  $package_name         = $::sssd::params::dbus_package_name,
+  String                                          $package_name           = $::sssd::params::dbus_package_name,
+  Boolean                                         $use_socket_activation  = $::sssd::use_socket_activation,
   # options for any section
-  $debug_level          = undef,
-  $debug_timestamps     = undef,
-  $debug_microseconds   = undef,
+  Optional[Integer[0]]                            $debug                  = undef,
+  Optional[Integer[0]]                            $debug_level            = undef,
+  Optional[Boolean]                               $debug_timestamps       = undef,
+  Optional[Boolean]                               $debug_microseconds     = undef,
   # generic service options
-  $timeout              = undef,
-  $reconnection_retries = undef,
-  $fd_limit             = undef,
-  $client_idle_timeout  = undef,
-  $force_timeout        = undef,
-  $offline_timeout      = undef,
-  $subdomain_inherit    = undef,
+  Optional[Integer[0]]                            $timeout                = undef,
+  Optional[Integer[0]]                            $reconnection_retries   = undef,
+  Optional[Integer[0]]                            $fd_limit               = undef,
+  Optional[Integer[0]]                            $client_idle_timeout    = undef,
+  Optional[Integer[0]]                            $offline_timeout        = undef,
+  Optional[Integer[0]]                            $responder_idle_timeout = undef,
+  Optional[Boolean]                               $cache_first            = undef,
   # options for [ifp] section
-  $allowed_uids         = undef,
-  $user_attributes      = undef,
-  $wildcard_limit       = undef,
+  Optional[Array[Variant[Integer[0], String], 1]] $allowed_uids           = undef,
+  Optional[Array[String, 1]]                      $user_attributes        = undef,
+  Optional[Integer[0]]                            $wildcard_limit         = undef,
 ) inherits ::sssd::params {
 
   if ! defined(Class['::sssd']) {
-    fail('You must include the sssd base class before using the sssd::dbus class') # lint:ignore:80chars
+    fail('You must include the sssd base class before using the sssd::dbus class')
   }
 
-  validate_string($package_name)
+  contain ::sssd::dbus::install
+  contain ::sssd::dbus::config
 
-  include ::sssd::dbus::install
-  include ::sssd::dbus::config
-
-  anchor { 'sssd::dbus::begin': }
-  anchor { 'sssd::dbus::end': }
-
-  Anchor['sssd::dbus::begin'] -> Class['::sssd::dbus::install']
-    ~> Class['::sssd::dbus::config'] -> Anchor['sssd::dbus::end']
+  Class['::sssd::dbus::install'] ~> Class['::sssd::dbus::config']
 
   Class['::dbus'] -> Class['::sssd']
 }

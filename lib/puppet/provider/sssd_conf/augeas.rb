@@ -19,7 +19,7 @@ Puppet::Type.type(:sssd_conf).provide(:augeas, :parent => Puppet::Type.type(:aug
       aug.match("$target/target/*[label()!='#comment']").each do |spath|
         section = aug.get("#{spath}/..")
         setting = path_label(aug, spath)
-        value = aug.get(spath)
+        value = aug.get(spath) || ''
         entry = {
           :name    => "#{section}/#{setting}",
           :ensure  => :present,
@@ -37,8 +37,10 @@ Puppet::Type.type(:sssd_conf).provide(:augeas, :parent => Puppet::Type.type(:aug
     augopen! do |aug|
       section = resource[:section]
       setting = resource[:setting]
+      value   = resource[:value]
       aug.set("$target/target[. = '#{section}']", section)
-      aug.set("$target/target[. = '#{section}']/#{setting}", resource[:value])
+      aug.touch("$target/target[. = '#{section}']/#{setting}")
+      aug.set("$target/target[. = '#{section}']/#{setting}", value) unless value.eql?('')
     end
   end
 
@@ -49,5 +51,19 @@ Puppet::Type.type(:sssd_conf).provide(:augeas, :parent => Puppet::Type.type(:aug
     end
   end
 
-  attr_aug_accessor(:value, { :label => :resource })
+  def value
+    augopen! do |aug|
+      aug.get('$resource') || ''
+    end
+  end
+
+  def value=(v)
+    augopen! do |aug|
+      if v.eql?('')
+        aug.clear('$resource')
+      else
+        aug.set('$resource', v)
+      end
+    end
+  end
 end
