@@ -1,0 +1,1630 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Defined Type: sssd::service
+  
+    &mdash; Documentation by YARD 0.9.14
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "puppet_defined_types::sssd::service";
+  relpath = '../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../puppet_defined_type_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../_index.html">Index (s)</a> &raquo;
+    <span class='title'><span class='object_link'>Defined Types</span></span>
+     &raquo; 
+    <span class="title">sssd::service</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="puppet_class_list_link"
+        href="../puppet_class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Defined Type: sssd::service</h1>
+<div class="box_info">
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>
+      manifests/service.pp
+    </dd>
+  </dl>
+</div>
+
+<h2>Overview</h2>
+<div class="docstring">
+  <div class="discussion">
+    
+<p>Define an SSSD service.</p>
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <p class="tag_title">Examples:</p>
+    
+      
+        <p class="example_title"><div class='inline'>
+<p>Enable NSS service</p>
+</div></p>
+      
+      <pre class="example code"><code>include ::sssd
+::sssd::service { &#39;nss&#39;: }</code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>service</span>
+      
+      
+        <span class='type'>(<tt>SSSD::Type</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$title</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>use_socket_activation</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$::sssd::use_socket_activation</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>debug</span>
+      
+      
+        <span class='type'>(<tt>Optional[Integer[0]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>debug_level</span>
+      
+      
+        <span class='type'>(<tt>Optional[Integer[0]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>debug_timestamps</span>
+      
+      
+        <span class='type'>(<tt>Optional[Boolean]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>debug_microseconds</span>
+      
+      
+        <span class='type'>(<tt>Optional[Boolean]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>timeout</span>
+      
+      
+        <span class='type'>(<tt>Optional[Integer[0]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>reconnection_retries</span>
+      
+      
+        <span class='type'>(<tt>Optional[Integer[0]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>fd_limit</span>
+      
+      
+        <span class='type'>(<tt>Optional[Integer[0]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>client_idle_timeout</span>
+      
+      
+        <span class='type'>(<tt>Optional[Integer[0]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>offline_timeout</span>
+      
+      
+        <span class='type'>(<tt>Optional[Integer[0]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>responder_idle_timeout</span>
+      
+      
+        <span class='type'>(<tt>Optional[Integer[0]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>cache_first</span>
+      
+      
+        <span class='type'>(<tt>Optional[Boolean]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>enum_cache_timeout</span>
+      
+      
+        <span class='type'>(<tt>Optional[Integer[0]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>entry_cache_nowait_percentage</span>
+      
+      
+        <span class='type'>(<tt>Optional[Integer[0]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>entry_negative_timeout</span>
+      
+      
+        <span class='type'>(<tt>Optional[Integer[0]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>local_negative_timeout</span>
+      
+      
+        <span class='type'>(<tt>Optional[Integer[0]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>filter_groups</span>
+      
+      
+        <span class='type'>(<tt>Optional[Array[String, 1]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>filter_users</span>
+      
+      
+        <span class='type'>(<tt>Optional[Array[String, 1]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>filter_users_in_groups</span>
+      
+      
+        <span class='type'>(<tt>Optional[Boolean]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>override_homedir</span>
+      
+      
+        <span class='type'>(<tt>Optional[Stdlib::Absolutepath]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>homedir_substring</span>
+      
+      
+        <span class='type'>(<tt>Optional[Stdlib::Absolutepath]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>fallback_homedir</span>
+      
+      
+        <span class='type'>(<tt>Optional[Stdlib::Absolutepath]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>override_shell</span>
+      
+      
+        <span class='type'>(<tt>Optional[Stdlib::Absolutepath]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>allowed_shells</span>
+      
+      
+        <span class='type'>(<tt>Optional[Array[Variant[Stdlib::Absolutepath, Enum['*']], 1]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>vetoed_shells</span>
+      
+      
+        <span class='type'>(<tt>Optional[Array[Stdlib::Absolutepath, 1]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>shell_fallback</span>
+      
+      
+        <span class='type'>(<tt>Optional[Stdlib::Absolutepath]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>default_shell</span>
+      
+      
+        <span class='type'>(<tt>Optional[Stdlib::Absolutepath]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>get_domains_timeout</span>
+      
+      
+        <span class='type'>(<tt>Optional[Integer[0]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>memcache_timeout</span>
+      
+      
+        <span class='type'>(<tt>Optional[Integer[0]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>user_attributes</span>
+      
+      
+        <span class='type'>(<tt>Optional[Array[String, 1]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>pwfield</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>offline_credentials_expiration</span>
+      
+      
+        <span class='type'>(<tt>Optional[Integer[0]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>offline_failed_login_attempts</span>
+      
+      
+        <span class='type'>(<tt>Optional[Integer[0]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>offline_failed_login_delay</span>
+      
+      
+        <span class='type'>(<tt>Optional[Integer[0]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>pam_verbosity</span>
+      
+      
+        <span class='type'>(<tt>Optional[Integer[0, 3]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>pam_response_filter</span>
+      
+      
+        <span class='type'>(<tt>Optional[Array[String, 1]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>pam_id_timeout</span>
+      
+      
+        <span class='type'>(<tt>Optional[Integer[0]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>pam_pwd_expiration_warning</span>
+      
+      
+        <span class='type'>(<tt>Optional[Integer[0]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>pam_trusted_users</span>
+      
+      
+        <span class='type'>(<tt>Optional[Array[Variant[Integer[0], String], 1]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>pam_public_domains</span>
+      
+      
+        <span class='type'>(<tt>Optional[Array[String, 1]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>pam_account_expired_message</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>pam_account_locked_message</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>pam_cert_auth</span>
+      
+      
+        <span class='type'>(<tt>Optional[Boolean]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>pam_cert_db_path</span>
+      
+      
+        <span class='type'>(<tt>Optional[Stdlib::Absolutepath]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>p11_child_timeout</span>
+      
+      
+        <span class='type'>(<tt>Optional[Integer[0]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>pam_app_services</span>
+      
+      
+        <span class='type'>(<tt>Optional[Array[String, 1]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>sudo_timed</span>
+      
+      
+        <span class='type'>(<tt>Optional[Boolean]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>autofs_negative_timeout</span>
+      
+      
+        <span class='type'>(<tt>Optional[Integer[0]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ssh_hash_known_hosts</span>
+      
+      
+        <span class='type'>(<tt>Optional[Boolean]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ssh_known_hosts_timeout</span>
+      
+      
+        <span class='type'>(<tt>Optional[Integer[0]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ca_db</span>
+      
+      
+        <span class='type'>(<tt>Optional[Stdlib::Absolutepath]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>allowed_uids</span>
+      
+      
+        <span class='type'>(<tt>Optional[Array[Variant[Integer[0], String], 1]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>pac_lifetime</span>
+      
+      
+        <span class='type'>(<tt>Optional[Integer[0]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>wildcard_limit</span>
+      
+      
+        <span class='type'>(<tt>Optional[Integer[0]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>provider</span>
+      
+      
+        <span class='type'>(<tt>Optional[Enum['local', 'proxy']]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>container_nest_level</span>
+      
+      
+        <span class='type'>(<tt>Optional[Integer[0]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>max_secrets</span>
+      
+      
+        <span class='type'>(<tt>Optional[Integer[0]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>max_payload_size</span>
+      
+      
+        <span class='type'>(<tt>Optional[Integer[0]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>proxy_url</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>auth_type</span>
+      
+      
+        <span class='type'>(<tt>Optional[Enum['basic_auth', 'header']]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>auth_header_name</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>auth_header_value</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>forward_headers</span>
+      
+      
+        <span class='type'>(<tt>Optional[Array[String, 1]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>verify_peer</span>
+      
+      
+        <span class='type'>(<tt>Optional[Boolean]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>verify_host</span>
+      
+      
+        <span class='type'>(<tt>Optional[Boolean]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>capath</span>
+      
+      
+        <span class='type'>(<tt>Optional[Stdlib::Absolutepath]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>cacert</span>
+      
+      
+        <span class='type'>(<tt>Optional[Stdlib::Absolutepath]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>cert</span>
+      
+      
+        <span class='type'>(<tt>Optional[Stdlib::Absolutepath]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>key</span>
+      
+      
+        <span class='type'>(<tt>Optional[Stdlib::Absolutepath]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+</ul>
+
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><span class='object_link'><a href="../puppet_classes/sssd.html" title="puppet_classes::sssd (puppet_class)">::sssd</a></span></li>
+    
+      <li><span class='object_link'><a href="../puppet_classes/sssd_3A_3Adbus.html" title="puppet_classes::sssd::dbus (puppet_class)">::sssd::dbus</a></span></li>
+    
+  </ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><div class="method_details_list">
+  <table class="source_code">
+    <tr>
+      <td>
+        <pre class="lines">
+
+
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367</pre>
+      </td>
+      <td>
+        <pre class="code"><span class="info file"># File 'manifests/service.pp', line 82</span>
+
+define sssd::service (
+  SSSD::Type                                                   $service                        = $title,
+  Boolean                                                      $use_socket_activation          = $::sssd::use_socket_activation,
+  # options for any section
+  Optional[Integer[0]]                                         $debug                          = undef,
+  Optional[Integer[0]]                                         $debug_level                    = undef,
+  Optional[Boolean]                                            $debug_timestamps               = undef,
+  Optional[Boolean]                                            $debug_microseconds             = undef,
+  # generic service options
+  Optional[Integer[0]]                                         $timeout                        = undef,
+  Optional[Integer[0]]                                         $reconnection_retries           = undef,
+  Optional[Integer[0]]                                         $fd_limit                       = undef,
+  Optional[Integer[0]]                                         $client_idle_timeout            = undef,
+  Optional[Integer[0]]                                         $offline_timeout                = undef,
+  Optional[Integer[0]]                                         $responder_idle_timeout         = undef,
+  Optional[Boolean]                                            $cache_first                    = undef,
+  # options for [nss] section
+  Optional[Integer[0]]                                         $enum_cache_timeout             = undef,
+  Optional[Integer[0]]                                         $entry_cache_nowait_percentage  = undef,
+  Optional[Integer[0]]                                         $entry_negative_timeout         = undef,
+  Optional[Integer[0]]                                         $local_negative_timeout         = undef,
+  Optional[Array[String, 1]]                                   $filter_groups                  = undef,
+  Optional[Array[String, 1]]                                   $filter_users                   = undef,
+  Optional[Boolean]                                            $filter_users_in_groups         = undef,
+  Optional[Stdlib::Absolutepath]                               $override_homedir               = undef,
+  Optional[Stdlib::Absolutepath]                               $homedir_substring              = undef,
+  Optional[Stdlib::Absolutepath]                               $fallback_homedir               = undef,
+  Optional[Stdlib::Absolutepath]                               $override_shell                 = undef,
+  Optional[Array[Variant[Stdlib::Absolutepath, Enum[&#39;*&#39;]], 1]] $allowed_shells                 = undef,
+  Optional[Array[Stdlib::Absolutepath, 1]]                     $vetoed_shells                  = undef,
+  Optional[Stdlib::Absolutepath]                               $shell_fallback                 = undef,
+  Optional[Stdlib::Absolutepath]                               $default_shell                  = undef,
+  Optional[Integer[0]]                                         $get_domains_timeout            = undef,
+  Optional[Integer[0]]                                         $memcache_timeout               = undef,
+  Optional[Array[String, 1]]                                   $user_attributes                = undef,
+  Optional[String]                                             $pwfield                        = undef,
+  # options for [pam] section
+  Optional[Integer[0]]                                         $offline_credentials_expiration = undef,
+  Optional[Integer[0]]                                         $offline_failed_login_attempts  = undef,
+  Optional[Integer[0]]                                         $offline_failed_login_delay     = undef,
+  Optional[Integer[0, 3]]                                      $pam_verbosity                  = undef,
+  Optional[Array[String, 1]]                                   $pam_response_filter            = undef,
+  Optional[Integer[0]]                                         $pam_id_timeout                 = undef,
+  Optional[Integer[0]]                                         $pam_pwd_expiration_warning     = undef,
+  # $get_domains_timeout (already defined for nss)
+  Optional[Array[Variant[Integer[0], String], 1]]              $pam_trusted_users              = undef,
+  Optional[Array[String, 1]]                                   $pam_public_domains             = undef,
+  Optional[String]                                             $pam_account_expired_message    = undef,
+  Optional[String]                                             $pam_account_locked_message     = undef,
+  Optional[Boolean]                                            $pam_cert_auth                  = undef,
+  Optional[Stdlib::Absolutepath]                               $pam_cert_db_path               = undef,
+  Optional[Integer[0]]                                         $p11_child_timeout              = undef,
+  Optional[Array[String, 1]]                                   $pam_app_services               = undef,
+  # options for [sudo] section
+  Optional[Boolean]                                            $sudo_timed                     = undef,
+  # options for [autofs] section
+  Optional[Integer[0]]                                         $autofs_negative_timeout        = undef,
+  # options for [ssh] section
+  Optional[Boolean]                                            $ssh_hash_known_hosts           = undef,
+  Optional[Integer[0]]                                         $ssh_known_hosts_timeout        = undef,
+  Optional[Stdlib::Absolutepath]                               $ca_db                          = undef,
+  # options for [pac] section
+  Optional[Array[Variant[Integer[0], String], 1]]              $allowed_uids                   = undef,
+  Optional[Integer[0]]                                         $pac_lifetime                   = undef,
+  # options for [ifp] section
+  # $allowed_uids (already defined for pac)
+  # $user_attributes (already defined for nss)
+  Optional[Integer[0]]                                         $wildcard_limit                 = undef,
+  # options for [secrets] section
+  Optional[Enum[&#39;local&#39;, &#39;proxy&#39;]]                             $provider                       = undef,
+  Optional[Integer[0]]                                         $container_nest_level           = undef,
+  Optional[Integer[0]]                                         $max_secrets                    = undef,
+  Optional[Integer[0]]                                         $max_payload_size               = undef,
+  Optional[String]                                             $proxy_url                      = undef,
+  Optional[Enum[&#39;basic_auth&#39;, &#39;header&#39;]]                       $auth_type                      = undef,
+  Optional[String]                                             $auth_header_name               = undef,
+  Optional[String]                                             $auth_header_value              = undef,
+  Optional[Array[String, 1]]                                   $forward_headers                = undef,
+  Optional[Boolean]                                            $verify_peer                    = undef,
+  Optional[Boolean]                                            $verify_host                    = undef,
+  Optional[Stdlib::Absolutepath]                               $capath                         = undef,
+  Optional[Stdlib::Absolutepath]                               $cacert                         = undef,
+  Optional[Stdlib::Absolutepath]                               $cert                           = undef,
+  Optional[Stdlib::Absolutepath]                               $key                            = undef,
+) {
+
+  if ! defined(Class[&#39;::sssd&#39;]) {
+    fail(&#39;You must include the sssd base class before using any sssd defined resources&#39;)
+  }
+
+  if $use_socket_activation and $::service_provider != &#39;systemd&#39; {
+    fail(&#39;Systemd is required for socket-activated services&#39;)
+  }
+
+  if ! $use_socket_activation and $service == &#39;secrets&#39; {
+    fail(&#39;Socket-activation is required for the secrets service&#39;)
+  }
+
+  $global_config = delete_undef_values({
+    &#39;debug&#39;                  =&gt; $debug,
+    &#39;debug_level&#39;            =&gt; $debug_level,
+    &#39;debug_timestamps&#39;       =&gt; $debug_timestamps,
+    &#39;debug_microseconds&#39;     =&gt; $debug_microseconds,
+    &#39;timeout&#39;                =&gt; $timeout,
+    &#39;reconnection_retries&#39;   =&gt; $reconnection_retries,
+    &#39;fd_limit&#39;               =&gt; $fd_limit,
+    &#39;client_idle_timeout&#39;    =&gt; $client_idle_timeout,
+    &#39;offline_timeout&#39;        =&gt; $offline_timeout,
+    &#39;responder_idle_timeout&#39; =&gt; $responder_idle_timeout,
+    &#39;cache_first&#39;            =&gt; $cache_first,
+  })
+
+  case $service {
+    &#39;nss&#39;: {
+      $service_config = delete_undef_values({
+        &#39;enum_cache_timeout&#39;            =&gt; $enum_cache_timeout,
+        &#39;entry_cache_nowait_percentage&#39; =&gt; $entry_cache_nowait_percentage,
+        &#39;entry_negative_timeout&#39;        =&gt; $entry_negative_timeout,
+        &#39;local_negative_timeout&#39;        =&gt; $local_negative_timeout,
+        &#39;filter_groups&#39;                 =&gt; $filter_groups ? {
+          undef   =&gt; undef,
+          default =&gt; join($filter_groups, &#39;, &#39;),
+        },
+        &#39;filter_users&#39;                  =&gt; $filter_users ? {
+          undef   =&gt; undef,
+          default =&gt; join($filter_users, &#39;, &#39;),
+        },
+        &#39;filter_users_in_groups&#39;        =&gt; $filter_users_in_groups,
+        &#39;override_homedir&#39;              =&gt; $override_homedir,
+        &#39;homedir_substring&#39;             =&gt; $homedir_substring,
+        &#39;fallback_homedir&#39;              =&gt; $fallback_homedir,
+        &#39;override_shell&#39;                =&gt; $override_shell,
+        &#39;allowed_shells&#39;                =&gt; $allowed_shells ? {
+          undef   =&gt; undef,
+          default =&gt; join($allowed_shells, &#39;, &#39;),
+        },
+        &#39;vetoed_shells&#39;                 =&gt; $vetoed_shells ? {
+          undef   =&gt; undef,
+          default =&gt; join($vetoed_shells, &#39;, &#39;),
+        },
+        &#39;shell_fallback&#39;                =&gt; $shell_fallback,
+        &#39;default_shell&#39;                 =&gt; $default_shell,
+        &#39;get_domains_timeout&#39;           =&gt; $get_domains_timeout,
+        &#39;memcache_timeout&#39;              =&gt; $memcache_timeout,
+        &#39;user_attributes&#39;               =&gt; $user_attributes ? {
+          undef   =&gt; undef,
+          default =&gt; join($user_attributes, &#39;, &#39;),
+        },
+        &#39;pwfield&#39;                       =&gt; $pwfield,
+      })
+    }
+    &#39;pam&#39;: {
+      $service_config = delete_undef_values({
+        &#39;offline_credentials_expiration&#39; =&gt; $offline_credentials_expiration,
+        &#39;offline_failed_login_attempts&#39;  =&gt; $offline_failed_login_attempts,
+        &#39;offline_failed_login_delay&#39;     =&gt; $offline_failed_login_delay,
+        &#39;pam_verbosity&#39;                  =&gt; $pam_verbosity,
+        &#39;pam_id_timeout&#39;                 =&gt; $pam_id_timeout,
+        &#39;pam_pwd_expiration_warning&#39;     =&gt; $pam_pwd_expiration_warning,
+        &#39;get_domains_timeout&#39;            =&gt; $get_domains_timeout,
+        &#39;pam_trusted_users&#39;              =&gt; $pam_trusted_users ? {
+          undef   =&gt; undef,
+          default =&gt; join($pam_trusted_users, &#39;, &#39;),
+        },
+        &#39;pam_public_domains&#39;             =&gt; $pam_public_domains ? {
+          undef   =&gt; undef,
+          default =&gt; join($pam_public_domains, &#39;, &#39;),
+        },
+        &#39;pam_account_expired_message&#39;    =&gt; $pam_account_expired_message,
+        &#39;pam_account_locked_message&#39;     =&gt; $pam_account_locked_message,
+        &#39;pam_cert_auth&#39;                  =&gt; $pam_cert_auth,
+        &#39;pam_cert_db_path&#39;               =&gt; $pam_cert_db_path,
+        &#39;p11_child_timeout&#39;              =&gt; $p11_child_timeout,
+        &#39;pam_app_services&#39;               =&gt; $pam_app_services ? {
+          undef   =&gt; undef,
+          default =&gt; join($pam_app_services, &#39;, &#39;),
+        },
+      })
+    }
+    &#39;sudo&#39;: {
+      $service_config = delete_undef_values({
+        &#39;sudo_timed&#39; =&gt; $sudo_timed,
+      })
+    }
+    &#39;autofs&#39;: {
+      $service_config = delete_undef_values({
+        &#39;autofs_negative_timeout&#39; =&gt; $autofs_negative_timeout,
+      })
+    }
+    &#39;ssh&#39;: {
+      $service_config = delete_undef_values({
+        &#39;ssh_hash_known_hosts&#39;    =&gt; $ssh_hash_known_hosts,
+        &#39;ssh_known_hosts_timeout&#39; =&gt; $ssh_known_hosts_timeout,
+        &#39;ca_db&#39;                   =&gt; $ca_db,
+      })
+    }
+    &#39;pac&#39;: {
+      $service_config = delete_undef_values({
+        &#39;allowed_uids&#39; =&gt; $allowed_uids ? {
+          undef   =&gt; undef,
+          default =&gt; join($allowed_uids, &#39;, &#39;),
+        },
+        &#39;pac_lifetime&#39; =&gt; $pac_lifetime,
+      })
+    }
+    &#39;ifp&#39;: {
+      $service_config = delete_undef_values({
+        &#39;allowed_uids&#39;    =&gt; $allowed_uids ? {
+          undef   =&gt; undef,
+          default =&gt; join($allowed_uids, &#39;, &#39;),
+        },
+        &#39;user_attributes&#39; =&gt; $user_attributes ? {
+          undef   =&gt; undef,
+          default =&gt; join($user_attributes, &#39;, &#39;),
+        },
+        &#39;wildcard_limit&#39;  =&gt; $wildcard_limit,
+      })
+    }
+    &#39;secrets&#39;: {
+      $service_config = delete_undef_values({
+        &#39;provider&#39;             =&gt; $provider,
+        &#39;container_nest_level&#39; =&gt; $container_nest_level,
+        &#39;max_secrets&#39;          =&gt; $max_secrets,
+        &#39;max_payload_size&#39;     =&gt; $max_payload_size,
+        &#39;proxy_url&#39;            =&gt; $proxy_url,
+        &#39;auth_type&#39;            =&gt; $auth_type,
+        &#39;auth_header_name&#39;     =&gt; $auth_header_name,
+        &#39;auth_header_value&#39;    =&gt; $auth_header_value,
+        &#39;forward_headers&#39;      =&gt; $forward_headers ? {
+          undef   =&gt; undef,
+          default =&gt; join($forward_headers, &#39;, &#39;),
+        },
+        &#39;verify_peer&#39;          =&gt; $verify_peer,
+        &#39;verify_host&#39;          =&gt; $verify_host,
+        &#39;capath&#39;               =&gt; $capath,
+        &#39;cacert&#39;               =&gt; $cacert,
+        &#39;cert&#39;                 =&gt; $cert,
+        &#39;key&#39;                  =&gt; $key,
+      })
+    }
+    default: {
+      fail(&quot;The ${service} sssd service is not supported.&quot;)
+    }
+  }
+
+  $config = merge($global_config, $service_config)
+
+  $config.each |String $setting, Any $value| {
+    sssd_conf { &quot;${service}/${setting}&quot;:
+      target =&gt; $::sssd::conf_file,
+      value  =&gt; $value,
+      notify =&gt; Class[&#39;::sssd::daemon&#39;],
+    }
+  }
+
+  if $use_socket_activation {
+
+    if has_key($::sssd::socket_services, $service) {
+      Array($::sssd::socket_services[$service], true).each |String $x| {
+        service { $x:
+          enable =&gt; true,
+        }
+      }
+    }
+  } else {
+
+    if $::service_provider == &#39;systemd&#39; {
+
+      if has_key($::sssd::socket_services, $service) {
+        Array($::sssd::socket_services[$service], true).each |String $x| {
+          service { $x:
+            ensure =&gt; stopped,
+            enable =&gt; false,
+          }
+        }
+      }
+    }
+
+    datacat_fragment { &quot;${module_name} service ${service}&quot;:
+      target =&gt; &quot;${module_name} services&quot;,
+      data   =&gt; {
+        &#39;service&#39; =&gt; [$service],
+      },
+    }
+  }
+}</pre>
+      </td>
+    </tr>
+  </table>
+</div>
+</div>
+
+      <div id="footer">
+     Generated by <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>.
+</div>
+
+    </div>
+  </body>
+</html>

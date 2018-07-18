@@ -1,0 +1,5144 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Defined Type: sssd::domain
+  
+    &mdash; Documentation by YARD 0.9.14
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "puppet_defined_types::sssd::domain";
+  relpath = '../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../puppet_defined_type_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../_index.html">Index (s)</a> &raquo;
+    <span class='title'><span class='object_link'>Defined Types</span></span>
+     &raquo; 
+    <span class="title">sssd::domain</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="puppet_class_list_link"
+        href="../puppet_class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Defined Type: sssd::domain</h1>
+<div class="box_info">
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>
+      manifests/domain.pp
+    </dd>
+  </dl>
+</div>
+
+<h2>Overview</h2>
+<div class="docstring">
+  <div class="discussion">
+    
+<p>Define an SSSD domain.</p>
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <p class="tag_title">Examples:</p>
+    
+      
+        <p class="example_title"><div class='inline'>
+<p>Define an LDAP domain</p>
+</div></p>
+      
+      <pre class="example code"><code>include ::sssd
+::sssd::domain { &#39;example.com&#39;:
+  id_provider           =&gt; &#39;ldap&#39;,
+  ldap_schema           =&gt; &#39;rfc2307&#39;,
+  ldap_uri              =&gt; [&#39;ldap://192.0.2.1&#39;],
+  ldap_search_base      =&gt; &#39;dc=example,dc=com&#39;,
+  ldap_tls_reqcert      =&gt; &#39;never&#39;,
+  ldap_id_use_start_tls =&gt; false,
+  ldap_default_bind_dn  =&gt; &#39;cn=Manager,dc=example,dc=com&#39;,
+  ldap_default_authtok  =&gt; &#39;secret&#39;,
+}</code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>id_provider</span>
+      
+      
+        <span class='type'>(<tt>SSSD::Provider::ID</tt>)</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>domain</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$title</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>debug</span>
+      
+      
+        <span class='type'>(<tt>Optional[Integer[0]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>debug_level</span>
+      
+      
+        <span class='type'>(<tt>Optional[Integer[0]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>debug_timestamps</span>
+      
+      
+        <span class='type'>(<tt>Optional[Boolean]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>debug_microseconds</span>
+      
+      
+        <span class='type'>(<tt>Optional[Boolean]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>timeout</span>
+      
+      
+        <span class='type'>(<tt>Optional[Integer[0]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>domain_type</span>
+      
+      
+        <span class='type'>(<tt>Optional[Enum['posix', 'application']]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>max_id</span>
+      
+      
+        <span class='type'>(<tt>Optional[Integer[0]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>min_id</span>
+      
+      
+        <span class='type'>(<tt>Optional[Integer[0]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>enumerate</span>
+      
+      
+        <span class='type'>(<tt>Optional[Boolean]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>subdomain_enumerate</span>
+      
+      
+        <span class='type'>(<tt>Optional[Array[String, 1]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>entry_cache_timeout</span>
+      
+      
+        <span class='type'>(<tt>Optional[Integer[0]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>entry_cache_user_timeout</span>
+      
+      
+        <span class='type'>(<tt>Optional[Integer[0]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>entry_cache_group_timeout</span>
+      
+      
+        <span class='type'>(<tt>Optional[Integer[0]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>entry_cache_netgroup_timeout</span>
+      
+      
+        <span class='type'>(<tt>Optional[Integer[0]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>entry_cache_service_timeout</span>
+      
+      
+        <span class='type'>(<tt>Optional[Integer[0]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>entry_cache_sudo_timeout</span>
+      
+      
+        <span class='type'>(<tt>Optional[Integer[0]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>entry_cache_autofs_timeout</span>
+      
+      
+        <span class='type'>(<tt>Optional[Integer[0]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>entry_cache_ssh_host_timeout</span>
+      
+      
+        <span class='type'>(<tt>Optional[Integer[0]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>refresh_expired_interval</span>
+      
+      
+        <span class='type'>(<tt>Optional[Integer[0]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>cache_credentials</span>
+      
+      
+        <span class='type'>(<tt>Optional[Boolean]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>cache_credentials_minimal_first_factor_length</span>
+      
+      
+        <span class='type'>(<tt>Optional[Integer[0]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>account_cache_expiration</span>
+      
+      
+        <span class='type'>(<tt>Optional[Integer[0]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>pwd_expiration_warning</span>
+      
+      
+        <span class='type'>(<tt>Optional[Integer[0]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>use_fully_qualified_names</span>
+      
+      
+        <span class='type'>(<tt>Optional[Boolean]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ignore_group_members</span>
+      
+      
+        <span class='type'>(<tt>Optional[Boolean]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>auth_provider</span>
+      
+      
+        <span class='type'>(<tt>Optional[SSSD::Provider::Auth]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>access_provider</span>
+      
+      
+        <span class='type'>(<tt>Optional[SSSD::Provider::Access]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>chpass_provider</span>
+      
+      
+        <span class='type'>(<tt>Optional[SSSD::Provider::Chpass]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>sudo_provider</span>
+      
+      
+        <span class='type'>(<tt>Optional[SSSD::Provider::Sudo]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>selinux_provider</span>
+      
+      
+        <span class='type'>(<tt>Optional[SSSD::Provider::SELinux]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>subdomains_provider</span>
+      
+      
+        <span class='type'>(<tt>Optional[SSSD::Provider::Subdomains]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>autofs_provider</span>
+      
+      
+        <span class='type'>(<tt>Optional[SSSD::Provider::AutoFS]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>hostid_provider</span>
+      
+      
+        <span class='type'>(<tt>Optional[SSSD::Provider::HostID]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>re_expression</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>full_name_format</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>lookup_family_order</span>
+      
+      
+        <span class='type'>(<tt>Optional[Enum['ipv4_first', 'ipv4_only', 'ipv6_first', 'ipv6_only']]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>dns_resolver_timeout</span>
+      
+      
+        <span class='type'>(<tt>Optional[Integer[0]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>dns_discovery_domain</span>
+      
+      
+        <span class='type'>(<tt>Optional[Bodgitlib::Domain]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>override_gid</span>
+      
+      
+        <span class='type'>(<tt>Optional[Integer[0]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>case_sensitive</span>
+      
+      
+        <span class='type'>(<tt>Optional[Variant[Boolean, Enum['preserving']]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>subdomain_inherit</span>
+      
+      
+        <span class='type'>(<tt>Optional[Array[SSSD::Subdomain::Inherit, 1]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>subdomain_homedir</span>
+      
+      
+        <span class='type'>(<tt>Optional[Stdlib::Absolutepath]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>realmd_tags</span>
+      
+      
+        <span class='type'>(<tt>Optional[Array[String, 1]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>cached_auth_timeout</span>
+      
+      
+        <span class='type'>(<tt>Optional[Integer[0]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>dyndns_update</span>
+      
+      
+        <span class='type'>(<tt>Optional[Boolean]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>dyndns_ttl</span>
+      
+      
+        <span class='type'>(<tt>Optional[Integer[0]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>dyndns_iface</span>
+      
+      
+        <span class='type'>(<tt>Optional[Array[String, 1]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>dyndns_refresh_interval</span>
+      
+      
+        <span class='type'>(<tt>Optional[Integer[0]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>dyndns_update_ptr</span>
+      
+      
+        <span class='type'>(<tt>Optional[Boolean]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>dyndns_force_tcp</span>
+      
+      
+        <span class='type'>(<tt>Optional[Boolean]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>dyndns_auth</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>dyndns_server</span>
+      
+      
+        <span class='type'>(<tt>Optional[Bodgitlib::Host]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>override_homedir</span>
+      
+      
+        <span class='type'>(<tt>Optional[Stdlib::Absolutepath]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>homedir_substring</span>
+      
+      
+        <span class='type'>(<tt>Optional[Stdlib::Absolutepath]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>wildcard_limit</span>
+      
+      
+        <span class='type'>(<tt>Optional[Integer[0]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>simple_allow_users</span>
+      
+      
+        <span class='type'>(<tt>Optional[Array[String, 1]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>simple_deny_users</span>
+      
+      
+        <span class='type'>(<tt>Optional[Array[String, 1]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>simple_allow_groups</span>
+      
+      
+        <span class='type'>(<tt>Optional[Array[String, 1]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>simple_deny_groups</span>
+      
+      
+        <span class='type'>(<tt>Optional[Array[String, 1]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>proxy_pam_target</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>proxy_lib_name</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>proxy_fast_alias</span>
+      
+      
+        <span class='type'>(<tt>Optional[Boolean]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>proxy_max_children</span>
+      
+      
+        <span class='type'>(<tt>Optional[Integer[0]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>default_shell</span>
+      
+      
+        <span class='type'>(<tt>Optional[Stdlib::Absolutepath]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>base_directory</span>
+      
+      
+        <span class='type'>(<tt>Optional[Stdlib::Absolutepath]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>create_homedir</span>
+      
+      
+        <span class='type'>(<tt>Optional[Boolean]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>remove_homedir</span>
+      
+      
+        <span class='type'>(<tt>Optional[Boolean]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>homedir_umask</span>
+      
+      
+        <span class='type'>(<tt>Optional[Pattern[/^[0-7]{3}$/]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>skel_dir</span>
+      
+      
+        <span class='type'>(<tt>Optional[Stdlib::Absolutepath]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>mail_dir</span>
+      
+      
+        <span class='type'>(<tt>Optional[Stdlib::Absolutepath]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>userdel_cmd</span>
+      
+      
+        <span class='type'>(<tt>Optional[Stdlib::Absolutepath]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_uri</span>
+      
+      
+        <span class='type'>(<tt>Optional[Array[Bodgitlib::LDAP::URI::Simple, 1]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_backup_uri</span>
+      
+      
+        <span class='type'>(<tt>Optional[Array[Bodgitlib::LDAP::URI::Simple, 1]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_chpass_uri</span>
+      
+      
+        <span class='type'>(<tt>Optional[Array[Bodgitlib::LDAP::URI::Simple, 1]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_chpass_backup_uri</span>
+      
+      
+        <span class='type'>(<tt>Optional[Array[Bodgitlib::LDAP::URI::Simple, 1]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_search_base</span>
+      
+      
+        <span class='type'>(<tt>Optional[SSSD::Search::Base]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_schema</span>
+      
+      
+        <span class='type'>(<tt>Optional[Enum['rfc2307', 'rfc2307bis', 'ipa', 'ad']]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_default_bind_dn</span>
+      
+      
+        <span class='type'>(<tt>Optional[Bodgitlib::LDAP::DN]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_default_authtok_type</span>
+      
+      
+        <span class='type'>(<tt>Optional[Enum['password', 'obfuscated_password']]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_default_authtok</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_user_object_class</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_user_name</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_user_uid_number</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_user_gid_number</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_user_gecos</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_user_home_directory</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_user_shell</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_user_uuid</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_user_objectsid</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_user_modify_timestamp</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_user_shadow_last_change</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_user_shadow_min</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_user_shadow_max</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_user_shadow_warning</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_user_shadow_inactive</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_user_shadow_expire</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_user_krb_last_pwd_change</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_user_krb_password_expiration</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_user_ad_account_expires</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_user_ad_user_account_control</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_ns_account_lock</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_user_nds_login_disabled</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_user_nds_login_expiration_time</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_user_nds_login_allowed_time_map</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_user_principal</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_user_extra_attrs</span>
+      
+      
+        <span class='type'>(<tt>Optional[Array[String, 1]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_user_ssh_public_key</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_force_upper_case_realm</span>
+      
+      
+        <span class='type'>(<tt>Optional[Boolean]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_enumeration_refresh_timeout</span>
+      
+      
+        <span class='type'>(<tt>Optional[Integer[0]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_purge_cache_timeout</span>
+      
+      
+        <span class='type'>(<tt>Optional[Integer[0]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_user_fullname</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_user_member_of</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_user_authorized_service</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_user_authorized_host</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_user_certificate</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_group_object_class</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_group_name</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_group_gid_number</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_group_member</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_group_uuid</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_group_objectsid</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_group_modify_timestamp</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_group_type</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_group_external_member</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_group_nesting_level</span>
+      
+      
+        <span class='type'>(<tt>Optional[Integer[0]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_groups_use_matching_rule_in_chain</span>
+      
+      
+        <span class='type'>(<tt>Optional[Boolean]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_initgroups_use_matching_rule_in_chain</span>
+      
+      
+        <span class='type'>(<tt>Optional[Boolean]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_use_tokengroups</span>
+      
+      
+        <span class='type'>(<tt>Optional[Boolean]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_netgroup_object_class</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_netgroup_name</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_netgroup_member</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_netgroup_triple</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_netgroup_modify_timestamp</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_service_object_class</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_service_name</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_service_port</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_service_proto</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_service_search_base</span>
+      
+      
+        <span class='type'>(<tt>Optional[SSSD::Search::Base]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_search_timeout</span>
+      
+      
+        <span class='type'>(<tt>Optional[Integer[0]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_enumeration_search_timeout</span>
+      
+      
+        <span class='type'>(<tt>Optional[Integer[0]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_network_timeout</span>
+      
+      
+        <span class='type'>(<tt>Optional[Integer[0]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_opt_timeout</span>
+      
+      
+        <span class='type'>(<tt>Optional[Integer[0]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_connection_expire_timeout</span>
+      
+      
+        <span class='type'>(<tt>Optional[Integer[0]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_page_size</span>
+      
+      
+        <span class='type'>(<tt>Optional[Integer[0]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_disable_paging</span>
+      
+      
+        <span class='type'>(<tt>Optional[Boolean]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_disable_range_retrieval</span>
+      
+      
+        <span class='type'>(<tt>Optional[Boolean]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_sasl_minssf</span>
+      
+      
+        <span class='type'>(<tt>Optional[Integer[0]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_deref_threshold</span>
+      
+      
+        <span class='type'>(<tt>Optional[Integer[0]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_tls_reqcert</span>
+      
+      
+        <span class='type'>(<tt>Optional[Enum['never', 'allow', 'try', 'demand', 'hard']]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_tls_cacert</span>
+      
+      
+        <span class='type'>(<tt>Optional[Stdlib::Absolutepath]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_tls_cacertdir</span>
+      
+      
+        <span class='type'>(<tt>Optional[Stdlib::Absolutepath]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_tls_cert</span>
+      
+      
+        <span class='type'>(<tt>Optional[Stdlib::Absolutepath]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_tls_key</span>
+      
+      
+        <span class='type'>(<tt>Optional[Stdlib::Absolutepath]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_tls_cipher_suite</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_id_use_start_tls</span>
+      
+      
+        <span class='type'>(<tt>Optional[Boolean]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_id_mapping</span>
+      
+      
+        <span class='type'>(<tt>Optional[Boolean]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_idmap_range_min</span>
+      
+      
+        <span class='type'>(<tt>Optional[Integer[0]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_idmap_range_max</span>
+      
+      
+        <span class='type'>(<tt>Optional[Integer[0]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_idmap_range_size</span>
+      
+      
+        <span class='type'>(<tt>Optional[Integer[0]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_idmap_default_domain_sid</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_idmap_default_domain</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_idmap_autorid_compat</span>
+      
+      
+        <span class='type'>(<tt>Optional[Boolean]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_idmap_helper_table_size</span>
+      
+      
+        <span class='type'>(<tt>Optional[Integer[0]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_max_id</span>
+      
+      
+        <span class='type'>(<tt>Optional[Integer[0]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_min_id</span>
+      
+      
+        <span class='type'>(<tt>Optional[Integer[0]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_sasl_mech</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_sasl_authid</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_sasl_realm</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_sasl_canonicalize</span>
+      
+      
+        <span class='type'>(<tt>Optional[Boolean]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_krb5_keytab</span>
+      
+      
+        <span class='type'>(<tt>Optional[Stdlib::Absolutepath]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_krb5_init_creds</span>
+      
+      
+        <span class='type'>(<tt>Optional[Boolean]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_krb5_ticket_lifetime</span>
+      
+      
+        <span class='type'>(<tt>Optional[Integer[0]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_pwd_policy</span>
+      
+      
+        <span class='type'>(<tt>Optional[Enum['none', 'shadow', 'mit_kerberos']]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_referrals</span>
+      
+      
+        <span class='type'>(<tt>Optional[Boolean]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_dns_service_name</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_chpass_dns_service_name</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_chpass_update_last_change</span>
+      
+      
+        <span class='type'>(<tt>Optional[Boolean]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_access_filter</span>
+      
+      
+        <span class='type'>(<tt>Optional[Bodgitlib::LDAP::Filter]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_account_expire_policy</span>
+      
+      
+        <span class='type'>(<tt>Optional[Enum['shadow', 'ad', 'rhds', 'ipa', '389ds', 'nds']]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_access_order</span>
+      
+      
+        <span class='type'>(<tt>Optional[Array[SSSD::LDAP::Access::Order, 1]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_pwdlockout_dn</span>
+      
+      
+        <span class='type'>(<tt>Optional[Bodgitlib::LDAP::DN]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_deref</span>
+      
+      
+        <span class='type'>(<tt>Optional[Enum['never', 'searching', 'finding', 'always']]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_rfc2307_fallback_to_local_users</span>
+      
+      
+        <span class='type'>(<tt>Optional[Boolean]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_sudorule_object_class</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_sudorule_name</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_sudorule_command</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_sudorule_host</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_sudorule_user</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_sudorule_option</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_sudorule_runasuser</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_sudorule_runasgroup</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_sudorule_notbefore</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_sudorule_notafter</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_sudorule_order</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_sudo_full_refresh_interval</span>
+      
+      
+        <span class='type'>(<tt>Optional[Integer[0]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_sudo_smart_refresh_interval</span>
+      
+      
+        <span class='type'>(<tt>Optional[Integer[0]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_sudo_use_host_filter</span>
+      
+      
+        <span class='type'>(<tt>Optional[Boolean]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_sudo_hostnames</span>
+      
+      
+        <span class='type'>(<tt>Optional[Array[String, 1]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_sudo_ip</span>
+      
+      
+        <span class='type'>(<tt>Optional[Array[IP::Address, 1]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_sudo_include_netgroups</span>
+      
+      
+        <span class='type'>(<tt>Optional[Boolean]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_sudo_include_regexp</span>
+      
+      
+        <span class='type'>(<tt>Optional[Boolean]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_autofs_map_master_name</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_autofs_map_object_class</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_autofs_map_name</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_autofs_entry_object_class</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_autofs_entry_key</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_autofs_entry_value</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_netgroup_search_base</span>
+      
+      
+        <span class='type'>(<tt>Optional[SSSD::Search::Base]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_user_search_base</span>
+      
+      
+        <span class='type'>(<tt>Optional[SSSD::Search::Base]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_group_search_base</span>
+      
+      
+        <span class='type'>(<tt>Optional[SSSD::Search::Base]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_sudo_search_base</span>
+      
+      
+        <span class='type'>(<tt>Optional[SSSD::Search::Base]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_autofs_search_base</span>
+      
+      
+        <span class='type'>(<tt>Optional[SSSD::Search::Base]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>krb5_server</span>
+      
+      
+        <span class='type'>(<tt>Optional[Array[Bodgitlib::Host, 1]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>krb5_backup_server</span>
+      
+      
+        <span class='type'>(<tt>Optional[Array[Bodgitlib::Host, 1]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>krb5_realm</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>krb5_kpasswd</span>
+      
+      
+        <span class='type'>(<tt>Optional[Array[Variant[Bodgitlib::Host, Tuple[Bodgitlib::Host, Bodgitlib::Port]], 1]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>krb5_backup_kpasswd</span>
+      
+      
+        <span class='type'>(<tt>Optional[Array[Variant[Bodgitlib::Host, Tuple[Bodgitlib::Host, Bodgitlib::Port]], 1]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>krb5_ccachedir</span>
+      
+      
+        <span class='type'>(<tt>Optional[Stdlib::Absolutepath]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>krb5_ccname_template</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>krb5_auth_timeout</span>
+      
+      
+        <span class='type'>(<tt>Optional[Integer[0]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>krb5_validate</span>
+      
+      
+        <span class='type'>(<tt>Optional[Boolean]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>krb5_keytab</span>
+      
+      
+        <span class='type'>(<tt>Optional[Stdlib::Absolutepath]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>krb5_store_password_if_offline</span>
+      
+      
+        <span class='type'>(<tt>Optional[Boolean]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>krb5_renewable_lifetime</span>
+      
+      
+        <span class='type'>(<tt>Optional[Variant[Integer[0], Pattern[/(?x) ^ \d+ [smhd]? $/]]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>krb5_lifetime</span>
+      
+      
+        <span class='type'>(<tt>Optional[Variant[Integer[0], Pattern[/(?x) ^ \d+ [smhd]? $/]]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>krb5_renew_interval</span>
+      
+      
+        <span class='type'>(<tt>Optional[Variant[Integer[0], Pattern[/(?x) ^ \d+ [smhd]? $/]]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>krb5_use_fast</span>
+      
+      
+        <span class='type'>(<tt>Optional[Enum['never', 'try', 'demand']]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>krb5_fast_principal</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>krb5_canonicalize</span>
+      
+      
+        <span class='type'>(<tt>Optional[Boolean]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>krb5_use_kdcinfo</span>
+      
+      
+        <span class='type'>(<tt>Optional[Boolean]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>krb5_use_enterprise_principal</span>
+      
+      
+        <span class='type'>(<tt>Optional[Boolean]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>krb5_map_user</span>
+      
+      
+        <span class='type'>(<tt>Optional[Array[String, 1]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>krb5_confd_path</span>
+      
+      
+        <span class='type'>(<tt>Optional[Stdlib::Absolutepath]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ad_domain</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ad_enabled_domains</span>
+      
+      
+        <span class='type'>(<tt>Optional[Array[Bodgitlib::Domain, 1]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ad_server</span>
+      
+      
+        <span class='type'>(<tt>Optional[Array[Bodgitlib::Host, 1]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ad_backup_server</span>
+      
+      
+        <span class='type'>(<tt>Optional[Array[Bodgitlib::Host, 1]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ad_hostname</span>
+      
+      
+        <span class='type'>(<tt>Optional[Bodgitlib::Hostname]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ad_enable_dns_sites</span>
+      
+      
+        <span class='type'>(<tt>Optional[Boolean]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ad_access_filter</span>
+      
+      
+        <span class='type'>(<tt>Optional[SSSD::AD::Access::Filter]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ad_site</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ad_enable_gc</span>
+      
+      
+        <span class='type'>(<tt>Optional[Boolean]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ad_gpo_access_control</span>
+      
+      
+        <span class='type'>(<tt>Optional[Enum['disabled', 'enforcing', 'permissive']]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ad_gpo_cache_timeout</span>
+      
+      
+        <span class='type'>(<tt>Optional[Integer[0]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ad_gpo_map_interactive</span>
+      
+      
+        <span class='type'>(<tt>Optional[Array[String, 1]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ad_gpo_map_remote_interactive</span>
+      
+      
+        <span class='type'>(<tt>Optional[Array[String, 1]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ad_gpo_map_network</span>
+      
+      
+        <span class='type'>(<tt>Optional[Array[String, 1]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ad_gpo_map_batch</span>
+      
+      
+        <span class='type'>(<tt>Optional[Array[String, 1]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ad_gpo_map_service</span>
+      
+      
+        <span class='type'>(<tt>Optional[Array[String, 1]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ad_gpo_map_permit</span>
+      
+      
+        <span class='type'>(<tt>Optional[Array[String, 1]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ad_gpo_map_deny</span>
+      
+      
+        <span class='type'>(<tt>Optional[Array[String, 1]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ad_gpo_default_right</span>
+      
+      
+        <span class='type'>(<tt>Optional[SSSD::AD::GPO::Default::Right]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ad_maximum_machine_account_password_age</span>
+      
+      
+        <span class='type'>(<tt>Optional[Integer[0]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ad_machine_account_password_renewal_opts</span>
+      
+      
+        <span class='type'>(<tt>Optional[Tuple[Integer[0], 2, 2]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ipa_domain</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ipa_server</span>
+      
+      
+        <span class='type'>(<tt>Optional[Array[Bodgitlib::Host, 1]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ipa_backup_server</span>
+      
+      
+        <span class='type'>(<tt>Optional[Array[Bodgitlib::Host, 1]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ipa_hostname</span>
+      
+      
+        <span class='type'>(<tt>Optional[Bodgitlib::Hostname]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ipa_enable_dns_sites</span>
+      
+      
+        <span class='type'>(<tt>Optional[Boolean]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ipa_hbac_search_base</span>
+      
+      
+        <span class='type'>(<tt>Optional[Bodgitlib::LDAP::DN]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ipa_host_search_base</span>
+      
+      
+        <span class='type'>(<tt>Optional[Bodgitlib::LDAP::DN]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ipa_selinux_search_base</span>
+      
+      
+        <span class='type'>(<tt>Optional[Bodgitlib::LDAP::DN]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ipa_subdomains_search_base</span>
+      
+      
+        <span class='type'>(<tt>Optional[Bodgitlib::LDAP::DN]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ipa_master_domain_search_base</span>
+      
+      
+        <span class='type'>(<tt>Optional[Bodgitlib::LDAP::DN]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ipa_views_search_base</span>
+      
+      
+        <span class='type'>(<tt>Optional[Bodgitlib::LDAP::DN]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ipa_hbac_refresh</span>
+      
+      
+        <span class='type'>(<tt>Optional[Integer[0]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ipa_hbac_selinux</span>
+      
+      
+        <span class='type'>(<tt>Optional[Integer[0]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ipa_server_mode</span>
+      
+      
+        <span class='type'>(<tt>Optional[Boolean]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ipa_automount_location</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ipa_view_class</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ipa_view_name</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ipa_override_object_class</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ipa_anchor_uuid</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ipa_user_override_object_class</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ipa_group_override_object_class</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+</ul>
+
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><span class='object_link'><a href="../puppet_classes/sssd.html" title="puppet_classes::sssd (puppet_class)">::sssd</a></span></li>
+    
+  </ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><div class="method_details_list">
+  <table class="source_code">
+    <tr>
+      <td>
+        <pre class="lines">
+
+
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+422
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443
+444
+445
+446
+447
+448
+449
+450
+451
+452
+453
+454
+455
+456
+457
+458
+459
+460
+461
+462
+463
+464
+465
+466
+467
+468
+469
+470
+471
+472
+473
+474
+475
+476
+477
+478
+479
+480
+481
+482
+483
+484
+485
+486
+487
+488
+489
+490
+491
+492
+493
+494
+495
+496
+497
+498
+499
+500
+501
+502
+503
+504
+505
+506
+507
+508
+509
+510
+511
+512
+513
+514
+515
+516
+517
+518
+519
+520
+521
+522
+523
+524
+525
+526
+527
+528
+529
+530
+531
+532
+533
+534
+535
+536
+537
+538
+539
+540
+541
+542
+543
+544
+545
+546
+547
+548
+549
+550
+551
+552
+553
+554
+555
+556
+557
+558
+559
+560
+561
+562
+563
+564
+565
+566
+567
+568
+569
+570
+571
+572
+573
+574
+575
+576
+577
+578
+579
+580
+581
+582
+583
+584
+585
+586
+587
+588
+589
+590
+591
+592
+593
+594
+595
+596
+597
+598
+599
+600
+601
+602
+603
+604
+605
+606
+607
+608
+609
+610
+611
+612
+613
+614
+615
+616
+617
+618
+619
+620
+621
+622
+623
+624
+625
+626
+627
+628
+629
+630
+631
+632
+633
+634
+635
+636
+637
+638
+639
+640
+641
+642
+643
+644
+645
+646
+647
+648
+649
+650
+651
+652
+653
+654
+655
+656
+657
+658
+659
+660
+661
+662
+663
+664
+665
+666
+667
+668
+669
+670
+671
+672
+673
+674
+675
+676
+677
+678
+679
+680
+681
+682
+683
+684
+685
+686
+687
+688
+689
+690
+691
+692
+693
+694
+695
+696
+697
+698
+699
+700
+701
+702
+703
+704
+705
+706
+707
+708
+709
+710
+711
+712
+713
+714
+715
+716
+717
+718
+719
+720
+721
+722
+723
+724
+725
+726
+727
+728
+729
+730
+731
+732
+733
+734
+735
+736
+737
+738
+739
+740
+741
+742
+743
+744
+745
+746
+747
+748
+749
+750
+751
+752
+753
+754
+755
+756
+757
+758
+759
+760
+761
+762
+763
+764
+765
+766
+767
+768
+769
+770
+771
+772
+773
+774
+775
+776
+777
+778
+779
+780
+781
+782
+783
+784
+785
+786
+787
+788
+789
+790
+791
+792
+793
+794
+795
+796
+797
+798
+799
+800
+801
+802
+803
+804
+805
+806
+807
+808
+809
+810
+811
+812
+813
+814
+815
+816
+817
+818
+819
+820
+821
+822
+823
+824
+825
+826
+827
+828
+829
+830
+831
+832
+833
+834
+835
+836
+837
+838
+839
+840
+841
+842
+843
+844
+845
+846
+847
+848
+849
+850
+851
+852
+853
+854
+855
+856
+857
+858
+859
+860
+861
+862
+863
+864
+865
+866
+867
+868
+869
+870
+871
+872
+873
+874
+875
+876
+877
+878
+879
+880
+881
+882
+883
+884
+885
+886
+887
+888
+889
+890
+891
+892
+893
+894
+895
+896
+897
+898
+899
+900
+901
+902
+903
+904
+905
+906
+907
+908
+909
+910
+911
+912
+913
+914
+915
+916
+917
+918
+919
+920
+921
+922
+923
+924
+925
+926
+927
+928
+929
+930
+931
+932
+933
+934
+935
+936
+937
+938
+939
+940
+941
+942
+943
+944
+945
+946
+947
+948
+949
+950
+951
+952
+953
+954
+955
+956
+957
+958
+959
+960
+961
+962
+963
+964
+965
+966
+967
+968
+969
+970
+971
+972
+973
+974
+975
+976
+977
+978
+979
+980
+981
+982
+983
+984
+985
+986
+987
+988
+989
+990
+991</pre>
+      </td>
+      <td>
+        <pre class="code"><span class="info file"># File 'manifests/domain.pp', line 297</span>
+
+define sssd::domain (
+  SSSD::Provider::ID                                                                    $id_provider,
+  String                                                                                $domain                                        = $title,
+  # options for any section
+  Optional[Integer[0]]                                                                  $debug                                         = undef,
+  Optional[Integer[0]]                                                                  $debug_level                                   = undef,
+  Optional[Boolean]                                                                     $debug_timestamps                              = undef,
+  Optional[Boolean]                                                                     $debug_microseconds                            = undef,
+  # generic domain options
+  Optional[Integer[0]]                                                                  $timeout                                       = undef,
+  Optional[Enum[&#39;posix&#39;, &#39;application&#39;]]                                                $domain_type                                   = undef,
+  Optional[Integer[0]]                                                                  $max_id                                        = undef,
+  Optional[Integer[0]]                                                                  $min_id                                        = undef,
+  Optional[Boolean]                                                                     $enumerate                                     = undef,
+  Optional[Array[String, 1]]                                                            $subdomain_enumerate                           = undef,
+  Optional[Integer[0]]                                                                  $entry_cache_timeout                           = undef,
+  Optional[Integer[0]]                                                                  $entry_cache_user_timeout                      = undef,
+  Optional[Integer[0]]                                                                  $entry_cache_group_timeout                     = undef,
+  Optional[Integer[0]]                                                                  $entry_cache_netgroup_timeout                  = undef,
+  Optional[Integer[0]]                                                                  $entry_cache_service_timeout                   = undef,
+  Optional[Integer[0]]                                                                  $entry_cache_sudo_timeout                      = undef,
+  Optional[Integer[0]]                                                                  $entry_cache_autofs_timeout                    = undef,
+  Optional[Integer[0]]                                                                  $entry_cache_ssh_host_timeout                  = undef,
+  Optional[Integer[0]]                                                                  $refresh_expired_interval                      = undef,
+  Optional[Boolean]                                                                     $cache_credentials                             = undef,
+  Optional[Integer[0]]                                                                  $cache_credentials_minimal_first_factor_length = undef,
+  Optional[Integer[0]]                                                                  $account_cache_expiration                      = undef,
+  Optional[Integer[0]]                                                                  $pwd_expiration_warning                        = undef,
+  Optional[Boolean]                                                                     $use_fully_qualified_names                     = undef,
+  Optional[Boolean]                                                                     $ignore_group_members                          = undef,
+  Optional[SSSD::Provider::Auth]                                                        $auth_provider                                 = undef,
+  Optional[SSSD::Provider::Access]                                                      $access_provider                               = undef,
+  Optional[SSSD::Provider::Chpass]                                                      $chpass_provider                               = undef,
+  Optional[SSSD::Provider::Sudo]                                                        $sudo_provider                                 = undef,
+  Optional[SSSD::Provider::SELinux]                                                     $selinux_provider                              = undef,
+  Optional[SSSD::Provider::Subdomains]                                                  $subdomains_provider                           = undef,
+  Optional[SSSD::Provider::AutoFS]                                                      $autofs_provider                               = undef,
+  Optional[SSSD::Provider::HostID]                                                      $hostid_provider                               = undef,
+  Optional[String]                                                                      $re_expression                                 = undef,
+  Optional[String]                                                                      $full_name_format                              = undef,
+  Optional[Enum[&#39;ipv4_first&#39;, &#39;ipv4_only&#39;, &#39;ipv6_first&#39;, &#39;ipv6_only&#39;]]                  $lookup_family_order                           = undef,
+  Optional[Integer[0]]                                                                  $dns_resolver_timeout                          = undef,
+  Optional[Bodgitlib::Domain]                                                           $dns_discovery_domain                          = undef,
+  Optional[Integer[0]]                                                                  $override_gid                                  = undef,
+  Optional[Variant[Boolean, Enum[&#39;preserving&#39;]]]                                        $case_sensitive                                = undef,
+  Optional[Array[SSSD::Subdomain::Inherit, 1]]                                          $subdomain_inherit                             = undef,
+  Optional[Stdlib::Absolutepath]                                                        $subdomain_homedir                             = undef,
+  Optional[Array[String, 1]]                                                            $realmd_tags                                   = undef,
+  Optional[Integer[0]]                                                                  $cached_auth_timeout                           = undef,
+  Optional[Boolean]                                                                     $dyndns_update                                 = undef,
+  Optional[Integer[0]]                                                                  $dyndns_ttl                                    = undef,
+  Optional[Array[String, 1]]                                                            $dyndns_iface                                  = undef,
+  Optional[Integer[0]]                                                                  $dyndns_refresh_interval                       = undef,
+  Optional[Boolean]                                                                     $dyndns_update_ptr                             = undef,
+  Optional[Boolean]                                                                     $dyndns_force_tcp                              = undef,
+  Optional[String]                                                                      $dyndns_auth                                   = undef,
+  Optional[Bodgitlib::Host]                                                             $dyndns_server                                 = undef,
+  Optional[Stdlib::Absolutepath]                                                        $override_homedir                              = undef,
+  Optional[Stdlib::Absolutepath]                                                        $homedir_substring                             = undef,
+  Optional[Integer[0]]                                                                  $wildcard_limit                                = undef,
+  # simple access provider
+  Optional[Array[String, 1]]                                                            $simple_allow_users                            = undef,
+  Optional[Array[String, 1]]                                                            $simple_deny_users                             = undef,
+  Optional[Array[String, 1]]                                                            $simple_allow_groups                           = undef,
+  Optional[Array[String, 1]]                                                            $simple_deny_groups                            = undef,
+  # proxy
+  Optional[String]                                                                      $proxy_pam_target                              = undef,
+  Optional[String]                                                                      $proxy_lib_name                                = undef,
+  Optional[Boolean]                                                                     $proxy_fast_alias                              = undef,
+  Optional[Integer[0]]                                                                  $proxy_max_children                            = undef,
+  # local
+  Optional[Stdlib::Absolutepath]                                                        $default_shell                                 = undef,
+  Optional[Stdlib::Absolutepath]                                                        $base_directory                                = undef,
+  Optional[Boolean]                                                                     $create_homedir                                = undef,
+  Optional[Boolean]                                                                     $remove_homedir                                = undef,
+  Optional[Pattern[/^[0-7]{3}$/]]                                                       $homedir_umask                                 = undef,
+  Optional[Stdlib::Absolutepath]                                                        $skel_dir                                      = undef,
+  Optional[Stdlib::Absolutepath]                                                        $mail_dir                                      = undef,
+  Optional[Stdlib::Absolutepath]                                                        $userdel_cmd                                   = undef,
+  # ldap
+  Optional[Array[Bodgitlib::LDAP::URI::Simple, 1]]                                      $ldap_uri                                      = undef,
+  Optional[Array[Bodgitlib::LDAP::URI::Simple, 1]]                                      $ldap_backup_uri                               = undef,
+  Optional[Array[Bodgitlib::LDAP::URI::Simple, 1]]                                      $ldap_chpass_uri                               = undef,
+  Optional[Array[Bodgitlib::LDAP::URI::Simple, 1]]                                      $ldap_chpass_backup_uri                        = undef,
+  Optional[SSSD::Search::Base]                                                          $ldap_search_base                              = undef,
+  Optional[Enum[&#39;rfc2307&#39;, &#39;rfc2307bis&#39;, &#39;ipa&#39;, &#39;ad&#39;]]                                  $ldap_schema                                   = undef,
+  Optional[Bodgitlib::LDAP::DN]                                                         $ldap_default_bind_dn                          = undef,
+  Optional[Enum[&#39;password&#39;, &#39;obfuscated_password&#39;]]                                     $ldap_default_authtok_type                     = undef,
+  Optional[String]                                                                      $ldap_default_authtok                          = undef,
+  Optional[String]                                                                      $ldap_user_object_class                        = undef,
+  Optional[String]                                                                      $ldap_user_name                                = undef,
+  Optional[String]                                                                      $ldap_user_uid_number                          = undef,
+  Optional[String]                                                                      $ldap_user_gid_number                          = undef,
+  Optional[String]                                                                      $ldap_user_gecos                               = undef,
+  Optional[String]                                                                      $ldap_user_home_directory                      = undef,
+  Optional[String]                                                                      $ldap_user_shell                               = undef,
+  Optional[String]                                                                      $ldap_user_uuid                                = undef,
+  Optional[String]                                                                      $ldap_user_objectsid                           = undef,
+  Optional[String]                                                                      $ldap_user_modify_timestamp                    = undef,
+  Optional[String]                                                                      $ldap_user_shadow_last_change                  = undef,
+  Optional[String]                                                                      $ldap_user_shadow_min                          = undef,
+  Optional[String]                                                                      $ldap_user_shadow_max                          = undef,
+  Optional[String]                                                                      $ldap_user_shadow_warning                      = undef,
+  Optional[String]                                                                      $ldap_user_shadow_inactive                     = undef,
+  Optional[String]                                                                      $ldap_user_shadow_expire                       = undef,
+  Optional[String]                                                                      $ldap_user_krb_last_pwd_change                 = undef,
+  Optional[String]                                                                      $ldap_user_krb_password_expiration             = undef,
+  Optional[String]                                                                      $ldap_user_ad_account_expires                  = undef,
+  Optional[String]                                                                      $ldap_user_ad_user_account_control             = undef,
+  Optional[String]                                                                      $ldap_ns_account_lock                          = undef,
+  Optional[String]                                                                      $ldap_user_nds_login_disabled                  = undef,
+  Optional[String]                                                                      $ldap_user_nds_login_expiration_time           = undef,
+  Optional[String]                                                                      $ldap_user_nds_login_allowed_time_map          = undef,
+  Optional[String]                                                                      $ldap_user_principal                           = undef,
+  Optional[Array[String, 1]]                                                            $ldap_user_extra_attrs                         = undef,
+  Optional[String]                                                                      $ldap_user_ssh_public_key                      = undef,
+  Optional[Boolean]                                                                     $ldap_force_upper_case_realm                   = undef,
+  Optional[Integer[0]]                                                                  $ldap_enumeration_refresh_timeout              = undef,
+  Optional[Integer[0]]                                                                  $ldap_purge_cache_timeout                      = undef,
+  Optional[String]                                                                      $ldap_user_fullname                            = undef,
+  Optional[String]                                                                      $ldap_user_member_of                           = undef,
+  Optional[String]                                                                      $ldap_user_authorized_service                  = undef,
+  Optional[String]                                                                      $ldap_user_authorized_host                     = undef,
+  Optional[String]                                                                      $ldap_user_certificate                         = undef,
+  Optional[String]                                                                      $ldap_group_object_class                       = undef,
+  Optional[String]                                                                      $ldap_group_name                               = undef,
+  Optional[String]                                                                      $ldap_group_gid_number                         = undef,
+  Optional[String]                                                                      $ldap_group_member                             = undef,
+  Optional[String]                                                                      $ldap_group_uuid                               = undef,
+  Optional[String]                                                                      $ldap_group_objectsid                          = undef,
+  Optional[String]                                                                      $ldap_group_modify_timestamp                   = undef,
+  Optional[String]                                                                      $ldap_group_type                               = undef,
+  Optional[String]                                                                      $ldap_group_external_member                    = undef,
+  Optional[Integer[0]]                                                                  $ldap_group_nesting_level                      = undef,
+  Optional[Boolean]                                                                     $ldap_groups_use_matching_rule_in_chain        = undef,
+  Optional[Boolean]                                                                     $ldap_initgroups_use_matching_rule_in_chain    = undef,
+  Optional[Boolean]                                                                     $ldap_use_tokengroups                          = undef,
+  Optional[String]                                                                      $ldap_netgroup_object_class                    = undef,
+  Optional[String]                                                                      $ldap_netgroup_name                            = undef,
+  Optional[String]                                                                      $ldap_netgroup_member                          = undef,
+  Optional[String]                                                                      $ldap_netgroup_triple                          = undef,
+  Optional[String]                                                                      $ldap_netgroup_modify_timestamp                = undef,
+  Optional[String]                                                                      $ldap_service_object_class                     = undef,
+  Optional[String]                                                                      $ldap_service_name                             = undef,
+  Optional[String]                                                                      $ldap_service_port                             = undef,
+  Optional[String]                                                                      $ldap_service_proto                            = undef,
+  Optional[SSSD::Search::Base]                                                          $ldap_service_search_base                      = undef,
+  Optional[Integer[0]]                                                                  $ldap_search_timeout                           = undef,
+  Optional[Integer[0]]                                                                  $ldap_enumeration_search_timeout               = undef,
+  Optional[Integer[0]]                                                                  $ldap_network_timeout                          = undef,
+  Optional[Integer[0]]                                                                  $ldap_opt_timeout                              = undef,
+  Optional[Integer[0]]                                                                  $ldap_connection_expire_timeout                = undef,
+  Optional[Integer[0]]                                                                  $ldap_page_size                                = undef,
+  Optional[Boolean]                                                                     $ldap_disable_paging                           = undef,
+  Optional[Boolean]                                                                     $ldap_disable_range_retrieval                  = undef,
+  Optional[Integer[0]]                                                                  $ldap_sasl_minssf                              = undef,
+  Optional[Integer[0]]                                                                  $ldap_deref_threshold                          = undef,
+  Optional[Enum[&#39;never&#39;, &#39;allow&#39;, &#39;try&#39;, &#39;demand&#39;, &#39;hard&#39;]]                             $ldap_tls_reqcert                              = undef,
+  Optional[Stdlib::Absolutepath]                                                        $ldap_tls_cacert                               = undef,
+  Optional[Stdlib::Absolutepath]                                                        $ldap_tls_cacertdir                            = undef,
+  Optional[Stdlib::Absolutepath]                                                        $ldap_tls_cert                                 = undef,
+  Optional[Stdlib::Absolutepath]                                                        $ldap_tls_key                                  = undef,
+  Optional[String]                                                                      $ldap_tls_cipher_suite                         = undef,
+  Optional[Boolean]                                                                     $ldap_id_use_start_tls                         = undef,
+  Optional[Boolean]                                                                     $ldap_id_mapping                               = undef,
+  Optional[Integer[0]]                                                                  $ldap_idmap_range_min                          = undef,
+  Optional[Integer[0]]                                                                  $ldap_idmap_range_max                          = undef,
+  Optional[Integer[0]]                                                                  $ldap_idmap_range_size                         = undef,
+  Optional[String]                                                                      $ldap_idmap_default_domain_sid                 = undef,
+  Optional[String]                                                                      $ldap_idmap_default_domain                     = undef,
+  Optional[Boolean]                                                                     $ldap_idmap_autorid_compat                     = undef,
+  Optional[Integer[0]]                                                                  $ldap_idmap_helper_table_size                  = undef,
+  Optional[Integer[0]]                                                                  $ldap_max_id                                   = undef,
+  Optional[Integer[0]]                                                                  $ldap_min_id                                   = undef,
+  Optional[String]                                                                      $ldap_sasl_mech                                = undef,
+  Optional[String]                                                                      $ldap_sasl_authid                              = undef,
+  Optional[String]                                                                      $ldap_sasl_realm                               = undef,
+  Optional[Boolean]                                                                     $ldap_sasl_canonicalize                        = undef,
+  Optional[Stdlib::Absolutepath]                                                        $ldap_krb5_keytab                              = undef,
+  Optional[Boolean]                                                                     $ldap_krb5_init_creds                          = undef,
+  Optional[Integer[0]]                                                                  $ldap_krb5_ticket_lifetime                     = undef,
+  Optional[Enum[&#39;none&#39;, &#39;shadow&#39;, &#39;mit_kerberos&#39;]]                                      $ldap_pwd_policy                               = undef,
+  Optional[Boolean]                                                                     $ldap_referrals                                = undef,
+  Optional[String]                                                                      $ldap_dns_service_name                         = undef,
+  Optional[String]                                                                      $ldap_chpass_dns_service_name                  = undef,
+  Optional[Boolean]                                                                     $ldap_chpass_update_last_change                = undef,
+  Optional[Bodgitlib::LDAP::Filter]                                                     $ldap_access_filter                            = undef,
+  Optional[Enum[&#39;shadow&#39;, &#39;ad&#39;, &#39;rhds&#39;, &#39;ipa&#39;, &#39;389ds&#39;, &#39;nds&#39;]]                         $ldap_account_expire_policy                    = undef,
+  Optional[Array[SSSD::LDAP::Access::Order, 1]]                                         $ldap_access_order                             = undef,
+  Optional[Bodgitlib::LDAP::DN]                                                         $ldap_pwdlockout_dn                            = undef,
+  Optional[Enum[&#39;never&#39;, &#39;searching&#39;, &#39;finding&#39;, &#39;always&#39;]]                             $ldap_deref                                    = undef,
+  Optional[Boolean]                                                                     $ldap_rfc2307_fallback_to_local_users          = undef,
+  Optional[String]                                                                      $ldap_sudorule_object_class                    = undef,
+  Optional[String]                                                                      $ldap_sudorule_name                            = undef,
+  Optional[String]                                                                      $ldap_sudorule_command                         = undef,
+  Optional[String]                                                                      $ldap_sudorule_host                            = undef,
+  Optional[String]                                                                      $ldap_sudorule_user                            = undef,
+  Optional[String]                                                                      $ldap_sudorule_option                          = undef,
+  Optional[String]                                                                      $ldap_sudorule_runasuser                       = undef,
+  Optional[String]                                                                      $ldap_sudorule_runasgroup                      = undef,
+  Optional[String]                                                                      $ldap_sudorule_notbefore                       = undef,
+  Optional[String]                                                                      $ldap_sudorule_notafter                        = undef,
+  Optional[String]                                                                      $ldap_sudorule_order                           = undef,
+  Optional[Integer[0]]                                                                  $ldap_sudo_full_refresh_interval               = undef,
+  Optional[Integer[0]]                                                                  $ldap_sudo_smart_refresh_interval              = undef,
+  Optional[Boolean]                                                                     $ldap_sudo_use_host_filter                     = undef,
+  Optional[Array[String, 1]]                                                            $ldap_sudo_hostnames                           = undef,
+  Optional[Array[IP::Address, 1]]                                                       $ldap_sudo_ip                                  = undef,
+  Optional[Boolean]                                                                     $ldap_sudo_include_netgroups                   = undef,
+  Optional[Boolean]                                                                     $ldap_sudo_include_regexp                      = undef,
+  Optional[String]                                                                      $ldap_autofs_map_master_name                   = undef,
+  Optional[String]                                                                      $ldap_autofs_map_object_class                  = undef,
+  Optional[String]                                                                      $ldap_autofs_map_name                          = undef,
+  Optional[String]                                                                      $ldap_autofs_entry_object_class                = undef,
+  Optional[String]                                                                      $ldap_autofs_entry_key                         = undef,
+  Optional[String]                                                                      $ldap_autofs_entry_value                       = undef,
+  Optional[SSSD::Search::Base]                                                          $ldap_netgroup_search_base                     = undef,
+  Optional[SSSD::Search::Base]                                                          $ldap_user_search_base                         = undef,
+  Optional[SSSD::Search::Base]                                                          $ldap_group_search_base                        = undef,
+  Optional[SSSD::Search::Base]                                                          $ldap_sudo_search_base                         = undef,
+  Optional[SSSD::Search::Base]                                                          $ldap_autofs_search_base                       = undef,
+  # krb5
+  Optional[Array[Bodgitlib::Host, 1]]                                                   $krb5_server                                   = undef,
+  Optional[Array[Bodgitlib::Host, 1]]                                                   $krb5_backup_server                            = undef,
+  Optional[String]                                                                      $krb5_realm                                    = undef,
+  Optional[Array[Variant[Bodgitlib::Host, Tuple[Bodgitlib::Host, Bodgitlib::Port]], 1]] $krb5_kpasswd                                  = undef,
+  Optional[Array[Variant[Bodgitlib::Host, Tuple[Bodgitlib::Host, Bodgitlib::Port]], 1]] $krb5_backup_kpasswd                           = undef,
+  Optional[Stdlib::Absolutepath]                                                        $krb5_ccachedir                                = undef,
+  Optional[String]                                                                      $krb5_ccname_template                          = undef,
+  Optional[Integer[0]]                                                                  $krb5_auth_timeout                             = undef,
+  Optional[Boolean]                                                                     $krb5_validate                                 = undef,
+  Optional[Stdlib::Absolutepath]                                                        $krb5_keytab                                   = undef,
+  Optional[Boolean]                                                                     $krb5_store_password_if_offline                = undef,
+  Optional[Variant[Integer[0], Pattern[/(?x) ^ \d+ [smhd]? $/]]]                        $krb5_renewable_lifetime                       = undef,
+  Optional[Variant[Integer[0], Pattern[/(?x) ^ \d+ [smhd]? $/]]]                        $krb5_lifetime                                 = undef,
+  Optional[Variant[Integer[0], Pattern[/(?x) ^ \d+ [smhd]? $/]]]                        $krb5_renew_interval                           = undef,
+  Optional[Enum[&#39;never&#39;, &#39;try&#39;, &#39;demand&#39;]]                                              $krb5_use_fast                                 = undef,
+  Optional[String]                                                                      $krb5_fast_principal                           = undef,
+  Optional[Boolean]                                                                     $krb5_canonicalize                             = undef,
+  Optional[Boolean]                                                                     $krb5_use_kdcinfo                              = undef,
+  Optional[Boolean]                                                                     $krb5_use_enterprise_principal                 = undef,
+  Optional[Array[String, 1]]                                                            $krb5_map_user                                 = undef,
+  Optional[Stdlib::Absolutepath]                                                        $krb5_confd_path                               = undef,
+  # ad
+  Optional[String]                                                                      $ad_domain                                     = undef,
+  Optional[Array[Bodgitlib::Domain, 1]]                                                 $ad_enabled_domains                            = undef,
+  Optional[Array[Bodgitlib::Host, 1]]                                                   $ad_server                                     = undef,
+  Optional[Array[Bodgitlib::Host, 1]]                                                   $ad_backup_server                              = undef,
+  Optional[Bodgitlib::Hostname]                                                         $ad_hostname                                   = undef,
+  Optional[Boolean]                                                                     $ad_enable_dns_sites                           = undef,
+  Optional[SSSD::AD::Access::Filter]                                                    $ad_access_filter                              = undef,
+  Optional[String]                                                                      $ad_site                                       = undef,
+  Optional[Boolean]                                                                     $ad_enable_gc                                  = undef,
+  Optional[Enum[&#39;disabled&#39;, &#39;enforcing&#39;, &#39;permissive&#39;]]                                 $ad_gpo_access_control                         = undef,
+  Optional[Integer[0]]                                                                  $ad_gpo_cache_timeout                          = undef,
+  Optional[Array[String, 1]]                                                            $ad_gpo_map_interactive                        = undef,
+  Optional[Array[String, 1]]                                                            $ad_gpo_map_remote_interactive                 = undef,
+  Optional[Array[String, 1]]                                                            $ad_gpo_map_network                            = undef,
+  Optional[Array[String, 1]]                                                            $ad_gpo_map_batch                              = undef,
+  Optional[Array[String, 1]]                                                            $ad_gpo_map_service                            = undef,
+  Optional[Array[String, 1]]                                                            $ad_gpo_map_permit                             = undef,
+  Optional[Array[String, 1]]                                                            $ad_gpo_map_deny                               = undef,
+  Optional[SSSD::AD::GPO::Default::Right]                                               $ad_gpo_default_right                          = undef,
+  Optional[Integer[0]]                                                                  $ad_maximum_machine_account_password_age       = undef,
+  Optional[Tuple[Integer[0], 2, 2]]                                                     $ad_machine_account_password_renewal_opts      = undef,
+  # ipa
+  Optional[String]                                                                      $ipa_domain                                    = undef,
+  Optional[Array[Bodgitlib::Host, 1]]                                                   $ipa_server                                    = undef,
+  Optional[Array[Bodgitlib::Host, 1]]                                                   $ipa_backup_server                             = undef,
+  Optional[Bodgitlib::Hostname]                                                         $ipa_hostname                                  = undef,
+  Optional[Boolean]                                                                     $ipa_enable_dns_sites                          = undef,
+  Optional[Bodgitlib::LDAP::DN]                                                         $ipa_hbac_search_base                          = undef,
+  Optional[Bodgitlib::LDAP::DN]                                                         $ipa_host_search_base                          = undef,
+  Optional[Bodgitlib::LDAP::DN]                                                         $ipa_selinux_search_base                       = undef,
+  Optional[Bodgitlib::LDAP::DN]                                                         $ipa_subdomains_search_base                    = undef,
+  Optional[Bodgitlib::LDAP::DN]                                                         $ipa_master_domain_search_base                 = undef,
+  Optional[Bodgitlib::LDAP::DN]                                                         $ipa_views_search_base                         = undef,
+  Optional[Integer[0]]                                                                  $ipa_hbac_refresh                              = undef,
+  Optional[Integer[0]]                                                                  $ipa_hbac_selinux                              = undef,
+  Optional[Boolean]                                                                     $ipa_server_mode                               = undef,
+  Optional[String]                                                                      $ipa_automount_location                        = undef,
+  Optional[String]                                                                      $ipa_view_class                                = undef,
+  Optional[String]                                                                      $ipa_view_name                                 = undef,
+  Optional[String]                                                                      $ipa_override_object_class                     = undef,
+  Optional[String]                                                                      $ipa_anchor_uuid                               = undef,
+  Optional[String]                                                                      $ipa_user_override_object_class                = undef,
+  Optional[String]                                                                      $ipa_group_override_object_class               = undef,
+) {
+
+  if ! defined(Class[&#39;::sssd&#39;]) {
+    fail(&#39;You must include the sssd base class before using any sssd defined resources&#39;)
+  }
+
+  $config = delete_undef_values({
+    &#39;id_provider&#39;                                   =&gt; $id_provider,
+    # options for any section
+    &#39;debug&#39;                                         =&gt; $debug,
+    &#39;debug_level&#39;                                   =&gt; $debug_level,
+    &#39;debug_timestamps&#39;                              =&gt; $debug_timestamps,
+    &#39;debug_microseconds&#39;                            =&gt; $debug_microseconds,
+    &#39;timeout&#39;                                       =&gt; $timeout,
+    # generic domain options
+    &#39;domain_type&#39;                                   =&gt; $domain_type,
+    &#39;max_id&#39;                                        =&gt; $max_id,
+    &#39;min_id&#39;                                        =&gt; $min_id,
+    &#39;enumerate&#39;                                     =&gt; $enumerate,
+    &#39;subdomain_enumerate&#39;                           =&gt; $subdomain_enumerate ? {
+      undef   =&gt; undef,
+      default =&gt; join($subdomain_enumerate, &#39;, &#39;),
+    },
+    &#39;entry_cache_timeout&#39;                           =&gt; $entry_cache_timeout,
+    &#39;entry_cache_user_timeout&#39;                      =&gt; $entry_cache_user_timeout,
+    &#39;entry_cache_group_timeout&#39;                     =&gt; $entry_cache_group_timeout,
+    &#39;entry_cache_netgroup_timeout&#39;                  =&gt; $entry_cache_netgroup_timeout,
+    &#39;entry_cache_service_timeout&#39;                   =&gt; $entry_cache_service_timeout,
+    &#39;entry_cache_sudo_timeout&#39;                      =&gt; $entry_cache_sudo_timeout,
+    &#39;entry_cache_autofs_timeout&#39;                    =&gt; $entry_cache_autofs_timeout,
+    &#39;entry_cache_ssh_host_timeout&#39;                  =&gt; $entry_cache_ssh_host_timeout,
+    &#39;refresh_expired_interval&#39;                      =&gt; $refresh_expired_interval,
+    &#39;cache_credentials&#39;                             =&gt; $cache_credentials,
+    &#39;cache_credentials_minimal_first_factor_length&#39; =&gt; $cache_credentials_minimal_first_factor_length,
+    &#39;account_cache_expiration&#39;                      =&gt; $account_cache_expiration,
+    &#39;pwd_expiration_warning&#39;                        =&gt; $pwd_expiration_warning,
+    &#39;use_fully_qualified_names&#39;                     =&gt; $use_fully_qualified_names,
+    &#39;ignore_group_members&#39;                          =&gt; $ignore_group_members,
+    &#39;auth_provider&#39;                                 =&gt; $auth_provider,
+    &#39;access_provider&#39;                               =&gt; $access_provider,
+    &#39;chpass_provider&#39;                               =&gt; $chpass_provider,
+    &#39;sudo_provider&#39;                                 =&gt; $sudo_provider,
+    &#39;selinux_provider&#39;                              =&gt; $selinux_provider,
+    &#39;subdomains_provider&#39;                           =&gt; $subdomains_provider,
+    &#39;autofs_provider&#39;                               =&gt; $autofs_provider,
+    &#39;hostid_provider&#39;                               =&gt; $hostid_provider,
+    &#39;re_expression&#39;                                 =&gt; $re_expression,
+    &#39;full_name_format&#39;                              =&gt; $full_name_format,
+    &#39;lookup_family_order&#39;                           =&gt; $lookup_family_order,
+    &#39;dns_resolver_timeout&#39;                          =&gt; $dns_resolver_timeout,
+    &#39;dns_discovery_domain&#39;                          =&gt; $dns_discovery_domain,
+    &#39;override_gid&#39;                                  =&gt; $override_gid,
+    &#39;case_sensitive&#39;                                =&gt; $case_sensitive,
+    &#39;subdomain_inherit&#39;                             =&gt; $subdomain_inherit ? {
+      undef   =&gt; undef,
+      default =&gt; join($subdomain_inherit, &#39;, &#39;),
+    },
+    &#39;subdomain_homedir&#39;                             =&gt; $subdomain_homedir,
+    &#39;realmd_tags&#39;                                   =&gt; $realmd_tags ? {
+      undef   =&gt; undef,
+      default =&gt; join($realmd_tags, &#39; &#39;),
+    },
+    &#39;cached_auth_timeout&#39;                           =&gt; $cached_auth_timeout,
+    &#39;dyndns_update&#39;                                 =&gt; $dyndns_update,
+    &#39;dyndns_ttl&#39;                                    =&gt; $dyndns_ttl,
+    &#39;dyndns_iface&#39;                                  =&gt; $dyndns_iface,
+    &#39;dyndns_refresh_interval&#39;                       =&gt; $dyndns_refresh_interval,
+    &#39;dyndns_update_ptr&#39;                             =&gt; $dyndns_update_ptr,
+    &#39;dyndns_force_tcp&#39;                              =&gt; $dyndns_force_tcp,
+    &#39;dyndns_auth&#39;                                   =&gt; $dyndns_auth,
+    &#39;dyndns_server&#39;                                 =&gt; $dyndns_server,
+    &#39;override_homedir&#39;                              =&gt; $override_homedir,
+    &#39;homedir_substring&#39;                             =&gt; $homedir_substring,
+    &#39;wildcard_limit&#39;                                =&gt; $wildcard_limit,
+    # simple access provider
+    &#39;simple_allow_users&#39;                            =&gt; $simple_allow_users ? {
+      undef   =&gt; undef,
+      default =&gt; join($simple_allow_users, &#39;, &#39;),
+    },
+    &#39;simple_deny_users&#39;                             =&gt; $simple_deny_users ? {
+      undef   =&gt; undef,
+      default =&gt; join($simple_deny_users, &#39;, &#39;),
+    },
+    &#39;simple_allow_groups&#39;                           =&gt; $simple_allow_groups ? {
+      undef   =&gt; undef,
+      default =&gt; join($simple_allow_groups, &#39;, &#39;),
+    },
+    &#39;simple_deny_groups&#39;                            =&gt; $simple_deny_groups ? {
+      undef   =&gt; undef,
+      default =&gt; join($simple_deny_groups, &#39;, &#39;),
+    },
+    # proxy
+    &#39;proxy_pam_target&#39;                              =&gt; $proxy_pam_target,
+    &#39;proxy_lib_name&#39;                                =&gt; $proxy_lib_name,
+    &#39;proxy_fast_alias&#39;                              =&gt; $proxy_fast_alias,
+    &#39;proxy_max_children&#39;                            =&gt; $proxy_max_children,
+    # local
+    &#39;default_shell&#39;                                 =&gt; $default_shell,
+    &#39;base_directory&#39;                                =&gt; $base_directory,
+    &#39;create_homedir&#39;                                =&gt; $create_homedir,
+    &#39;remove_homedir&#39;                                =&gt; $remove_homedir,
+    &#39;homedir_umask&#39;                                 =&gt; $homedir_umask,
+    &#39;skel_dir&#39;                                      =&gt; $skel_dir,
+    &#39;mail_dir&#39;                                      =&gt; $mail_dir,
+    &#39;userdel_cmd&#39;                                   =&gt; $userdel_cmd,
+    # ldap
+    &#39;ldap_uri&#39;                                      =&gt; $ldap_uri ? {
+      undef   =&gt; undef,
+      default =&gt; join($ldap_uri, &#39;, &#39;),
+    },
+    &#39;ldap_backup_uri&#39;                               =&gt; $ldap_backup_uri ? {
+      undef   =&gt; undef,
+      default =&gt; join($ldap_backup_uri, &#39;, &#39;),
+    },
+    &#39;ldap_chpass_uri&#39;                               =&gt; $ldap_chpass_uri ? {
+      undef   =&gt; undef,
+      default =&gt; join($ldap_chpass_uri, &#39;, &#39;),
+    },
+    &#39;ldap_chpass_backup_uri&#39;                        =&gt; $ldap_chpass_backup_uri ? {
+      undef   =&gt; undef,
+      default =&gt; join($ldap_chpass_backup_uri, &#39;, &#39;),
+    },
+    &#39;ldap_search_base&#39;                              =&gt; $ldap_search_base,
+    &#39;ldap_schema&#39;                                   =&gt; $ldap_schema,
+    &#39;ldap_default_bind_dn&#39;                          =&gt; $ldap_default_bind_dn,
+    &#39;ldap_default_authtok_type&#39;                     =&gt; $ldap_default_authtok_type,
+    &#39;ldap_default_authtok&#39;                          =&gt; $ldap_default_authtok,
+    &#39;ldap_user_object_class&#39;                        =&gt; $ldap_user_object_class,
+    &#39;ldap_user_name&#39;                                =&gt; $ldap_user_name,
+    &#39;ldap_user_uid_number&#39;                          =&gt; $ldap_user_uid_number,
+    &#39;ldap_user_gid_number&#39;                          =&gt; $ldap_user_gid_number,
+    &#39;ldap_user_gecos&#39;                               =&gt; $ldap_user_gecos,
+    &#39;ldap_user_home_directory&#39;                      =&gt; $ldap_user_home_directory,
+    &#39;ldap_user_shell&#39;                               =&gt; $ldap_user_shell,
+    &#39;ldap_user_uuid&#39;                                =&gt; $ldap_user_uuid,
+    &#39;ldap_user_objectsid&#39;                           =&gt; $ldap_user_objectsid,
+    &#39;ldap_user_modify_timestamp&#39;                    =&gt; $ldap_user_modify_timestamp,
+    &#39;ldap_user_shadow_last_change&#39;                  =&gt; $ldap_user_shadow_last_change,
+    &#39;ldap_user_shadow_min&#39;                          =&gt; $ldap_user_shadow_min,
+    &#39;ldap_user_shadow_max&#39;                          =&gt; $ldap_user_shadow_max,
+    &#39;ldap_user_shadow_warning&#39;                      =&gt; $ldap_user_shadow_warning,
+    &#39;ldap_user_shadow_inactive&#39;                     =&gt; $ldap_user_shadow_inactive,
+    &#39;ldap_user_shadow_expire&#39;                       =&gt; $ldap_user_shadow_expire,
+    &#39;ldap_user_krb_last_pwd_change&#39;                 =&gt; $ldap_user_krb_last_pwd_change,
+    &#39;ldap_user_krb_password_expiration&#39;             =&gt; $ldap_user_krb_password_expiration,
+    &#39;ldap_user_ad_account_expires&#39;                  =&gt; $ldap_user_ad_account_expires,
+    &#39;ldap_user_ad_user_account_control&#39;             =&gt; $ldap_user_ad_user_account_control,
+    &#39;ldap_ns_account_lock&#39;                          =&gt; $ldap_ns_account_lock,
+    &#39;ldap_user_nds_login_disabled&#39;                  =&gt; $ldap_user_nds_login_disabled,
+    &#39;ldap_user_nds_login_expiration_time&#39;           =&gt; $ldap_user_nds_login_expiration_time,
+    &#39;ldap_user_nds_login_allowed_time_map&#39;          =&gt; $ldap_user_nds_login_allowed_time_map,
+    &#39;ldap_user_principal&#39;                           =&gt; $ldap_user_principal,
+    &#39;ldap_user_extra_attrs&#39;                         =&gt; $ldap_user_extra_attrs ? {
+      undef   =&gt; undef,
+      default =&gt; join($ldap_user_extra_attrs, &#39;, &#39;),
+    },
+    &#39;ldap_user_ssh_public_key&#39;                      =&gt; $ldap_user_ssh_public_key,
+    &#39;ldap_force_upper_case_realm&#39;                   =&gt; $ldap_force_upper_case_realm,
+    &#39;ldap_enumeration_refresh_timeout&#39;              =&gt; $ldap_enumeration_refresh_timeout,
+    &#39;ldap_purge_cache_timeout&#39;                      =&gt; $ldap_purge_cache_timeout,
+    &#39;ldap_user_fullname&#39;                            =&gt; $ldap_user_fullname,
+    &#39;ldap_user_member_of&#39;                           =&gt; $ldap_user_member_of,
+    &#39;ldap_user_authorized_service&#39;                  =&gt; $ldap_user_authorized_service,
+    &#39;ldap_user_authorized_host&#39;                     =&gt; $ldap_user_authorized_host,
+    &#39;ldap_user_certificate&#39;                         =&gt; $ldap_user_certificate,
+    &#39;ldap_group_object_class&#39;                       =&gt; $ldap_group_object_class,
+    &#39;ldap_group_name&#39;                               =&gt; $ldap_group_name,
+    &#39;ldap_group_gid_number&#39;                         =&gt; $ldap_group_gid_number,
+    &#39;ldap_group_member&#39;                             =&gt; $ldap_group_member,
+    &#39;ldap_group_uuid&#39;                               =&gt; $ldap_group_uuid,
+    &#39;ldap_group_objectsid&#39;                          =&gt; $ldap_group_objectsid,
+    &#39;ldap_group_modify_timestamp&#39;                   =&gt; $ldap_group_modify_timestamp,
+    &#39;ldap_group_type&#39;                               =&gt; $ldap_group_type,
+    &#39;ldap_group_external_member&#39;                    =&gt; $ldap_group_external_member,
+    &#39;ldap_group_nesting_level&#39;                      =&gt; $ldap_group_nesting_level,
+    &#39;ldap_groups_use_matching_rule_in_chain&#39;        =&gt; $ldap_groups_use_matching_rule_in_chain,
+    &#39;ldap_initgroups_use_matching_rule_in_chain&#39;    =&gt; $ldap_initgroups_use_matching_rule_in_chain,
+    &#39;ldap_use_tokengroups&#39;                          =&gt; $ldap_use_tokengroups,
+    &#39;ldap_netgroup_object_class&#39;                    =&gt; $ldap_netgroup_object_class,
+    &#39;ldap_netgroup_name&#39;                            =&gt; $ldap_netgroup_name,
+    &#39;ldap_netgroup_member&#39;                          =&gt; $ldap_netgroup_member,
+    &#39;ldap_netgroup_triple&#39;                          =&gt; $ldap_netgroup_triple,
+    &#39;ldap_netgroup_modify_timestamp&#39;                =&gt; $ldap_netgroup_modify_timestamp,
+    &#39;ldap_service_object_class&#39;                     =&gt; $ldap_service_object_class,
+    &#39;ldap_service_name&#39;                             =&gt; $ldap_service_name,
+    &#39;ldap_service_port&#39;                             =&gt; $ldap_service_port,
+    &#39;ldap_service_proto&#39;                            =&gt; $ldap_service_proto,
+    &#39;ldap_service_search_base&#39;                      =&gt; $ldap_service_search_base,
+    &#39;ldap_search_timeout&#39;                           =&gt; $ldap_search_timeout,
+    &#39;ldap_enumeration_search_timeout&#39;               =&gt; $ldap_enumeration_search_timeout,
+    &#39;ldap_network_timeout&#39;                          =&gt; $ldap_network_timeout,
+    &#39;ldap_opt_timeout&#39;                              =&gt; $ldap_opt_timeout,
+    &#39;ldap_connection_expire_timeout&#39;                =&gt; $ldap_connection_expire_timeout,
+    &#39;ldap_page_size&#39;                                =&gt; $ldap_page_size,
+    &#39;ldap_disable_paging&#39;                           =&gt; $ldap_disable_paging,
+    &#39;ldap_disable_range_retrieval&#39;                  =&gt; $ldap_disable_range_retrieval,
+    &#39;ldap_sasl_minssf&#39;                              =&gt; $ldap_sasl_minssf,
+    &#39;ldap_deref_threshold&#39;                          =&gt; $ldap_deref_threshold,
+    &#39;ldap_tls_reqcert&#39;                              =&gt; $ldap_tls_reqcert,
+    &#39;ldap_tls_cacert&#39;                               =&gt; $ldap_tls_cacert,
+    &#39;ldap_tls_cacertdir&#39;                            =&gt; $ldap_tls_cacertdir,
+    &#39;ldap_tls_cert&#39;                                 =&gt; $ldap_tls_cert,
+    &#39;ldap_tls_key&#39;                                  =&gt; $ldap_tls_key,
+    &#39;ldap_tls_cipher_suite&#39;                         =&gt; $ldap_tls_cipher_suite,
+    &#39;ldap_id_use_start_tls&#39;                         =&gt; $ldap_id_use_start_tls,
+    &#39;ldap_id_mapping&#39;                               =&gt; $ldap_id_mapping,
+    &#39;ldap_idmap_range_min&#39;                          =&gt; $ldap_idmap_range_min,
+    &#39;ldap_idmap_range_max&#39;                          =&gt; $ldap_idmap_range_max,
+    &#39;ldap_idmap_range_size&#39;                         =&gt; $ldap_idmap_range_size,
+    &#39;ldap_idmap_default_domain_sid&#39;                 =&gt; $ldap_idmap_default_domain_sid,
+    &#39;ldap_idmap_default_domain&#39;                     =&gt; $ldap_idmap_default_domain,
+    &#39;ldap_idmap_autorid_compat&#39;                     =&gt; $ldap_idmap_autorid_compat,
+    &#39;ldap_idmap_helper_table_size&#39;                  =&gt; $ldap_idmap_helper_table_size,
+    &#39;ldap_max_id&#39;                                   =&gt; $ldap_max_id,
+    &#39;ldap_min_id&#39;                                   =&gt; $ldap_min_id,
+    &#39;ldap_sasl_mech&#39;                                =&gt; $ldap_sasl_mech,
+    &#39;ldap_sasl_authid&#39;                              =&gt; $ldap_sasl_authid,
+    &#39;ldap_sasl_realm&#39;                               =&gt; $ldap_sasl_realm,
+    &#39;ldap_sasl_canonicalize&#39;                        =&gt; $ldap_sasl_canonicalize,
+    &#39;ldap_krb5_keytab&#39;                              =&gt; $ldap_krb5_keytab,
+    &#39;ldap_krb5_init_creds&#39;                          =&gt; $ldap_krb5_init_creds,
+    &#39;ldap_krb5_ticket_lifetime&#39;                     =&gt; $ldap_krb5_ticket_lifetime,
+    &#39;ldap_pwd_policy&#39;                               =&gt; $ldap_pwd_policy,
+    &#39;ldap_referrals&#39;                                =&gt; $ldap_referrals,
+    &#39;ldap_dns_service_name&#39;                         =&gt; $ldap_dns_service_name,
+    &#39;ldap_chpass_dns_service_name&#39;                  =&gt; $ldap_chpass_dns_service_name,
+    &#39;ldap_chpass_update_last_change&#39;                =&gt; $ldap_chpass_update_last_change,
+    &#39;ldap_access_filter&#39;                            =&gt; $ldap_access_filter,
+    &#39;ldap_account_expire_policy&#39;                    =&gt; $ldap_account_expire_policy,
+    &#39;ldap_access_order&#39;                             =&gt; $ldap_access_order ? {
+      undef   =&gt; undef,
+      default =&gt; join($ldap_access_order, &#39;, &#39;),
+    },
+    &#39;ldap_pwdlockout_dn&#39;                            =&gt; $ldap_pwdlockout_dn,
+    &#39;ldap_deref&#39;                                    =&gt; $ldap_deref,
+    &#39;ldap_rfc2307_fallback_to_local_users&#39;          =&gt; $ldap_rfc2307_fallback_to_local_users,
+    &#39;ldap_sudorule_object_class&#39;                    =&gt; $ldap_sudorule_object_class,
+    &#39;ldap_sudorule_name&#39;                            =&gt; $ldap_sudorule_name,
+    &#39;ldap_sudorule_command&#39;                         =&gt; $ldap_sudorule_command,
+    &#39;ldap_sudorule_host&#39;                            =&gt; $ldap_sudorule_host,
+    &#39;ldap_sudorule_user&#39;                            =&gt; $ldap_sudorule_user,
+    &#39;ldap_sudorule_option&#39;                          =&gt; $ldap_sudorule_option,
+    &#39;ldap_sudorule_runasuser&#39;                       =&gt; $ldap_sudorule_runasuser,
+    &#39;ldap_sudorule_runasgroup&#39;                      =&gt; $ldap_sudorule_runasgroup,
+    &#39;ldap_sudorule_notbefore&#39;                       =&gt; $ldap_sudorule_notbefore,
+    &#39;ldap_sudorule_notafter&#39;                        =&gt; $ldap_sudorule_notafter,
+    &#39;ldap_sudorule_order&#39;                           =&gt; $ldap_sudorule_order,
+    &#39;ldap_sudo_full_refresh_interval&#39;               =&gt; $ldap_sudo_full_refresh_interval,
+    &#39;ldap_sudo_smart_refresh_interval&#39;              =&gt; $ldap_sudo_smart_refresh_interval,
+    &#39;ldap_sudo_use_host_filter&#39;                     =&gt; $ldap_sudo_use_host_filter,
+    &#39;ldap_sudo_hostnames&#39;                           =&gt; $ldap_sudo_hostnames ? {
+      undef   =&gt; undef,
+      default =&gt; join($ldap_sudo_hostnames, &#39; &#39;),
+    },
+    &#39;ldap_sudo_ip&#39;                                  =&gt; $ldap_sudo_ip ? {
+      undef   =&gt; undef,
+      default =&gt; join($ldap_sudo_ip, &#39; &#39;),
+    },
+    &#39;ldap_sudo_include_netgroups&#39;                   =&gt; $ldap_sudo_include_netgroups,
+    &#39;ldap_sudo_include_regexp&#39;                      =&gt; $ldap_sudo_include_regexp,
+    &#39;ldap_autofs_map_master_name&#39;                   =&gt; $ldap_autofs_map_master_name,
+    &#39;ldap_autofs_map_object_class&#39;                  =&gt; $ldap_autofs_map_object_class,
+    &#39;ldap_autofs_map_name&#39;                          =&gt; $ldap_autofs_map_name,
+    &#39;ldap_autofs_entry_object_class&#39;                =&gt; $ldap_autofs_entry_object_class,
+    &#39;ldap_autofs_entry_key&#39;                         =&gt; $ldap_autofs_entry_key,
+    &#39;ldap_autofs_entry_value&#39;                       =&gt; $ldap_autofs_entry_value,
+    &#39;ldap_netgroup_search_base&#39;                     =&gt; $ldap_netgroup_search_base,
+    &#39;ldap_user_search_base&#39;                         =&gt; $ldap_user_search_base,
+    &#39;ldap_group_search_base&#39;                        =&gt; $ldap_group_search_base,
+    &#39;ldap_sudo_search_base&#39;                         =&gt; $ldap_sudo_search_base,
+    &#39;ldap_autofs_search_base&#39;                       =&gt; $ldap_autofs_search_base,
+    # krb5
+    &#39;krb5_server&#39;                                   =&gt; $krb5_server ? {
+      undef   =&gt; undef,
+      default =&gt; join($krb5_server, &#39;, &#39;),
+    },
+    &#39;krb5_backup_server&#39;                            =&gt; $krb5_backup_server ? {
+      undef   =&gt; undef,
+      default =&gt; join($krb5_backup_server, &#39;, &#39;),
+    },
+    &#39;krb5_realm&#39;                                    =&gt; $krb5_realm,
+    &#39;krb5_kpasswd&#39;                                  =&gt; $krb5_kpasswd ? {
+      undef   =&gt; undef,
+      default =&gt; join($krb5_kpasswd, &#39;, &#39;),
+    },
+    &#39;krb5_backup_kpasswd&#39;                           =&gt; $krb5_backup_kpasswd ? {
+      undef   =&gt; undef,
+      default =&gt; join($krb5_backup_kpasswd, &#39;, &#39;),
+    },
+    &#39;krb5_ccachedir&#39;                                =&gt; $krb5_ccachedir,
+    &#39;krb5_ccname_template&#39;                          =&gt; $krb5_ccname_template,
+    &#39;krb5_auth_timeout&#39;                             =&gt; $krb5_auth_timeout,
+    &#39;krb5_validate&#39;                                 =&gt; $krb5_validate,
+    &#39;krb5_keytab&#39;                                   =&gt; $krb5_keytab,
+    &#39;krb5_store_password_if_offline&#39;                =&gt; $krb5_store_password_if_offline,
+    &#39;krb5_renewable_lifetime&#39;                       =&gt; $krb5_renewable_lifetime,
+    &#39;krb5_lifetime&#39;                                 =&gt; $krb5_lifetime,
+    &#39;krb5_renew_interval&#39;                           =&gt; $krb5_renew_interval,
+    &#39;krb5_use_fast&#39;                                 =&gt; $krb5_use_fast,
+    &#39;krb5_fast_principal&#39;                           =&gt; $krb5_fast_principal,
+    &#39;krb5_canonicalize&#39;                             =&gt; $krb5_canonicalize,
+    &#39;krb5_use_kdcinfo&#39;                              =&gt; $krb5_use_kdcinfo,
+    &#39;krb5_use_enterprise_principal&#39;                 =&gt; $krb5_use_enterprise_principal,
+    &#39;krb5_map_user&#39;                                 =&gt; $krb5_map_user ? {
+      undef   =&gt; undef,
+      default =&gt; join($krb5_map_user, &#39;, &#39;),
+    },
+    &#39;krb5_confd_path&#39;                               =&gt; $krb5_confd_path,
+    # ad
+    &#39;ad_domain&#39;                                     =&gt; $ad_domain,
+    &#39;ad_enabled_domains&#39;                            =&gt; $ad_enabled_domains ? {
+      undef   =&gt; undef,
+      default =&gt; join($ad_enabled_domains, &#39;, &#39;),
+    },
+    &#39;ad_server&#39;                                     =&gt; $ad_server ? {
+      undef   =&gt; undef,
+      default =&gt; join($ad_server, &#39;, &#39;),
+    },
+    &#39;ad_backup_server&#39;                              =&gt; $ad_backup_server ? {
+      undef   =&gt; undef,
+      default =&gt; join($ad_backup_server, &#39;, &#39;),
+    },
+    &#39;ad_hostname&#39;                                   =&gt; $ad_hostname,
+    &#39;ad_enable_dns_sites&#39;                           =&gt; $ad_enable_dns_sites,
+    &#39;ad_access_filter&#39;                              =&gt; $ad_access_filter,
+    &#39;ad_site&#39;                                       =&gt; $ad_site,
+    &#39;ad_enable_gc&#39;                                  =&gt; $ad_enable_gc,
+    &#39;ad_gpo_access_control&#39;                         =&gt; $ad_gpo_access_control,
+    &#39;ad_gpo_cache_timeout&#39;                          =&gt; $ad_gpo_cache_timeout,
+    &#39;ad_gpo_map_interactive&#39;                        =&gt; $ad_gpo_map_interactive ? {
+      undef   =&gt; undef,
+      default =&gt; join($ad_gpo_map_interactive, &#39;, &#39;),
+    },
+    &#39;ad_gpo_map_remote_interactive&#39;                 =&gt; $ad_gpo_map_remote_interactive ? {
+      undef   =&gt; undef,
+      default =&gt; join($ad_gpo_map_remote_interactive, &#39;, &#39;),
+    },
+    &#39;ad_gpo_map_network&#39;                            =&gt; $ad_gpo_map_network ? {
+      undef   =&gt; undef,
+      default =&gt; join($ad_gpo_map_network, &#39;, &#39;),
+    },
+    &#39;ad_gpo_map_batch&#39;                              =&gt; $ad_gpo_map_batch ? {
+      undef   =&gt; undef,
+      default =&gt; join($ad_gpo_map_batch, &#39;, &#39;),
+    },
+    &#39;ad_gpo_map_service&#39;                            =&gt; $ad_gpo_map_service ? {
+      undef   =&gt; undef,
+      default =&gt; join($ad_gpo_map_service, &#39;, &#39;),
+    },
+    &#39;ad_gpo_map_permit&#39;                             =&gt; $ad_gpo_map_permit ? {
+      undef   =&gt; undef,
+      default =&gt; join($ad_gpo_map_permit, &#39;, &#39;),
+    },
+    &#39;ad_gpo_map_deny&#39;                               =&gt; $ad_gpo_map_deny ? {
+      undef   =&gt; undef,
+      default =&gt; join($ad_gpo_map_deny, &#39;, &#39;),
+    },
+    &#39;ad_gpo_default_right&#39;                          =&gt; $ad_gpo_default_right,
+    &#39;ad_maximum_machine_account_password_age&#39;       =&gt; $ad_maximum_machine_account_password_age,
+    &#39;ad_machine_account_password_renewal_opts&#39;      =&gt; $ad_machine_account_password_renewal_opts ? {
+      undef   =&gt; undef,
+      default =&gt; join($ad_machine_account_password_renewal_opts, &#39;:&#39;),
+    },
+    # ipa
+    &#39;ipa_domain&#39;                                    =&gt; $ipa_domain,
+    &#39;ipa_server&#39;                                    =&gt; $ipa_server ? {
+      undef   =&gt; undef,
+      default =&gt; join($ipa_server, &#39;, &#39;),
+    },
+    &#39;ipa_backup_server&#39;                             =&gt; $ipa_backup_server ? {
+      undef   =&gt; undef,
+      default =&gt; join($ipa_backup_server, &#39;, &#39;),
+    },
+    &#39;ipa_hostname&#39;                                  =&gt; $ipa_hostname,
+    &#39;ipa_enable_dns_sites&#39;                          =&gt; $ipa_enable_dns_sites,
+    &#39;ipa_hbac_search_base&#39;                          =&gt; $ipa_hbac_search_base,
+    &#39;ipa_host_search_base&#39;                          =&gt; $ipa_host_search_base,
+    &#39;ipa_selinux_search_base&#39;                       =&gt; $ipa_selinux_search_base,
+    &#39;ipa_subdomains_search_base&#39;                    =&gt; $ipa_subdomains_search_base,
+    &#39;ipa_master_domain_search_base&#39;                 =&gt; $ipa_master_domain_search_base,
+    &#39;ipa_views_search_base&#39;                         =&gt; $ipa_views_search_base,
+    &#39;ipa_hbac_refresh&#39;                              =&gt; $ipa_hbac_refresh,
+    &#39;ipa_hbac_selinux&#39;                              =&gt; $ipa_hbac_selinux,
+    &#39;ipa_server_mode&#39;                               =&gt; $ipa_server_mode,
+    &#39;ipa_automount_location&#39;                        =&gt; $ipa_automount_location,
+    &#39;ipa_view_class&#39;                                =&gt; $ipa_view_class,
+    &#39;ipa_view_name&#39;                                 =&gt; $ipa_view_name,
+    &#39;ipa_override_object_class&#39;                     =&gt; $ipa_override_object_class,
+    &#39;ipa_anchor_uuid&#39;                               =&gt; $ipa_anchor_uuid,
+    &#39;ipa_user_override_object_class&#39;                =&gt; $ipa_user_override_object_class,
+    &#39;ipa_group_override_object_class&#39;               =&gt; $ipa_group_override_object_class,
+  })
+
+  $config.each |String $setting, Any $value| {
+    sssd_conf { &quot;domain/${domain}/${setting}&quot;:
+      target =&gt; $::sssd::conf_file,
+      value  =&gt; $value,
+      notify =&gt; Class[&#39;::sssd::daemon&#39;],
+    }
+  }
+
+  datacat_fragment { &quot;${module_name} domain ${domain}&quot;:
+    target =&gt; &quot;${module_name} domains&quot;,
+    data   =&gt; {
+      &#39;domain&#39; =&gt; [$domain],
+    },
+  }
+}</pre>
+      </td>
+    </tr>
+  </table>
+</div>
+</div>
+
+      <div id="footer">
+     Generated by <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>.
+</div>
+
+    </div>
+  </body>
+</html>
