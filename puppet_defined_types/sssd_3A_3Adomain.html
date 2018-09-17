@@ -1055,7 +1055,7 @@
         <span class='name'>ldap_uri</span>
       
       
-        <span class='type'>(<tt>Optional[Array[Bodgitlib::LDAP::URI::Simple, 1]]</tt>)</span>
+        <span class='type'>(<tt>Optional[Array[Variant[Bodgitlib::LDAP::URI::Simple, Enum['_srv_']], 1]]</tt>)</span>
       
       
         <em class="default">(defaults to: <tt>undef</tt>)</em>
@@ -1081,7 +1081,7 @@
         <span class='name'>ldap_chpass_uri</span>
       
       
-        <span class='type'>(<tt>Optional[Array[Bodgitlib::LDAP::URI::Simple, 1]]</tt>)</span>
+        <span class='type'>(<tt>Optional[Array[Variant[Bodgitlib::LDAP::URI::Simple, Enum['_srv_']], 1]]</tt>)</span>
       
       
         <em class="default">(defaults to: <tt>undef</tt>)</em>
@@ -2888,7 +2888,7 @@
         <span class='name'>krb5_server</span>
       
       
-        <span class='type'>(<tt>Optional[Array[Bodgitlib::Host, 1]]</tt>)</span>
+        <span class='type'>(<tt>Optional[Array[Variant[Bodgitlib::Host, Enum['_srv_']], 1]]</tt>)</span>
       
       
         <em class="default">(defaults to: <tt>undef</tt>)</em>
@@ -3187,7 +3187,7 @@
         <span class='name'>ad_server</span>
       
       
-        <span class='type'>(<tt>Optional[Array[Bodgitlib::Host, 1]]</tt>)</span>
+        <span class='type'>(<tt>Optional[Array[Variant[Bodgitlib::Host, Enum['_srv_']], 1]]</tt>)</span>
       
       
         <em class="default">(defaults to: <tt>undef</tt>)</em>
@@ -3447,7 +3447,7 @@
         <span class='name'>ipa_server</span>
       
       
-        <span class='type'>(<tt>Optional[Array[Bodgitlib::Host, 1]]</tt>)</span>
+        <span class='type'>(<tt>Optional[Array[Variant[Bodgitlib::Host, Enum['_srv_']], 1]]</tt>)</span>
       
       
         <em class="default">(defaults to: <tt>undef</tt>)</em>
@@ -4429,7 +4429,8 @@
 988
 989
 990
-991</pre>
+991
+992</pre>
       </td>
       <td>
         <pre class="code"><span class="info file"># File 'manifests/domain.pp', line 297</span>
@@ -4514,9 +4515,9 @@ define sssd::domain (
   Optional[Stdlib::Absolutepath]                                                        $mail_dir                                      = undef,
   Optional[Stdlib::Absolutepath]                                                        $userdel_cmd                                   = undef,
   # ldap
-  Optional[Array[Bodgitlib::LDAP::URI::Simple, 1]]                                      $ldap_uri                                      = undef,
+  Optional[Array[Variant[Bodgitlib::LDAP::URI::Simple, Enum[&#39;_srv_&#39;]], 1]]              $ldap_uri                                      = undef,
   Optional[Array[Bodgitlib::LDAP::URI::Simple, 1]]                                      $ldap_backup_uri                               = undef,
-  Optional[Array[Bodgitlib::LDAP::URI::Simple, 1]]                                      $ldap_chpass_uri                               = undef,
+  Optional[Array[Variant[Bodgitlib::LDAP::URI::Simple, Enum[&#39;_srv_&#39;]], 1]]              $ldap_chpass_uri                               = undef,
   Optional[Array[Bodgitlib::LDAP::URI::Simple, 1]]                                      $ldap_chpass_backup_uri                        = undef,
   Optional[SSSD::Search::Base]                                                          $ldap_search_base                              = undef,
   Optional[Enum[&#39;rfc2307&#39;, &#39;rfc2307bis&#39;, &#39;ipa&#39;, &#39;ad&#39;]]                                  $ldap_schema                                   = undef,
@@ -4656,9 +4657,10 @@ define sssd::domain (
   Optional[SSSD::Search::Base]                                                          $ldap_sudo_search_base                         = undef,
   Optional[SSSD::Search::Base]                                                          $ldap_autofs_search_base                       = undef,
   # krb5
-  Optional[Array[Bodgitlib::Host, 1]]                                                   $krb5_server                                   = undef,
+  Optional[Array[Variant[Bodgitlib::Host, Enum[&#39;_srv_&#39;]], 1]]                           $krb5_server                                   = undef,
   Optional[Array[Bodgitlib::Host, 1]]                                                   $krb5_backup_server                            = undef,
   Optional[String]                                                                      $krb5_realm                                    = undef,
+  # It&#39;s not clear if krb5_kpasswd should also accept the magic &#39;_srv_&#39; value
   Optional[Array[Variant[Bodgitlib::Host, Tuple[Bodgitlib::Host, Bodgitlib::Port]], 1]] $krb5_kpasswd                                  = undef,
   Optional[Array[Variant[Bodgitlib::Host, Tuple[Bodgitlib::Host, Bodgitlib::Port]], 1]] $krb5_backup_kpasswd                           = undef,
   Optional[Stdlib::Absolutepath]                                                        $krb5_ccachedir                                = undef,
@@ -4680,7 +4682,7 @@ define sssd::domain (
   # ad
   Optional[String]                                                                      $ad_domain                                     = undef,
   Optional[Array[Bodgitlib::Domain, 1]]                                                 $ad_enabled_domains                            = undef,
-  Optional[Array[Bodgitlib::Host, 1]]                                                   $ad_server                                     = undef,
+  Optional[Array[Variant[Bodgitlib::Host, Enum[&#39;_srv_&#39;]], 1]]                           $ad_server                                     = undef,
   Optional[Array[Bodgitlib::Host, 1]]                                                   $ad_backup_server                              = undef,
   Optional[Bodgitlib::Hostname]                                                         $ad_hostname                                   = undef,
   Optional[Boolean]                                                                     $ad_enable_dns_sites                           = undef,
@@ -4701,7 +4703,7 @@ define sssd::domain (
   Optional[Tuple[Integer[0], 2, 2]]                                                     $ad_machine_account_password_renewal_opts      = undef,
   # ipa
   Optional[String]                                                                      $ipa_domain                                    = undef,
-  Optional[Array[Bodgitlib::Host, 1]]                                                   $ipa_server                                    = undef,
+  Optional[Array[Variant[Bodgitlib::Host, Enum[&#39;_srv_&#39;]], 1]]                           $ipa_server                                    = undef,
   Optional[Array[Bodgitlib::Host, 1]]                                                   $ipa_backup_server                             = undef,
   Optional[Bodgitlib::Hostname]                                                         $ipa_hostname                                  = undef,
   Optional[Boolean]                                                                     $ipa_enable_dns_sites                          = undef,
