@@ -1,5 +1,12 @@
 # Change Log
 
+## [v2.0.1](https://github.com/bodgit/puppet-sssd/tree/v2.0.1) (2018-09-17)
+[Full Changelog](https://github.com/bodgit/puppet-sssd/compare/v2.0.0...v2.0.1)
+
+**Fixed bugs:**
+
+- ipa\_server in version 2 no longer accepts \_srv\_ [\#13](https://github.com/bodgit/puppet-sssd/issues/13)
+
 ## [v2.0.0](https://github.com/bodgit/puppet-sssd/tree/v2.0.0) (2018-07-18)
 [Full Changelog](https://github.com/bodgit/puppet-sssd/compare/v1.0.3...v2.0.0)
 
