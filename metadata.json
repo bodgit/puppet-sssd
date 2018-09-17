@@ -54,7 +54,7 @@
     },
     {
       "name": "bodgit/bodgitlib",
-      "version_requirement": ">=1.0.0 <3.0.0"
+      "version_requirement": ">=1.7.0 <3.0.0"
     },
     {
       "name": "richardc/datacat",
