@@ -1,5 +1,12 @@
 # Change Log
 
+## [v2.0.2](https://github.com/bodgit/puppet-sssd/tree/v2.0.2) (2018-10-06)
+[Full Changelog](https://github.com/bodgit/puppet-sssd/compare/v2.0.1...v2.0.2)
+
+**Implemented enhancements:**
+
+- Socket activation systemd units are slightly broken [\#14](https://github.com/bodgit/puppet-sssd/issues/14)
+
 ## [v2.0.1](https://github.com/bodgit/puppet-sssd/tree/v2.0.1) (2018-09-17)
 [Full Changelog](https://github.com/bodgit/puppet-sssd/compare/v2.0.0...v2.0.1)
 
