@@ -94,4 +94,39 @@ class sssd::config {
       * => $attributes,
     }
   }
+
+  if $::service_provider == 'systemd' {
+    ensure_resource('exec', 'systemctl daemon-reload', {
+      refreshonly => true,
+      path        => $::path,
+    })
+
+    # EL7 ships some slightly broken systemd units for socket activation
+    ['autofs', 'pac', 'pam', 'ssh', 'sudo'].each |$service| {
+      file { "/etc/systemd/system/sssd-${service}.service.d":
+        ensure       => directory,
+        owner        => 0,
+        group        => 0,
+        mode         => '0644',
+        force        => true,
+        purge        => true,
+        recurse      => true,
+        recurselimit => 1,
+      }
+
+      file { "/etc/systemd/system/sssd-${service}.service.d/override.conf":
+        ensure  => file,
+        owner   => 0,
+        group   => 0,
+        mode    => '0644',
+        content => @(EOS/L),
+          [Service]
+          ExecStartPre=
+          User=
+          Group=
+          | EOS
+        notify  => Exec['systemctl daemon-reload'],
+      }
+    }
+  }
 }
