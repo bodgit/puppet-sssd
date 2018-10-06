@@ -1,6 +1,6 @@
 {
   "name": "bodgit-sssd",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "author": "bodgit",
   "summary": "Puppet Module for managing SSSD",
   "license": "Apache-2.0",
