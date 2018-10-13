@@ -1,5 +1,12 @@
 # Change Log
 
+## [v2.0.3](https://github.com/bodgit/puppet-sssd/tree/v2.0.3) (2018-10-13)
+[Full Changelog](https://github.com/bodgit/puppet-sssd/compare/v2.0.2...v2.0.3)
+
+**Fixed bugs:**
+
+- Puppet 6 [\#15](https://github.com/bodgit/puppet-sssd/issues/15)
+
 ## [v2.0.2](https://github.com/bodgit/puppet-sssd/tree/v2.0.2) (2018-10-06)
 [Full Changelog](https://github.com/bodgit/puppet-sssd/compare/v2.0.1...v2.0.2)
 
