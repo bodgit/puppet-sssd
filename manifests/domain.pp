@@ -588,7 +588,7 @@ define sssd::domain (
     fail('You must include the sssd base class before using any sssd defined resources')
   }
 
-  $config = delete_undef_values({
+  $config = {
     'id_provider'                                   => $id_provider,
     # options for any section
     'debug'                                         => $debug,
@@ -973,7 +973,7 @@ define sssd::domain (
     'ipa_anchor_uuid'                               => $ipa_anchor_uuid,
     'ipa_user_override_object_class'                => $ipa_user_override_object_class,
     'ipa_group_override_object_class'               => $ipa_group_override_object_class,
-  })
+  }.filter |$x| { $x[1] =~ NotUndef }
 
   $config.each |String $setting, Any $value| {
     sssd_conf { "domain/${domain}/${setting}":

@@ -24,10 +24,14 @@ RSpec.configure do |c|
   c.default_facts = { :dbus_startup_provider => 'init' }
 end
 
-dir = Pathname.new(__FILE__).parent
-
+Puppet.initialize_settings
 Puppet[:modulepath] = File.join(dir, 'fixtures', 'modules')
-Puppet[:libdir] = File.join(Puppet[:modulepath], 'augeasproviders_core', 'lib')
+$LOAD_PATH.unshift(
+  dir,
+  File.join(dir, 'fixtures/modules/augeasproviders_core/spec/lib'),
+  File.join(dir, 'fixtures/modules/augeasproviders_core/lib'),
+  File.join(dir, '..', 'lib'),
+)
 
 at_exit { RSpec::Puppet::Coverage.report! }
 

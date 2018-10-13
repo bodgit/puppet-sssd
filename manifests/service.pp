@@ -177,7 +177,7 @@ define sssd::service (
     fail('Socket-activation is required for the secrets service')
   }
 
-  $global_config = delete_undef_values({
+  $global_config = {
     'debug'                  => $debug,
     'debug_level'            => $debug_level,
     'debug_timestamps'       => $debug_timestamps,
@@ -189,11 +189,11 @@ define sssd::service (
     'offline_timeout'        => $offline_timeout,
     'responder_idle_timeout' => $responder_idle_timeout,
     'cache_first'            => $cache_first,
-  })
+  }.filter |$x| { $x[1] =~ NotUndef }
 
   case $service {
     'nss': {
-      $service_config = delete_undef_values({
+      $service_config = {
         'enum_cache_timeout'            => $enum_cache_timeout,
         'entry_cache_nowait_percentage' => $entry_cache_nowait_percentage,
         'entry_negative_timeout'        => $entry_negative_timeout,
@@ -228,10 +228,10 @@ define sssd::service (
           default => join($user_attributes, ', '),
         },
         'pwfield'                       => $pwfield,
-      })
+      }.filter |$x| { $x[1] =~ NotUndef }
     }
     'pam': {
-      $service_config = delete_undef_values({
+      $service_config = {
         'offline_credentials_expiration' => $offline_credentials_expiration,
         'offline_failed_login_attempts'  => $offline_failed_login_attempts,
         'offline_failed_login_delay'     => $offline_failed_login_delay,
@@ -256,36 +256,36 @@ define sssd::service (
           undef   => undef,
           default => join($pam_app_services, ', '),
         },
-      })
+      }.filter |$x| { $x[1] =~ NotUndef }
     }
     'sudo': {
-      $service_config = delete_undef_values({
+      $service_config = {
         'sudo_timed' => $sudo_timed,
-      })
+      }.filter |$x| { $x[1] =~ NotUndef }
     }
     'autofs': {
-      $service_config = delete_undef_values({
+      $service_config = {
         'autofs_negative_timeout' => $autofs_negative_timeout,
-      })
+      }.filter |$x| { $x[1] =~ NotUndef }
     }
     'ssh': {
-      $service_config = delete_undef_values({
+      $service_config = {
         'ssh_hash_known_hosts'    => $ssh_hash_known_hosts,
         'ssh_known_hosts_timeout' => $ssh_known_hosts_timeout,
         'ca_db'                   => $ca_db,
-      })
+      }.filter |$x| { $x[1] =~ NotUndef }
     }
     'pac': {
-      $service_config = delete_undef_values({
+      $service_config = {
         'allowed_uids' => $allowed_uids ? {
           undef   => undef,
           default => join($allowed_uids, ', '),
         },
         'pac_lifetime' => $pac_lifetime,
-      })
+      }.filter |$x| { $x[1] =~ NotUndef }
     }
     'ifp': {
-      $service_config = delete_undef_values({
+      $service_config = {
         'allowed_uids'    => $allowed_uids ? {
           undef   => undef,
           default => join($allowed_uids, ', '),
@@ -295,10 +295,10 @@ define sssd::service (
           default => join($user_attributes, ', '),
         },
         'wildcard_limit'  => $wildcard_limit,
-      })
+      }.filter |$x| { $x[1] =~ NotUndef }
     }
     'secrets': {
-      $service_config = delete_undef_values({
+      $service_config = {
         'provider'             => $provider,
         'container_nest_level' => $container_nest_level,
         'max_secrets'          => $max_secrets,
@@ -317,7 +317,7 @@ define sssd::service (
         'cacert'               => $cacert,
         'cert'                 => $cert,
         'key'                  => $key,
-      })
+      }.filter |$x| { $x[1] =~ NotUndef }
     }
     default: {
       fail("The ${service} sssd service is not supported.")

@@ -40,7 +40,7 @@
   "requirements": [
     {
       "name": "puppet",
-      "version_requirement": ">=4.6.0 <6.0.0"
+      "version_requirement": ">=4.6.0 <7.0.0"
     }
   ],
   "tags": [
@@ -62,7 +62,7 @@
     },
     {
       "name": "herculesteam/augeasproviders_core",
-      "version_requirement": ">=2.1.0 <3.0.0"
+      "version_requirement": ">=2.2.0 <3.0.0"
     },
     {
       "name": "bodgit/dbus",

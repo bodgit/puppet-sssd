@@ -30,7 +30,7 @@ class sssd::config {
     purge => true,
   }
 
-  $config = delete_undef_values({
+  $config = {
     'debug'                    => $::sssd::debug,
     'debug_level'              => $::sssd::debug_level,
     'debug_timestamps'         => $::sssd::debug_timestamps,
@@ -61,7 +61,7 @@ class sssd::config {
     },
     'services'                 => '',
     'domains'                  => '',
-  })
+  }.filter |$x| { $x[1] =~ NotUndef }
 
   $config.each |$setting, $value| {
     sssd_conf { "sssd/${setting}":
