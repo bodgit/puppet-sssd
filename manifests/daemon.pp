@@ -2,8 +2,8 @@
 class sssd::daemon {
 
   service { $::sssd::service_name:
-    ensure     => running,
-    enable     => true,
+    ensure     => $::sssd::service_ensure,
+    enable     => $::sssd::service_enable,
     hasstatus  => true,
     hasrestart => true,
   }

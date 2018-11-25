@@ -14,6 +14,8 @@
 # @param package_name
 # @param service_name
 # @param services
+# @param service_enable
+# @param service_ensure
 # @param socket_services
 # @param use_socket_activation
 # @param debug
@@ -46,6 +48,8 @@ class sssd (
   String                                                                $package_name             = $::sssd::params::package_name,
   String                                                                $service_name             = $::sssd::params::service_name,
   Hash[String, Hash[String, Any]]                                       $services                 = {},
+  Boolean                                                               $service_enable           = true,
+  Enum['running', 'stopped']                                            $service_ensure           = 'running',
   Hash[SSSD::Type, Variant[String, Array[String, 1]]]                   $socket_services          = $::sssd::params::socket_services,
   Boolean                                                               $use_socket_activation    = $::sssd::params::use_socket_activation,
   # options for any section

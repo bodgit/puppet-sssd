@@ -339,7 +339,7 @@ define sssd::service (
     if has_key($::sssd::socket_services, $service) {
       Array($::sssd::socket_services[$service], true).each |String $x| {
         service { $x:
-          enable  => true,
+          enable  => $::sssd::service_enable,
           require => Exec['systemctl daemon-reload'],
         }
       }
