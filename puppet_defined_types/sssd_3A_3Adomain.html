@@ -6,7 +6,7 @@
 <title>
   Defined Type: sssd::domain
   
-    &mdash; Documentation by YARD 0.9.14
+    &mdash; Documentation by YARD 0.9.16
   
 </title>
 
@@ -77,6 +77,8 @@
 
   </div>
 </div>
+
+
 <div class="tags">
   
   <div class="examples">
@@ -4729,7 +4731,7 @@ define sssd::domain (
     fail(&#39;You must include the sssd base class before using any sssd defined resources&#39;)
   }
 
-  $config = delete_undef_values({
+  $config = {
     &#39;id_provider&#39;                                   =&gt; $id_provider,
     # options for any section
     &#39;debug&#39;                                         =&gt; $debug,
@@ -5114,7 +5116,7 @@ define sssd::domain (
     &#39;ipa_anchor_uuid&#39;                               =&gt; $ipa_anchor_uuid,
     &#39;ipa_user_override_object_class&#39;                =&gt; $ipa_user_override_object_class,
     &#39;ipa_group_override_object_class&#39;               =&gt; $ipa_group_override_object_class,
-  })
+  }.filter |$x| { $x[1] =~ NotUndef }
 
   $config.each |String $setting, Any $value| {
     sssd_conf { &quot;domain/${domain}/${setting}&quot;:

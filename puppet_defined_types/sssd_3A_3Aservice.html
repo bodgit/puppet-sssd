@@ -6,7 +6,7 @@
 <title>
   Defined Type: sssd::service
   
-    &mdash; Documentation by YARD 0.9.14
+    &mdash; Documentation by YARD 0.9.16
   
 </title>
 
@@ -77,6 +77,8 @@
 
   </div>
 </div>
+
+
 <div class="tags">
   
   <div class="examples">
@@ -1324,7 +1326,9 @@
 364
 365
 366
-367</pre>
+367
+368
+369</pre>
       </td>
       <td>
         <pre class="code"><span class="info file"># File 'manifests/service.pp', line 82</span>
@@ -1427,7 +1431,7 @@ define sssd::service (
     fail(&#39;Socket-activation is required for the secrets service&#39;)
   }
 
-  $global_config = delete_undef_values({
+  $global_config = {
     &#39;debug&#39;                  =&gt; $debug,
     &#39;debug_level&#39;            =&gt; $debug_level,
     &#39;debug_timestamps&#39;       =&gt; $debug_timestamps,
@@ -1439,11 +1443,11 @@ define sssd::service (
     &#39;offline_timeout&#39;        =&gt; $offline_timeout,
     &#39;responder_idle_timeout&#39; =&gt; $responder_idle_timeout,
     &#39;cache_first&#39;            =&gt; $cache_first,
-  })
+  }.filter |$x| { $x[1] =~ NotUndef }
 
   case $service {
     &#39;nss&#39;: {
-      $service_config = delete_undef_values({
+      $service_config = {
         &#39;enum_cache_timeout&#39;            =&gt; $enum_cache_timeout,
         &#39;entry_cache_nowait_percentage&#39; =&gt; $entry_cache_nowait_percentage,
         &#39;entry_negative_timeout&#39;        =&gt; $entry_negative_timeout,
@@ -1478,10 +1482,10 @@ define sssd::service (
           default =&gt; join($user_attributes, &#39;, &#39;),
         },
         &#39;pwfield&#39;                       =&gt; $pwfield,
-      })
+      }.filter |$x| { $x[1] =~ NotUndef }
     }
     &#39;pam&#39;: {
-      $service_config = delete_undef_values({
+      $service_config = {
         &#39;offline_credentials_expiration&#39; =&gt; $offline_credentials_expiration,
         &#39;offline_failed_login_attempts&#39;  =&gt; $offline_failed_login_attempts,
         &#39;offline_failed_login_delay&#39;     =&gt; $offline_failed_login_delay,
@@ -1506,36 +1510,36 @@ define sssd::service (
           undef   =&gt; undef,
           default =&gt; join($pam_app_services, &#39;, &#39;),
         },
-      })
+      }.filter |$x| { $x[1] =~ NotUndef }
     }
     &#39;sudo&#39;: {
-      $service_config = delete_undef_values({
+      $service_config = {
         &#39;sudo_timed&#39; =&gt; $sudo_timed,
-      })
+      }.filter |$x| { $x[1] =~ NotUndef }
     }
     &#39;autofs&#39;: {
-      $service_config = delete_undef_values({
+      $service_config = {
         &#39;autofs_negative_timeout&#39; =&gt; $autofs_negative_timeout,
-      })
+      }.filter |$x| { $x[1] =~ NotUndef }
     }
     &#39;ssh&#39;: {
-      $service_config = delete_undef_values({
+      $service_config = {
         &#39;ssh_hash_known_hosts&#39;    =&gt; $ssh_hash_known_hosts,
         &#39;ssh_known_hosts_timeout&#39; =&gt; $ssh_known_hosts_timeout,
         &#39;ca_db&#39;                   =&gt; $ca_db,
-      })
+      }.filter |$x| { $x[1] =~ NotUndef }
     }
     &#39;pac&#39;: {
-      $service_config = delete_undef_values({
+      $service_config = {
         &#39;allowed_uids&#39; =&gt; $allowed_uids ? {
           undef   =&gt; undef,
           default =&gt; join($allowed_uids, &#39;, &#39;),
         },
         &#39;pac_lifetime&#39; =&gt; $pac_lifetime,
-      })
+      }.filter |$x| { $x[1] =~ NotUndef }
     }
     &#39;ifp&#39;: {
-      $service_config = delete_undef_values({
+      $service_config = {
         &#39;allowed_uids&#39;    =&gt; $allowed_uids ? {
           undef   =&gt; undef,
           default =&gt; join($allowed_uids, &#39;, &#39;),
@@ -1545,10 +1549,10 @@ define sssd::service (
           default =&gt; join($user_attributes, &#39;, &#39;),
         },
         &#39;wildcard_limit&#39;  =&gt; $wildcard_limit,
-      })
+      }.filter |$x| { $x[1] =~ NotUndef }
     }
     &#39;secrets&#39;: {
-      $service_config = delete_undef_values({
+      $service_config = {
         &#39;provider&#39;             =&gt; $provider,
         &#39;container_nest_level&#39; =&gt; $container_nest_level,
         &#39;max_secrets&#39;          =&gt; $max_secrets,
@@ -1567,7 +1571,7 @@ define sssd::service (
         &#39;cacert&#39;               =&gt; $cacert,
         &#39;cert&#39;                 =&gt; $cert,
         &#39;key&#39;                  =&gt; $key,
-      })
+      }.filter |$x| { $x[1] =~ NotUndef }
     }
     default: {
       fail(&quot;The ${service} sssd service is not supported.&quot;)
@@ -1589,7 +1593,8 @@ define sssd::service (
     if has_key($::sssd::socket_services, $service) {
       Array($::sssd::socket_services[$service], true).each |String $x| {
         service { $x:
-          enable =&gt; true,
+          enable  =&gt; $::sssd::service_enable,
+          require =&gt; Exec[&#39;systemctl daemon-reload&#39;],
         }
       }
     }
@@ -1600,8 +1605,9 @@ define sssd::service (
       if has_key($::sssd::socket_services, $service) {
         Array($::sssd::socket_services[$service], true).each |String $x| {
           service { $x:
-            ensure =&gt; stopped,
-            enable =&gt; false,
+            ensure  =&gt; stopped,
+            enable  =&gt; false,
+            require =&gt; Exec[&#39;systemctl daemon-reload&#39;],
           }
         }
       }

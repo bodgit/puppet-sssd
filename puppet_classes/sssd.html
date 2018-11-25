@@ -6,7 +6,7 @@
 <title>
   Puppet Class: sssd
   
-    &mdash; Documentation by YARD 0.9.14
+    &mdash; Documentation by YARD 0.9.16
   
 </title>
 
@@ -84,6 +84,8 @@
 
   </div>
 </div>
+
+
 <div class="tags">
   
   <div class="examples">
@@ -179,6 +181,32 @@
       
       
         <em class="default">(defaults to: <tt>{}</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>service_enable</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>service_ensure</span>
+      
+      
+        <span class='type'>(<tt>Enum['running', 'stopped']</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;running&#39;</tt>)</em>
       
       
     </li>
@@ -467,8 +495,6 @@
         <pre class="lines">
 
 
-42
-43
 44
 45
 46
@@ -503,10 +529,14 @@
 75
 76
 77
-78</pre>
+78
+79
+80
+81
+82</pre>
       </td>
       <td>
-        <pre class="code"><span class="info file"># File 'manifests/init.pp', line 42</span>
+        <pre class="code"><span class="info file"># File 'manifests/init.pp', line 44</span>
 
 class sssd (
   Stdlib::Absolutepath                                                  $conf_dir                 = $::sssd::params::conf_dir,
@@ -515,6 +545,8 @@ class sssd (
   String                                                                $package_name             = $::sssd::params::package_name,
   String                                                                $service_name             = $::sssd::params::service_name,
   Hash[String, Hash[String, Any]]                                       $services                 = {},
+  Boolean                                                               $service_enable           = true,
+  Enum[&#39;running&#39;, &#39;stopped&#39;]                                            $service_ensure           = &#39;running&#39;,
   Hash[SSSD::Type, Variant[String, Array[String, 1]]]                   $socket_services          = $::sssd::params::socket_services,
   Boolean                                                               $use_socket_activation    = $::sssd::params::use_socket_activation,
   # options for any section
