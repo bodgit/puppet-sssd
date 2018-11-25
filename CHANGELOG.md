@@ -1,5 +1,12 @@
 # Change Log
 
+## [v2.1.0](https://github.com/bodgit/puppet-sssd/tree/v2.1.0) (2018-11-25)
+[Full Changelog](https://github.com/bodgit/puppet-sssd/compare/v2.0.3...v2.1.0)
+
+**Implemented enhancements:**
+
+- Allow managing of service\(s\) state [\#16](https://github.com/bodgit/puppet-sssd/issues/16)
+
 ## [v2.0.3](https://github.com/bodgit/puppet-sssd/tree/v2.0.3) (2018-10-13)
 [Full Changelog](https://github.com/bodgit/puppet-sssd/compare/v2.0.2...v2.0.3)
 
