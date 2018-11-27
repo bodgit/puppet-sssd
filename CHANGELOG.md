@@ -1,5 +1,12 @@
 # Change Log
 
+## [v2.1.1](https://github.com/bodgit/puppet-sssd/tree/v2.1.1) (2018-11-27)
+[Full Changelog](https://github.com/bodgit/puppet-sssd/compare/v2.1.0...v2.1.1)
+
+**Fixed bugs:**
+
+- SELinux labelling of directories with Systemd [\#17](https://github.com/bodgit/puppet-sssd/issues/17)
+
 ## [v2.1.0](https://github.com/bodgit/puppet-sssd/tree/v2.1.0) (2018-11-25)
 [Full Changelog](https://github.com/bodgit/puppet-sssd/compare/v2.0.3...v2.1.0)
 
