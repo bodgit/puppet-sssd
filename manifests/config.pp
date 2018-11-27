@@ -101,6 +101,16 @@ class sssd::config {
       path        => $::path,
     })
 
+    $directory_seltype = $::selinux ? {
+      true    => 'systemd_unit_file_t',
+      default => undef,
+    }
+
+    $file_seltype = $::selinux ? {
+      true    => 'sssd_unit_file_t',
+      default => undef,
+    }
+
     # EL7 ships some slightly broken systemd units for socket activation
     ['autofs', 'pac', 'pam', 'ssh', 'sudo'].each |$service| {
       file { "/etc/systemd/system/sssd-${service}.service.d":
@@ -108,6 +118,7 @@ class sssd::config {
         owner        => 0,
         group        => 0,
         mode         => '0644',
+        seltype      => $directory_seltype,
         force        => true,
         purge        => true,
         recurse      => true,
@@ -125,6 +136,7 @@ class sssd::config {
           User=
           Group=
           | EOS
+        seltype => $file_seltype,
         notify  => Exec['systemctl daemon-reload'],
       }
     }
