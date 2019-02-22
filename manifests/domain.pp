@@ -169,6 +169,7 @@
 # @param ldap_tls_cert
 # @param ldap_tls_key
 # @param ldap_tls_cipher_suite
+# @param ldap_auth_disable_tls_never_use_in_production
 # @param ldap_id_use_start_tls
 # @param ldap_id_mapping
 # @param ldap_idmap_range_min
@@ -457,6 +458,7 @@ define sssd::domain (
   Optional[Stdlib::Absolutepath]                                                        $ldap_tls_cert                                 = undef,
   Optional[Stdlib::Absolutepath]                                                        $ldap_tls_key                                  = undef,
   Optional[String]                                                                      $ldap_tls_cipher_suite                         = undef,
+  Optional[Boolean]                                                                     $ldap_auth_disable_tls_never_use_in_production                         = undef,
   Optional[Boolean]                                                                     $ldap_id_use_start_tls                         = undef,
   Optional[Boolean]                                                                     $ldap_id_mapping                               = undef,
   Optional[Integer[0]]                                                                  $ldap_idmap_range_min                          = undef,
@@ -786,6 +788,7 @@ define sssd::domain (
     'ldap_tls_cert'                                 => $ldap_tls_cert,
     'ldap_tls_key'                                  => $ldap_tls_key,
     'ldap_tls_cipher_suite'                         => $ldap_tls_cipher_suite,
+    'ldap_auth_disable_tls_never_use_in_production' => $ldap_auth_disable_tls_never_use_in_production,
     'ldap_id_use_start_tls'                         => $ldap_id_use_start_tls,
     'ldap_id_mapping'                               => $ldap_id_mapping,
     'ldap_idmap_range_min'                          => $ldap_idmap_range_min,
