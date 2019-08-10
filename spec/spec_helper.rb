@@ -18,7 +18,7 @@ end
 
 include RspecPuppetFacts
 
-add_custom_fact :service_provider, lambda { |os, facts| os =~ /-7-/ ? 'systemd' : 'init' }
+add_custom_fact :service_provider, lambda { |os, facts| os =~ /-(?:7|18\.04)-/ ? 'systemd' : 'init' }
 
 RSpec.configure do |c|
   c.default_facts = { :dbus_startup_provider => 'init' }

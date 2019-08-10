@@ -45,7 +45,7 @@ class sssd (
   Stdlib::Absolutepath                                                  $conf_dir                 = $::sssd::params::conf_dir,
   Stdlib::Absolutepath                                                  $conf_file                = $::sssd::params::conf_file,
   Hash[String, Hash[String, Any]]                                       $domains                  = {},
-  Array[String, 1]                                                      $package_name             = $::sssd::params::package_name,
+  Variant[String, Array[String, 1]]                                     $package_name             = $::sssd::params::package_name,
   String                                                                $service_name             = $::sssd::params::service_name,
   Hash[String, Hash[String, Any]]                                       $services                 = {},
   Boolean                                                               $service_enable           = true,

@@ -94,10 +94,25 @@ describe 'sssd' do
       it { is_expected.to contain_sssd_conf('sssd/try_inotify').with_value('true') }
       it { is_expected.to contain_sssd_conf('sssd/user').with_value('sssd') }
 
-      case facts[:operatingsystemmajrelease]
-      when '6'
-        # noop
-      else
+      case facts[:osfamily]
+      when 'RedHat'
+        case facts[:operatingsystemmajrelease]
+        when '6'
+          # noop
+        else
+          it { is_expected.to contain_exec('systemctl daemon-reload') }
+          it { is_expected.to contain_file('/etc/systemd/system/sssd-autofs.service.d') }
+          it { is_expected.to contain_file('/etc/systemd/system/sssd-autofs.service.d/override.conf') }
+          it { is_expected.to contain_file('/etc/systemd/system/sssd-pac.service.d') }
+          it { is_expected.to contain_file('/etc/systemd/system/sssd-pac.service.d/override.conf') }
+          it { is_expected.to contain_file('/etc/systemd/system/sssd-pam.service.d') }
+          it { is_expected.to contain_file('/etc/systemd/system/sssd-pam.service.d/override.conf') }
+          it { is_expected.to contain_file('/etc/systemd/system/sssd-ssh.service.d') }
+          it { is_expected.to contain_file('/etc/systemd/system/sssd-ssh.service.d/override.conf') }
+          it { is_expected.to contain_file('/etc/systemd/system/sssd-sudo.service.d') }
+          it { is_expected.to contain_file('/etc/systemd/system/sssd-sudo.service.d/override.conf') }
+        end
+      when 'Debian'
         it { is_expected.to contain_exec('systemctl daemon-reload') }
         it { is_expected.to contain_file('/etc/systemd/system/sssd-autofs.service.d') }
         it { is_expected.to contain_file('/etc/systemd/system/sssd-autofs.service.d/override.conf') }
@@ -109,6 +124,8 @@ describe 'sssd' do
         it { is_expected.to contain_file('/etc/systemd/system/sssd-ssh.service.d/override.conf') }
         it { is_expected.to contain_file('/etc/systemd/system/sssd-sudo.service.d') }
         it { is_expected.to contain_file('/etc/systemd/system/sssd-sudo.service.d/override.conf') }
+        it { is_expected.to contain_package('libnss-sss') }
+        it { is_expected.to contain_package('libpam-sss') }
       end
     end
   end
