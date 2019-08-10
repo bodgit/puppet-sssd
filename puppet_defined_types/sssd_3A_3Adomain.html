@@ -2133,6 +2133,19 @@
   
     <li>
       
+        <span class='name'>ldap_auth_disable_tls_never_use_in_production</span>
+      
+      
+        <span class='type'>(<tt>Optional[Boolean]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
         <span class='name'>ldap_id_use_start_tls</span>
       
       
@@ -3737,7 +3750,6 @@
         <pre class="lines">
 
 
-297
 298
 299
 300
@@ -4432,10 +4444,13 @@
 989
 990
 991
-992</pre>
+992
+993
+994
+995</pre>
       </td>
       <td>
-        <pre class="code"><span class="info file"># File 'manifests/domain.pp', line 297</span>
+        <pre class="code"><span class="info file"># File 'manifests/domain.pp', line 298</span>
 
 define sssd::domain (
   SSSD::Provider::ID                                                                    $id_provider,
@@ -4600,6 +4615,7 @@ define sssd::domain (
   Optional[Stdlib::Absolutepath]                                                        $ldap_tls_cert                                 = undef,
   Optional[Stdlib::Absolutepath]                                                        $ldap_tls_key                                  = undef,
   Optional[String]                                                                      $ldap_tls_cipher_suite                         = undef,
+  Optional[Boolean]                                                                     $ldap_auth_disable_tls_never_use_in_production                         = undef,
   Optional[Boolean]                                                                     $ldap_id_use_start_tls                         = undef,
   Optional[Boolean]                                                                     $ldap_id_mapping                               = undef,
   Optional[Integer[0]]                                                                  $ldap_idmap_range_min                          = undef,
@@ -4929,6 +4945,7 @@ define sssd::domain (
     &#39;ldap_tls_cert&#39;                                 =&gt; $ldap_tls_cert,
     &#39;ldap_tls_key&#39;                                  =&gt; $ldap_tls_key,
     &#39;ldap_tls_cipher_suite&#39;                         =&gt; $ldap_tls_cipher_suite,
+    &#39;ldap_auth_disable_tls_never_use_in_production&#39; =&gt; $ldap_auth_disable_tls_never_use_in_production,
     &#39;ldap_id_use_start_tls&#39;                         =&gt; $ldap_id_use_start_tls,
     &#39;ldap_id_mapping&#39;                               =&gt; $ldap_id_mapping,
     &#39;ldap_idmap_range_min&#39;                          =&gt; $ldap_idmap_range_min,
