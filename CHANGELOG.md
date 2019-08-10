@@ -1,5 +1,12 @@
 # Change Log
 
+## [v2.2.0](https://github.com/bodgit/puppet-sssd/tree/v2.2.0) (2019-08-10)
+[Full Changelog](https://github.com/bodgit/puppet-sssd/compare/v2.1.1...v2.2.0)
+
+**Implemented enhancements:**
+
+- Make puppet-sssd work on Ubuntu [\#18](https://github.com/bodgit/puppet-sssd/pull/18) ([weijianwen](https://github.com/weijianwen))
+
 ## [v2.1.1](https://github.com/bodgit/puppet-sssd/tree/v2.1.1) (2018-11-27)
 [Full Changelog](https://github.com/bodgit/puppet-sssd/compare/v2.1.0...v2.1.1)
 
