@@ -1,5 +1,12 @@
 # Change Log
 
+## [v2.2.1](https://github.com/bodgit/puppet-sssd/tree/v2.2.1) (2020-09-07)
+[Full Changelog](https://github.com/bodgit/puppet-sssd/compare/v2.2.0...v2.2.1)
+
+**Fixed bugs:**
+
+- Missing ldap\_sasl\_maxssf parameter [\#19](https://github.com/bodgit/puppet-sssd/issues/19)
+
 ## [v2.2.0](https://github.com/bodgit/puppet-sssd/tree/v2.2.0) (2019-08-10)
 [Full Changelog](https://github.com/bodgit/puppet-sssd/compare/v2.1.1...v2.2.0)
 
