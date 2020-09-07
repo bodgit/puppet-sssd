@@ -162,6 +162,7 @@
 # @param ldap_disable_paging
 # @param ldap_disable_range_retrieval
 # @param ldap_sasl_minssf
+# @param ldap_sasl_maxssf
 # @param ldap_deref_threshold
 # @param ldap_tls_reqcert
 # @param ldap_tls_cacert
@@ -451,6 +452,7 @@ define sssd::domain (
   Optional[Boolean]                                                                     $ldap_disable_paging                           = undef,
   Optional[Boolean]                                                                     $ldap_disable_range_retrieval                  = undef,
   Optional[Integer[0]]                                                                  $ldap_sasl_minssf                              = undef,
+  Optional[Integer[0]]                                                                  $ldap_sasl_maxssf                              = undef,
   Optional[Integer[0]]                                                                  $ldap_deref_threshold                          = undef,
   Optional[Enum['never', 'allow', 'try', 'demand', 'hard']]                             $ldap_tls_reqcert                              = undef,
   Optional[Stdlib::Absolutepath]                                                        $ldap_tls_cacert                               = undef,
@@ -781,6 +783,7 @@ define sssd::domain (
     'ldap_disable_paging'                           => $ldap_disable_paging,
     'ldap_disable_range_retrieval'                  => $ldap_disable_range_retrieval,
     'ldap_sasl_minssf'                              => $ldap_sasl_minssf,
+    'ldap_sasl_maxssf'                              => $ldap_sasl_maxssf,
     'ldap_deref_threshold'                          => $ldap_deref_threshold,
     'ldap_tls_reqcert'                              => $ldap_tls_reqcert,
     'ldap_tls_cacert'                               => $ldap_tls_cacert,

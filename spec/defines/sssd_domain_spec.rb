@@ -25,6 +25,7 @@ describe 'sssd::domain' do
       :ldap_default_bind_dn      => 'cn=Manager,dc=example,dc=com',
       :ldap_default_authtok_type => 'password',
       :ldap_default_authtok      => 'secret',
+      :ldap_sasl_maxssf          => 256,
     }
   end
 
@@ -58,6 +59,7 @@ describe 'sssd::domain' do
         it { is_expected.to contain_sssd_conf('domain/test/ldap_default_bind_dn').with_value('cn=Manager,dc=example,dc=com') }
         it { is_expected.to contain_sssd_conf('domain/test/ldap_id_use_start_tls').with_value('true') }
         it { is_expected.to contain_sssd_conf('domain/test/ldap_network_timeout').with_value(3) }
+        it { is_expected.to contain_sssd_conf('domain/test/ldap_sasl_maxssf').with_value(256) }
         it { is_expected.to contain_sssd_conf('domain/test/ldap_schema').with_value('rfc2307') }
         it { is_expected.to contain_sssd_conf('domain/test/ldap_search_base').with_value('dc=example,dc=com') }
         it { is_expected.to contain_sssd_conf('domain/test/ldap_tls_reqcert').with_value('demand') }
