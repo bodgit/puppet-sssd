@@ -256,6 +256,10 @@ define sssd::service (
           undef   => undef,
           default => join($pam_app_services, ', '),
         },
+        'pam_response_filter'            => $pam_response_filter ? {
+          undef   => undef,
+          default => join($pam_response_filter, ', '),
+        },
       }.filter |$x| { $x[1] =~ NotUndef }
     }
     'sudo': {
