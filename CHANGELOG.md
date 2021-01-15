@@ -1,5 +1,12 @@
 # Change Log
 
+## [v2.2.2](https://github.com/bodgit/puppet-sssd/tree/v2.2.2) (2021-01-15)
+[Full Changelog](https://github.com/bodgit/puppet-sssd/compare/v2.2.1...v2.2.2)
+
+**Fixed bugs:**
+
+- fix pam/pam\_response\_filter [\#21](https://github.com/bodgit/puppet-sssd/pull/21) ([jhoblitt](https://github.com/jhoblitt))
+
 ## [v2.2.1](https://github.com/bodgit/puppet-sssd/tree/v2.2.1) (2020-09-07)
 [Full Changelog](https://github.com/bodgit/puppet-sssd/compare/v2.2.0...v2.2.1)
 
