@@ -171,6 +171,7 @@ describe 'sssd::service' do
           it { is_expected.to contain_sssd_conf('pam/pam_pwd_expiration_warning').with_value('0') }
           it { is_expected.to contain_sssd_conf('pam/pam_trusted_users').with_value('0') }
           it { is_expected.to contain_sssd_conf('pam/pam_verbosity').with_value('1') }
+          it { is_expected.to contain_sssd_conf('pam/pam_response_filter').with_value('ENV') }
           it { is_expected.to contain_sssd_conf('pam/reconnection_retries').with_value('3') }
           it { is_expected.to contain_sssd_conf('pam/responder_idle_timeout').with_value('300') }
           it { is_expected.to contain_sssd_conf('pam/timeout').with_value('10') }
