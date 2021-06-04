@@ -16,23 +16,23 @@ class sssd::params {
       }
     }
   }
-  case $::osfamily {
+  case $facts['os']['family'] {
     'RedHat': {
       $package_name          = 'sssd'
-      $use_socket_activation = $::service_provider ? {
+      $use_socket_activation = $facts['service_provider'] ? {
         'systemd' => true,
         default   => false,
       }
     }
     'Debian': {
       $package_name          = ['sssd', 'libpam-sss', 'libnss-sss']
-      $use_socket_activation = $::service_provider ? {
+      $use_socket_activation = $facts['service_provider'] ? {
         'systemd' => true,
         default   => false,
       }
     }
     default: {
-      fail("The ${module_name} module is not supported on an ${::osfamily} based system.")
+      fail("The ${module_name} module is not supported on an ${facts['os']['family']} based system.")
     }
   }
 }
