@@ -505,7 +505,7 @@ define sssd::domain (
   Optional[Integer[0]]                                                                  $ldap_sudo_smart_refresh_interval              = undef,
   Optional[Boolean]                                                                     $ldap_sudo_use_host_filter                     = undef,
   Optional[Array[String, 1]]                                                            $ldap_sudo_hostnames                           = undef,
-  Optional[Array[IP::Address, 1]]                                                       $ldap_sudo_ip                                  = undef,
+  Optional[Array[Stdlib::IP::Address, 1]]                                               $ldap_sudo_ip                                  = undef,
   Optional[Boolean]                                                                     $ldap_sudo_include_netgroups                   = undef,
   Optional[Boolean]                                                                     $ldap_sudo_include_regexp                      = undef,
   Optional[String]                                                                      $ldap_autofs_map_master_name                   = undef,
