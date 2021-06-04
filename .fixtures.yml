@@ -7,7 +7,7 @@ fixtures:
       ref: "2.6.0"
     bodgitlib:
       repo: "bodgit/bodgitlib"
-      ref: "2.0.1"
+      ref: "3.0.1"
     datacat:
       repo: "richardc/datacat"
       ref: "0.6.2"
@@ -16,4 +16,4 @@ fixtures:
       ref: "2.0.1"
     stdlib:
       repo: "puppetlabs/stdlib"
-      ref: "4.25.1"
+      ref: "7.1.0"
