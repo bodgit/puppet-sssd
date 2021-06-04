@@ -6,15 +6,15 @@
 <title>
   Defined Type: sssd::service
   
-    &mdash; Documentation by YARD 0.9.16
+    &mdash; Documentation by YARD 0.9.26
   
 </title>
 
-  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+  <link rel="stylesheet" href="../css/style.css" type="text/css" />
 
-  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+  <link rel="stylesheet" href="../css/common.css" type="text/css" />
 
-<script type="text/javascript" charset="utf-8">
+<script type="text/javascript">
   pathId = "puppet_defined_types::sssd::service";
   relpath = '../';
 </script>
@@ -1009,6 +1009,7 @@
 </ul>
 
 
+
   <p class="tag_title">See Also:</p>
   <ul class="see">
     
@@ -1328,7 +1329,11 @@
 366
 367
 368
-369</pre>
+369
+370
+371
+372
+373</pre>
       </td>
       <td>
         <pre class="code"><span class="info file"># File 'manifests/service.pp', line 82</span>
@@ -1509,6 +1514,10 @@ define sssd::service (
         &#39;pam_app_services&#39;               =&gt; $pam_app_services ? {
           undef   =&gt; undef,
           default =&gt; join($pam_app_services, &#39;, &#39;),
+        },
+        &#39;pam_response_filter&#39;            =&gt; $pam_response_filter ? {
+          undef   =&gt; undef,
+          default =&gt; join($pam_response_filter, &#39;, &#39;),
         },
       }.filter |$x| { $x[1] =~ NotUndef }
     }

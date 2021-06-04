@@ -6,15 +6,15 @@
 <title>
   Defined Type: sssd::domain
   
-    &mdash; Documentation by YARD 0.9.16
+    &mdash; Documentation by YARD 0.9.26
   
 </title>
 
-  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+  <link rel="stylesheet" href="../css/style.css" type="text/css" />
 
-  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+  <link rel="stylesheet" href="../css/common.css" type="text/css" />
 
-<script type="text/javascript" charset="utf-8">
+<script type="text/javascript">
   pathId = "puppet_defined_types::sssd::domain";
   relpath = '../';
 </script>
@@ -2042,6 +2042,19 @@
   
     <li>
       
+        <span class='name'>ldap_sasl_maxssf</span>
+      
+      
+        <span class='type'>(<tt>Optional[Integer[0]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
         <span class='name'>ldap_deref_threshold</span>
       
       
@@ -3720,6 +3733,7 @@
 </ul>
 
 
+
   <p class="tag_title">See Also:</p>
   <ul class="see">
     
@@ -3750,7 +3764,6 @@
         <pre class="lines">
 
 
-298
 299
 300
 301
@@ -4447,10 +4460,13 @@
 992
 993
 994
-995</pre>
+995
+996
+997
+998</pre>
       </td>
       <td>
-        <pre class="code"><span class="info file"># File 'manifests/domain.pp', line 298</span>
+        <pre class="code"><span class="info file"># File 'manifests/domain.pp', line 299</span>
 
 define sssd::domain (
   SSSD::Provider::ID                                                                    $id_provider,
@@ -4608,6 +4624,7 @@ define sssd::domain (
   Optional[Boolean]                                                                     $ldap_disable_paging                           = undef,
   Optional[Boolean]                                                                     $ldap_disable_range_retrieval                  = undef,
   Optional[Integer[0]]                                                                  $ldap_sasl_minssf                              = undef,
+  Optional[Integer[0]]                                                                  $ldap_sasl_maxssf                              = undef,
   Optional[Integer[0]]                                                                  $ldap_deref_threshold                          = undef,
   Optional[Enum[&#39;never&#39;, &#39;allow&#39;, &#39;try&#39;, &#39;demand&#39;, &#39;hard&#39;]]                             $ldap_tls_reqcert                              = undef,
   Optional[Stdlib::Absolutepath]                                                        $ldap_tls_cacert                               = undef,
@@ -4938,6 +4955,7 @@ define sssd::domain (
     &#39;ldap_disable_paging&#39;                           =&gt; $ldap_disable_paging,
     &#39;ldap_disable_range_retrieval&#39;                  =&gt; $ldap_disable_range_retrieval,
     &#39;ldap_sasl_minssf&#39;                              =&gt; $ldap_sasl_minssf,
+    &#39;ldap_sasl_maxssf&#39;                              =&gt; $ldap_sasl_maxssf,
     &#39;ldap_deref_threshold&#39;                          =&gt; $ldap_deref_threshold,
     &#39;ldap_tls_reqcert&#39;                              =&gt; $ldap_tls_reqcert,
     &#39;ldap_tls_cacert&#39;                               =&gt; $ldap_tls_cacert,

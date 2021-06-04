@@ -6,15 +6,15 @@
 <title>
   File: README
   
-    &mdash; Documentation by YARD 0.9.16
+    &mdash; Documentation by YARD 0.9.26
   
 </title>
 
-  <link rel="stylesheet" href="css/style.css" type="text/css" charset="utf-8" />
+  <link rel="stylesheet" href="css/style.css" type="text/css" />
 
-  <link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8" />
+  <link rel="stylesheet" href="css/common.css" type="text/css" />
 
-<script type="text/javascript" charset="utf-8">
+<script type="text/javascript">
   pathId = "";
   relpath = '';
 </script>
@@ -60,33 +60,35 @@
       <div id="content"><div id='filecontents'>
 <h1 id="label-sssd">sssd</h1>
 
-<p>Tested with Travis CI</p>
-
 <p><a href="https://travis-ci.org/bodgit/puppet-sssd"><img
 src="https://travis-ci.org/bodgit/puppet-sssd.svg?branch=master"></a> <a
-href="https://coveralls.io/github/bodgit/puppet-sssd?branch=master"><img
-src="https://coveralls.io/repos/bodgit/puppet-sssd/badge.svg?branch=master&service=github"></a>
-<a href="https://forge.puppetlabs.com/bodgit/sssd"><img
-src="http://img.shields.io/puppetforge/v/bodgit/sssd.svg"></a></p>
+href="https://codecov.io/gh/bodgit/puppet-sssd"><img
+src="https://img.shields.io/codecov/c/github/bodgit/puppet-sssd"></a> <a
+href="https://forge.puppetlabs.com/bodgit/sssd"><img
+src="http://img.shields.io/puppetforge/v/bodgit/sssd"></a> <a
+href="https://forge.puppetlabs.com/bodgit/sssd"><img
+src="https://img.shields.io/puppetforge/dt/bodgit/sssd"></a> <a
+href="https://forge.puppetlabs.com/bodgit/sssd"><img
+src="https://img.shields.io/puppetforge/pdk-version/bodgit/sssd"></a></p>
 
 <h4 id="label-Table+of+Contents">Table of Contents</h4>
 <ol><li>
-<p><a href="#label-Description">Description</a></p>
+<p><a href="#description">Description</a></p>
 </li><li>
-<p><a href="#label-Setup">Setup - The basics of getting started with sssd</a></p>
+<p><a href="#setup">Setup - The basics of getting started with sssd</a></p>
 <ul><li>
-<p><a href="#label-Beginning+with+sssd">Beginning with sssd</a></p>
+<p><a href="#beginning-with-sssd">Beginning with sssd</a></p>
 </li></ul>
 </li><li>
-<p><a href="#label-Usage">Usage - Configuration options and additional
+<p><a href="#usage">Usage - Configuration options and additional
 functionality</a></p>
 </li><li>
-<p><a href="#label-Reference">Reference - An under-the-hood peek at what the module
+<p><a href="#reference">Reference - An under-the-hood peek at what the module
 is doing and how</a></p>
 </li><li>
-<p><a href="#label-Limitations">Limitations - OS compatibility, etc.</a></p>
+<p><a href="#limitations">Limitations - OS compatibility, etc.</a></p>
 </li><li>
-<p><a href="#label-Development">Development - Guide for contributing to the
+<p><a href="#development">Development - Guide for contributing to the
 module</a></p>
 </li></ol>
 
@@ -96,7 +98,7 @@ module</a></p>
 domains, and optionally configure the D-Bus system service.</p>
 
 <p>CentOS, RHEL, Scientific and Oracle Enterprise Linux is supported using
-Puppet 4.6.0 or later.</p>
+Puppet 5 or later.</p>
 
 <h2 id="label-Setup">Setup</h2>
 
@@ -171,7 +173,9 @@ Class[&#39;::sssd&#39;] -&gt; Class[&#39;::nsswitch&#39;]</code></pre>
 <p>The reference documentation is generated with <a
 href="https://github.com/puppetlabs/puppet-strings">puppet-strings</a> and
 the latest version of the documentation is hosted at <a
-href="https://bodgit.github.io/puppet-sssd/">bodgit.github.io/puppet-sssd/</a>.</p>
+href="https://bodgit.github.io/puppet-sssd/">bodgit.github.io/puppet-sssd/</a>
+and available also in the <a
+href="https://github.com/bodgit/puppet-postfix/blob/master/REFERENCE.md">REFERENCE.md</a>.</p>
 
 <h2 id="label-Limitations">Limitations</h2>
 
@@ -188,7 +192,7 @@ is that of the identity provider (<code>id_provider</code>) for the
 <code>sssd::domain</code> defined type. This may change in the future if
 the logic becomes more obvious.</p>
 
-<p>This module has been built on and tested against Puppet 4.6.0 and higher.</p>
+<p>This module has been built on and tested against Puppet 5 and higher.</p>
 
 <p>The module has been tested on:</p>
 <ul><li>
@@ -197,11 +201,13 @@ the logic becomes more obvious.</p>
 
 <h2 id="label-Development">Development</h2>
 
-<p>The module has both <a href="http://rspec-puppet.com">rspec-puppet</a> and
-<a href="https://github.com/puppetlabs/beaker-rspec">beaker-rspec</a>
-tests. Run them with:</p>
+<p>The module relies on <a
+href="https://puppet.com/docs/pdk/1.x/pdk.html">PDK</a> and has both <a
+href="http://rspec-puppet.com">rspec-puppet</a> and <a
+href="https://github.com/puppetlabs/beaker-rspec">beaker-rspec</a> tests.
+Run them with:</p>
 
-<pre class="code ruby"><code class="ruby">$ bundle exec rake test
+<pre class="code ruby"><code class="ruby">$ bundle exec rake spec
 $ PUPPET_INSTALL_TYPE=agent PUPPET_INSTALL_VERSION=x.y.z bundle exec rake beaker:&lt;nodeset&gt;</code></pre>
 
 <p>Please log issues or pull requests at <a
