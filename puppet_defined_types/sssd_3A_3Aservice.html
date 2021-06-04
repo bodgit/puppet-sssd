@@ -89,8 +89,8 @@
 <p>Enable NSS service</p>
 </div></p>
       
-      <pre class="example code"><code>include ::sssd
-::sssd::service { &#39;nss&#39;: }</code></pre>
+      <pre class="example code"><code>include sssd
+sssd::service { &#39;nss&#39;: }</code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -117,7 +117,7 @@
         <span class='type'>(<tt>Boolean</tt>)</span>
       
       
-        <em class="default">(defaults to: <tt>$::sssd::use_socket_activation</tt>)</em>
+        <em class="default">(defaults to: <tt>$sssd::use_socket_activation</tt>)</em>
       
       
     </li>
@@ -1340,7 +1340,7 @@
 
 define sssd::service (
   SSSD::Type                                                   $service                        = $title,
-  Boolean                                                      $use_socket_activation          = $::sssd::use_socket_activation,
+  Boolean                                                      $use_socket_activation          = $sssd::use_socket_activation,
   # options for any section
   Optional[Integer[0]]                                         $debug                          = undef,
   Optional[Integer[0]]                                         $debug_level                    = undef,
@@ -1424,11 +1424,11 @@ define sssd::service (
   Optional[Stdlib::Absolutepath]                               $key                            = undef,
 ) {
 
-  if ! defined(Class[&#39;::sssd&#39;]) {
+  if ! defined(Class[&#39;sssd&#39;]) {
     fail(&#39;You must include the sssd base class before using any sssd defined resources&#39;)
   }
 
-  if $use_socket_activation and $::service_provider != &#39;systemd&#39; {
+  if $use_socket_activation and $facts[&#39;service_provider&#39;] != &#39;systemd&#39; {
     fail(&#39;Systemd is required for socket-activated services&#39;)
   }
 
@@ -1591,28 +1591,28 @@ define sssd::service (
 
   $config.each |String $setting, Any $value| {
     sssd_conf { &quot;${service}/${setting}&quot;:
-      target =&gt; $::sssd::conf_file,
+      target =&gt; $sssd::conf_file,
       value  =&gt; $value,
-      notify =&gt; Class[&#39;::sssd::daemon&#39;],
+      notify =&gt; Class[&#39;sssd::daemon&#39;],
     }
   }
 
   if $use_socket_activation {
 
-    if has_key($::sssd::socket_services, $service) {
-      Array($::sssd::socket_services[$service], true).each |String $x| {
+    if has_key($sssd::socket_services, $service) {
+      Array($sssd::socket_services[$service], true).each |String $x| {
         service { $x:
-          enable  =&gt; $::sssd::service_enable,
+          enable  =&gt; $sssd::service_enable,
           require =&gt; Exec[&#39;systemctl daemon-reload&#39;],
         }
       }
     }
   } else {
 
-    if $::service_provider == &#39;systemd&#39; {
+    if $facts[&#39;service_provider&#39;] == &#39;systemd&#39; {
 
-      if has_key($::sssd::socket_services, $service) {
-        Array($::sssd::socket_services[$service], true).each |String $x| {
+      if has_key($sssd::socket_services, $service) {
+        Array($sssd::socket_services[$service], true).each |String $x| {
           service { $x:
             ensure  =&gt; stopped,
             enable  =&gt; false,

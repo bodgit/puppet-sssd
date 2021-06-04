@@ -64,7 +64,7 @@
   
   <dl>
     <dt>Inherits:</dt>
-    <dd>::sssd::params</dd>
+    <dd><span class='object_link'>sssd::params</span></dd>
   </dl>
   
   
@@ -96,9 +96,9 @@
 <p>Declaring the class</p>
 </div></p>
       
-      <pre class="example code"><code>include ::dbus
-include ::sssd
-include ::sssd::dbus</code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_include'>include</span> <span class='id identifier rubyid_dbus'>dbus</span>
+<span class='id identifier rubyid_include'>include</span> <span class='id identifier rubyid_sssd'>sssd</span>
+<span class='id identifier rubyid_include'>include</span> <span class='id identifier rubyid_sssd'>sssd</span><span class='op'>::</span><span class='id identifier rubyid_dbus'>dbus</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -112,7 +112,7 @@ include ::sssd::dbus</code></pre>
         <span class='type'>(<tt>String</tt>)</span>
       
       
-        <em class="default">(defaults to: <tt>$::sssd::params::dbus_package_name</tt>)</em>
+        <em class="default">(defaults to: <tt>$sssd::params::dbus_package_name</tt>)</em>
       
       
     </li>
@@ -125,7 +125,7 @@ include ::sssd::dbus</code></pre>
         <span class='type'>(<tt>Boolean</tt>)</span>
       
       
-        <em class="default">(defaults to: <tt>$::sssd::use_socket_activation</tt>)</em>
+        <em class="default">(defaults to: <tt>$sssd::use_socket_activation</tt>)</em>
       
       
     </li>
@@ -319,9 +319,9 @@ include ::sssd::dbus</code></pre>
   <p class="tag_title">See Also:</p>
   <ul class="see">
     
-      <li><span class='object_link'><a href="sssd.html" title="puppet_classes::sssd (puppet_class)">::sssd</a></span></li>
+      <li><span class='object_link'><a href="sssd.html" title="puppet_classes::sssd (puppet_class)">sssd</a></span></li>
     
-      <li><span class='object_link'><a href="../puppet_defined_types/sssd_3A_3Aservice.html" title="puppet_defined_types::sssd::service (puppet_defined_type)">::sssd::service</a></span></li>
+      <li><span class='object_link'><a href="../puppet_defined_types/sssd_3A_3Aservice.html" title="puppet_defined_types::sssd::service (puppet_defined_type)">sssd::service</a></span></li>
     
   </ul>
 <p class="tag_title">Since:</p>
@@ -386,8 +386,8 @@ include ::sssd::dbus</code></pre>
         <pre class="code"><span class="info file"># File 'manifests/dbus.pp', line 29</span>
 
 class sssd::dbus (
-  String                                          $package_name           = $::sssd::params::dbus_package_name,
-  Boolean                                         $use_socket_activation  = $::sssd::use_socket_activation,
+  String                                          $package_name           = $sssd::params::dbus_package_name,
+  Boolean                                         $use_socket_activation  = $sssd::use_socket_activation,
   # options for any section
   Optional[Integer[0]]                            $debug                  = undef,
   Optional[Integer[0]]                            $debug_level            = undef,
@@ -405,18 +405,18 @@ class sssd::dbus (
   Optional[Array[Variant[Integer[0], String], 1]] $allowed_uids           = undef,
   Optional[Array[String, 1]]                      $user_attributes        = undef,
   Optional[Integer[0]]                            $wildcard_limit         = undef,
-) inherits ::sssd::params {
+) inherits sssd::params {
 
-  if ! defined(Class[&#39;::sssd&#39;]) {
+  if ! defined(Class[&#39;sssd&#39;]) {
     fail(&#39;You must include the sssd base class before using the sssd::dbus class&#39;)
   }
 
-  contain ::sssd::dbus::install
-  contain ::sssd::dbus::config
+  contain sssd::dbus::install
+  contain sssd::dbus::config
 
-  Class[&#39;::sssd::dbus::install&#39;] ~&gt; Class[&#39;::sssd::dbus::config&#39;]
+  Class[&#39;sssd::dbus::install&#39;] ~&gt; Class[&#39;sssd::dbus::config&#39;]
 
-  Class[&#39;::dbus&#39;] -&gt; Class[&#39;::sssd&#39;]
+  Class[&#39;dbus&#39;] -&gt; Class[&#39;sssd&#39;]
 }</pre>
       </td>
     </tr>

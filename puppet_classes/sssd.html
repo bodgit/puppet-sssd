@@ -64,7 +64,7 @@
   
   <dl>
     <dt>Inherits:</dt>
-    <dd>::sssd::params</dd>
+    <dd><span class='object_link'>sssd::params</span></dd>
   </dl>
   
   
@@ -96,9 +96,9 @@
 <p>Declaring the class</p>
 </div></p>
       
-      <pre class="example code"><code>include ::sssd
-::sssd::service { &#39;nss&#39;: }
-::sssd::domain { &#39;example.com&#39;:
+      <pre class="example code"><code>include sssd
+sssd::service { &#39;nss&#39;: }
+sssd::domain { &#39;example.com&#39;:
   id_provider =&gt; &#39;ldap&#39;,
   ...
 }</code></pre>
@@ -115,7 +115,7 @@
         <span class='type'>(<tt>Stdlib::Absolutepath</tt>)</span>
       
       
-        <em class="default">(defaults to: <tt>$::sssd::params::conf_dir</tt>)</em>
+        <em class="default">(defaults to: <tt>$sssd::params::conf_dir</tt>)</em>
       
       
     </li>
@@ -128,7 +128,7 @@
         <span class='type'>(<tt>Stdlib::Absolutepath</tt>)</span>
       
       
-        <em class="default">(defaults to: <tt>$::sssd::params::conf_file</tt>)</em>
+        <em class="default">(defaults to: <tt>$sssd::params::conf_file</tt>)</em>
       
       
     </li>
@@ -154,7 +154,7 @@
         <span class='type'>(<tt>Variant[String, Array[String, 1]]</tt>)</span>
       
       
-        <em class="default">(defaults to: <tt>$::sssd::params::package_name</tt>)</em>
+        <em class="default">(defaults to: <tt>$sssd::params::package_name</tt>)</em>
       
       
     </li>
@@ -167,7 +167,7 @@
         <span class='type'>(<tt>String</tt>)</span>
       
       
-        <em class="default">(defaults to: <tt>$::sssd::params::service_name</tt>)</em>
+        <em class="default">(defaults to: <tt>$sssd::params::service_name</tt>)</em>
       
       
     </li>
@@ -219,7 +219,7 @@
         <span class='type'>(<tt>Hash[SSSD::Type, Variant[String, Array[String, 1]]]</tt>)</span>
       
       
-        <em class="default">(defaults to: <tt>$::sssd::params::socket_services</tt>)</em>
+        <em class="default">(defaults to: <tt>$sssd::params::socket_services</tt>)</em>
       
       
     </li>
@@ -232,7 +232,7 @@
         <span class='type'>(<tt>Boolean</tt>)</span>
       
       
-        <em class="default">(defaults to: <tt>$::sssd::params::use_socket_activation</tt>)</em>
+        <em class="default">(defaults to: <tt>$sssd::params::use_socket_activation</tt>)</em>
       
       
     </li>
@@ -465,11 +465,11 @@
   <p class="tag_title">See Also:</p>
   <ul class="see">
     
-      <li><span class='object_link'><a href="sssd_3A_3Adbus.html" title="puppet_classes::sssd::dbus (puppet_class)">::sssd::dbus</a></span></li>
+      <li><span class='object_link'><a href="sssd_3A_3Adbus.html" title="puppet_classes::sssd::dbus (puppet_class)">sssd::dbus</a></span></li>
     
-      <li><span class='object_link'><a href="../puppet_defined_types/sssd_3A_3Adomain.html" title="puppet_defined_types::sssd::domain (puppet_defined_type)">::sssd::domain</a></span></li>
+      <li><span class='object_link'><a href="../puppet_defined_types/sssd_3A_3Adomain.html" title="puppet_defined_types::sssd::domain (puppet_defined_type)">sssd::domain</a></span></li>
     
-      <li><span class='object_link'><a href="../puppet_defined_types/sssd_3A_3Aservice.html" title="puppet_defined_types::sssd::service (puppet_defined_type)">::sssd::service</a></span></li>
+      <li><span class='object_link'><a href="../puppet_defined_types/sssd_3A_3Aservice.html" title="puppet_defined_types::sssd::service (puppet_defined_type)">sssd::service</a></span></li>
     
   </ul>
 <p class="tag_title">Since:</p>
@@ -540,16 +540,16 @@
         <pre class="code"><span class="info file"># File 'manifests/init.pp', line 44</span>
 
 class sssd (
-  Stdlib::Absolutepath                                                  $conf_dir                 = $::sssd::params::conf_dir,
-  Stdlib::Absolutepath                                                  $conf_file                = $::sssd::params::conf_file,
+  Stdlib::Absolutepath                                                  $conf_dir                 = $sssd::params::conf_dir,
+  Stdlib::Absolutepath                                                  $conf_file                = $sssd::params::conf_file,
   Hash[String, Hash[String, Any]]                                       $domains                  = {},
-  Variant[String, Array[String, 1]]                                     $package_name             = $::sssd::params::package_name,
-  String                                                                $service_name             = $::sssd::params::service_name,
+  Variant[String, Array[String, 1]]                                     $package_name             = $sssd::params::package_name,
+  String                                                                $service_name             = $sssd::params::service_name,
   Hash[String, Hash[String, Any]]                                       $services                 = {},
   Boolean                                                               $service_enable           = true,
   Enum[&#39;running&#39;, &#39;stopped&#39;]                                            $service_ensure           = &#39;running&#39;,
-  Hash[SSSD::Type, Variant[String, Array[String, 1]]]                   $socket_services          = $::sssd::params::socket_services,
-  Boolean                                                               $use_socket_activation    = $::sssd::params::use_socket_activation,
+  Hash[SSSD::Type, Variant[String, Array[String, 1]]]                   $socket_services          = $sssd::params::socket_services,
+  Boolean                                                               $use_socket_activation    = $sssd::params::use_socket_activation,
   # options for any section
   Optional[Integer[0]]                                                  $debug                    = undef,
   Optional[Integer[0]]                                                  $debug_level              = undef,
@@ -569,14 +569,14 @@ class sssd (
   Optional[Boolean]                                                     $disable_netlink          = undef,
   Optional[Boolean]                                                     $enable_files_domain      = undef,
   Optional[Array[String, 1]]                                            $domain_resolution_order  = undef,
-) inherits ::sssd::params {
+) inherits sssd::params {
 
-  contain ::sssd::install
-  contain ::sssd::config
-  contain ::sssd::daemon
+  contain sssd::install
+  contain sssd::config
+  contain sssd::daemon
 
-  Class[&#39;::sssd::install&#39;] ~&gt; Class[&#39;::sssd::config&#39;]
-    ~&gt; Class[&#39;::sssd::daemon&#39;]
+  Class[&#39;sssd::install&#39;] ~&gt; Class[&#39;sssd::config&#39;]
+    ~&gt; Class[&#39;sssd::daemon&#39;]
 }</pre>
       </td>
     </tr>
