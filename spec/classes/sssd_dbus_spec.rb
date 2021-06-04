@@ -1,28 +1,27 @@
 require 'spec_helper'
 
 describe 'sssd::dbus' do
-
   let(:params) do
     {
-      :debug                => 0x77f0,
-      :debug_level          => 0x77f0,
-      :debug_timestamps     => true,
-      :debug_microseconds   => true,
-      :timeout              => 10,
-      :reconnection_retries => 3,
-      :fd_limit             => 8192,
-      :client_idle_timeout  => 60,
-      :offline_timeout      => 60,
-      :allowed_uids         => [0],
-      :user_attributes      => ['+telephoneNumber'],
-      :wildcard_limit       => 1000,
+      debug:                0x77f0,
+      debug_level:          0x77f0,
+      debug_timestamps:     true,
+      debug_microseconds:   true,
+      timeout:              10,
+      reconnection_retries: 3,
+      fd_limit:             8192,
+      client_idle_timeout:  60,
+      offline_timeout:      60,
+      allowed_uids:         [0],
+      user_attributes:      ['+telephoneNumber'],
+      wildcard_limit:       1000,
     }
   end
 
   context 'on unsupported distributions' do
     let(:facts) do
       {
-        :osfamily => 'Unsupported'
+        osfamily: 'Unsupported'
       }
     end
 

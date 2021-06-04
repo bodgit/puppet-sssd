@@ -60,4 +60,4 @@ def ensure_module_defined(module_name)
 end
 
 # 'spec_overrides' from sync.yml will appear below this line
-add_custom_fact :service_provider, lambda { |os, facts| os =~ /-(?:7|18\.04)-/ ? 'systemd' : 'init' }
+add_custom_fact :service_provider, ->(os, _facts) { %r{-(?:7|18\.04)-}.match?(os) ? 'systemd' : 'init' }

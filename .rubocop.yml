@@ -73,7 +73,7 @@ Style/SymbolArray:
   EnforcedStyle: brackets
 Layout/HashAlignment:
   EnforcedHashRocketStyle: table
-  Enabled: false
+  EnforcedColonStyle: table
 RSpec/MessageSpies:
   EnforcedStyle: receive
 Style/Documentation:

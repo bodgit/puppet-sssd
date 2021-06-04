@@ -9,6 +9,11 @@ appveyor.yml:
   default_configs:
     Layout/HashAlignment:
       EnforcedHashRocketStyle: table
+      EnforcedColonStyle: table
+  profiles:
+    strict:
+      enabled_cops:
+        Layout/HashAlignment:
 .travis.yml:
   before_install_pre:
     - sudo add-apt-repository -y ppa:raphink/augeas
@@ -73,4 +78,4 @@ spec/spec_helper.rb:
   coverage_report: true
   minimum_code_coverage_percentage: 100
   spec_overrides:
-    - "add_custom_fact :service_provider, lambda { |os, facts| os =~ /-(?:7|18\\.04)-/ ? 'systemd' : 'init' }"
+    - "add_custom_fact :service_provider, ->(os, _facts) { %r{-(?:7|18\\.04)-}.match?(os) ? 'systemd' : 'init' }"

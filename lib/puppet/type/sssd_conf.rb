@@ -27,18 +27,18 @@ global [sssd] section.'
   def self.title_patterns
     [
       [
-        /^(\S+)\/(\S+)$/,
+        %r{^(\S+)/(\S+)$},
         [
           [ :section ],
           [ :setting ],
-        ]
+        ],
       ],
       [
-        /(.*)/,
+        %r{(.*)},
         [
           [ :name ],
-        ]
-      ]
+        ],
+      ],
     ]
   end
 
