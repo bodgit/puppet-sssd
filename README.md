@@ -1,6 +1,6 @@
 # sssd
 
-[![Build Status](https://travis-ci.org/bodgit/puppet-sssd.svg?branch=master)](https://travis-ci.org/bodgit/puppet-sssd)
+[![Build Status](https://travis-ci.org/bodgit/puppet-sssd.svg?branch=main)](https://travis-ci.org/bodgit/puppet-sssd)
 [![Codecov](https://img.shields.io/codecov/c/github/bodgit/puppet-sssd)](https://codecov.io/gh/bodgit/puppet-sssd)
 [![Puppet Forge version](http://img.shields.io/puppetforge/v/bodgit/sssd)](https://forge.puppetlabs.com/bodgit/sssd)
 [![Puppet Forge downloads](https://img.shields.io/puppetforge/dt/bodgit/sssd)](https://forge.puppetlabs.com/bodgit/sssd)
@@ -104,7 +104,7 @@ The reference documentation is generated with
 [puppet-strings](https://github.com/puppetlabs/puppet-strings) and the latest
 version of the documentation is hosted at
 [https://bodgit.github.io/puppet-sssd/](https://bodgit.github.io/puppet-sssd/)
-and available also in the [REFERENCE.md](https://github.com/bodgit/puppet-postfix/blob/master/REFERENCE.md).
+and available also in the [REFERENCE.md](https://github.com/bodgit/puppet-postfix/blob/main/REFERENCE.md).
 
 ## Limitations
 
