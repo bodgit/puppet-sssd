@@ -1,9 +1,9 @@
 # Manage SSSD.
 #
 # @example Declaring the class
-#   include ::sssd
-#   ::sssd::service { 'nss': }
-#   ::sssd::domain { 'example.com':
+#   include sssd
+#   sssd::service { 'nss': }
+#   sssd::domain { 'example.com':
 #     id_provider => 'ldap',
 #     ...
 #   }
@@ -36,22 +36,22 @@
 # @param enable_files_domain
 # @param domain_resolution_order
 #
-# @see puppet_classes::sssd::dbus ::sssd::dbus
-# @see puppet_defined_types::sssd::domain ::sssd::domain
-# @see puppet_defined_types::sssd::service ::sssd::service
+# @see puppet_classes::sssd::dbus sssd::dbus
+# @see puppet_defined_types::sssd::domain sssd::domain
+# @see puppet_defined_types::sssd::service sssd::service
 #
 # @since 1.0.0
 class sssd (
-  Stdlib::Absolutepath                                                  $conf_dir                 = $::sssd::params::conf_dir,
-  Stdlib::Absolutepath                                                  $conf_file                = $::sssd::params::conf_file,
+  Stdlib::Absolutepath                                                  $conf_dir                 = $sssd::params::conf_dir,
+  Stdlib::Absolutepath                                                  $conf_file                = $sssd::params::conf_file,
   Hash[String, Hash[String, Any]]                                       $domains                  = {},
-  Variant[String, Array[String, 1]]                                     $package_name             = $::sssd::params::package_name,
-  String                                                                $service_name             = $::sssd::params::service_name,
+  Variant[String, Array[String, 1]]                                     $package_name             = $sssd::params::package_name,
+  String                                                                $service_name             = $sssd::params::service_name,
   Hash[String, Hash[String, Any]]                                       $services                 = {},
   Boolean                                                               $service_enable           = true,
   Enum['running', 'stopped']                                            $service_ensure           = 'running',
-  Hash[SSSD::Type, Variant[String, Array[String, 1]]]                   $socket_services          = $::sssd::params::socket_services,
-  Boolean                                                               $use_socket_activation    = $::sssd::params::use_socket_activation,
+  Hash[SSSD::Type, Variant[String, Array[String, 1]]]                   $socket_services          = $sssd::params::socket_services,
+  Boolean                                                               $use_socket_activation    = $sssd::params::use_socket_activation,
   # options for any section
   Optional[Integer[0]]                                                  $debug                    = undef,
   Optional[Integer[0]]                                                  $debug_level              = undef,
@@ -71,12 +71,12 @@ class sssd (
   Optional[Boolean]                                                     $disable_netlink          = undef,
   Optional[Boolean]                                                     $enable_files_domain      = undef,
   Optional[Array[String, 1]]                                            $domain_resolution_order  = undef,
-) inherits ::sssd::params {
+) inherits sssd::params {
 
-  contain ::sssd::install
-  contain ::sssd::config
-  contain ::sssd::daemon
+  contain sssd::install
+  contain sssd::config
+  contain sssd::daemon
 
-  Class['::sssd::install'] ~> Class['::sssd::config']
-    ~> Class['::sssd::daemon']
+  Class['sssd::install'] ~> Class['sssd::config']
+    ~> Class['sssd::daemon']
 }

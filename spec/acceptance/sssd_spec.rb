@@ -1,9 +1,7 @@
 require 'spec_helper_acceptance'
 
 describe 'sssd' do
-
-  it 'should work with no errors' do
-
+  it 'works with no errors' do
     pp = <<-EOS
       include ::openldap
       include ::openldap::client
@@ -79,61 +77,63 @@ describe 'sssd' do
       Class['::openldap'] -> Class['::sssd'] -> Class['::nsswitch']
     EOS
 
-    apply_manifest(pp, :catch_failures => true)
-    apply_manifest(pp, :catch_changes  => true)
+    apply_manifest(pp, catch_failures: true)
+    apply_manifest(pp, catch_changes:  true)
   end
 
   describe command('ldapadd -Y EXTERNAL -H ldapi:/// -f /root/example.ldif') do
-    its(:exit_status) { should eq 0 }
+    its(:exit_status) { is_expected.to eq 0 }
   end
 
   describe package('sssd') do
-    it { should be_installed }
+    it { is_expected.to be_installed }
   end
 
   describe file('/etc/sssd') do
-    it { should be_directory }
-    it { should be_mode 711 }
-    it { should be_owned_by 'root' }
-    it { should be_grouped_into 'root' }
+    it { is_expected.to be_directory }
+    it { is_expected.to be_mode 711 }
+    it { is_expected.to be_owned_by 'root' }
+    it { is_expected.to be_grouped_into 'root' }
   end
 
   describe file('/etc/sssd/sssd.conf') do
-    it { should be_file }
-    it { should be_mode 600 }
-    it { should be_owned_by 'root' }
-    it { should be_grouped_into 'root' }
-    its(:content) { should match %r{^ \[ sssd \] $}x }
-    its(:content) { should match %r{^ domains = example\.com $}x }
-    its(:content) { should match %r{^ services = nss $}x } if fact('operatingsystemmajrelease').eql?('6')
-    its(:content) { should match %r{^ services = $}x } unless fact('operatingsystemmajrelease').eql?('6')
-    its(:content) { should match %r{^ \[ domain/example\.com \] $}x }
+    it { is_expected.to be_file }
+    it { is_expected.to be_mode 600 }
+    it { is_expected.to be_owned_by 'root' }
+    it { is_expected.to be_grouped_into 'root' }
+    its(:content) do
+      is_expected.to match %r{^ \[ sssd \] $}x
+      is_expected.to match %r{^ domains = example\.com $}x
+      is_expected.to match %r{^ services = nss $}x if fact('operatingsystemmajrelease').eql?('6')
+      is_expected.to match %r{^ services = $}x unless fact('operatingsystemmajrelease').eql?('6')
+      is_expected.to match %r{^ \[ domain/example\.com \] $}x
+    end
   end
 
   describe service('sssd') do
-    it { should be_enabled }
-    it { should be_running }
+    it { is_expected.to be_enabled }
+    it { is_expected.to be_running }
   end
 
   describe service('sssd-nss.socket'), unless: fact('operatingsystemmajrelease').eql?('6') do
-    it { should be_enabled }
+    it { is_expected.to be_enabled }
   end
 
   # There's some sort of negative/offline caching going on, bounce sssd
   describe command('service sssd restart') do
-    its(:exit_status) { should eq 0 }
+    its(:exit_status) { is_expected.to eq 0 }
   end
 
   describe user('alice') do
-    it { should exist }
-    it { should belong_to_primary_group 'alice' }
-    it { should have_uid 2000 }
-    it { should have_home_directory '/home/alice' }
-    it { should have_login_shell '/bin/bash' }
+    it { is_expected.to exist }
+    it { is_expected.to belong_to_primary_group 'alice' }
+    it { is_expected.to have_uid 2000 }
+    it { is_expected.to have_home_directory '/home/alice' }
+    it { is_expected.to have_login_shell '/bin/bash' }
   end
 
   describe group('alice') do
-    it { should exist }
-    it { should have_gid 2000 }
+    it { is_expected.to exist }
+    it { is_expected.to have_gid 2000 }
   end
 end

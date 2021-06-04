@@ -5,24 +5,13 @@ require 'beaker/module_install_helper'
 
 hosts.each do |host|
   # Just assume the OpenBSD box has Puppet installed already
-  if host['platform'] !~ /^openbsd-/i
+  unless %r{^openbsd-}i.match?(host['platform'])
     run_puppet_install_helper_on(host)
   end
+  on(host, '/usr/bin/test -f /etc/puppetlabs/puppet/hiera.yaml && /bin/rm -f /etc/puppetlabs/puppet/hiera.yaml || echo true')
 end
 
 install_module_on(hosts)
 install_module_dependencies_on(hosts)
-install_module_from_forge_on(hosts, 'bodgit/openldap',   '>=2.0.0 <3.0.0')
-install_module_from_forge_on(hosts, 'trlinkin/nsswitch', '>=2.0.0 <3.0.0')
 
-RSpec.configure do |c|
-  proj_root = File.expand_path(File.join(File.dirname(__FILE__), '..'))
-
-  c.formatter = :documentation
-
-  c.before :suite do
-    hosts.each do |host|
-      scp_to(host, File.join(proj_root, 'spec/fixtures/files/example.ldif'), '/root/example.ldif')
-    end
-  end
-end
+require 'spec_helper_acceptance_local' if File.file?(File.join(File.dirname(__FILE__), 'spec_helper_acceptance_local.rb'))

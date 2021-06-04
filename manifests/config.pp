@@ -95,18 +95,18 @@ class sssd::config {
     }
   }
 
-  if $::service_provider == 'systemd' {
+  if $facts['service_provider'] == 'systemd' {
     ensure_resource('exec', 'systemctl daemon-reload', {
       refreshonly => true,
       path        => $::path,
     })
 
-    $directory_seltype = $::selinux ? {
+    $directory_seltype = $facts['os']['selinux']['enabled'] ? {
       true    => 'systemd_unit_file_t',
       default => undef,
     }
 
-    $file_seltype = $::selinux ? {
+    $file_seltype = $facts['os']['selinux']['enabled'] ? {
       true    => 'sssd_unit_file_t',
       default => undef,
     }

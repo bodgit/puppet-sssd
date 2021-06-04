@@ -7,25 +7,25 @@ describe 'sssd::domain' do
 
   let(:params) do
     {
-      :enumerate                 => true,
-      :cache_credentials         => true,
-      :id_provider               => 'ldap',
-      :auth_provider             => 'ldap',
-      :ldap_schema               => 'rfc2307',
-      :chpass_provider           => 'ldap',
-      :ldap_uri                  => [
+      enumerate:                 true,
+      cache_credentials:         true,
+      id_provider:               'ldap',
+      auth_provider:             'ldap',
+      ldap_schema:               'rfc2307',
+      chpass_provider:           'ldap',
+      ldap_uri:                  [
         'ldap://ldap1.example.com',
         'ldap://ldap2.example.com',
       ],
-      :ldap_search_base          => 'dc=example,dc=com',
-      :ldap_tls_reqcert          => 'demand',
-      :ldap_id_use_start_tls     => true,
-      :entry_cache_timeout       => 600,
-      :ldap_network_timeout      => 3,
-      :ldap_default_bind_dn      => 'cn=Manager,dc=example,dc=com',
-      :ldap_default_authtok_type => 'password',
-      :ldap_default_authtok      => 'secret',
-      :ldap_sasl_maxssf          => 256,
+      ldap_search_base:          'dc=example,dc=com',
+      ldap_tls_reqcert:          'demand',
+      ldap_id_use_start_tls:     true,
+      entry_cache_timeout:       600,
+      ldap_network_timeout:      3,
+      ldap_default_bind_dn:      'cn=Manager,dc=example,dc=com',
+      ldap_default_authtok_type: 'password',
+      ldap_default_authtok:      'secret',
+      ldap_sasl_maxssf:          256,
     }
   end
 
@@ -51,7 +51,6 @@ describe 'sssd::domain' do
         it { is_expected.to contain_sssd_conf('domain/test/cache_credentials').with_value('true') }
         it { is_expected.to contain_sssd_conf('domain/test/id_provider').with_value('ldap') }
         it { is_expected.to contain_sssd_conf('domain/test/auth_provider').with_value('ldap') }
-        it { is_expected.to contain_sssd_conf('domain/test/cache_credentials').with_value('true') }
         it { is_expected.to contain_sssd_conf('domain/test/chpass_provider').with_value('ldap') }
         it { is_expected.to contain_sssd_conf('domain/test/entry_cache_timeout').with_value(600) }
         it { is_expected.to contain_sssd_conf('domain/test/ldap_default_authtok').with_value('secret') }

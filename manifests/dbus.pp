@@ -1,9 +1,9 @@
 # Manage the SSSD InfoPipe responder
 #
 # @example Declaring the class
-#   include ::dbus
-#   include ::sssd
-#   include ::sssd::dbus
+#   include dbus
+#   include sssd
+#   include sssd::dbus
 #
 # @param package_name
 # @param use_socket_activation
@@ -22,13 +22,13 @@
 # @param user_attributes
 # @param wildcard_limit
 #
-# @see puppet_classes::sssd ::sssd
-# @see puppet_defined_types::sssd::service ::sssd::service
+# @see puppet_classes::sssd sssd
+# @see puppet_defined_types::sssd::service sssd::service
 #
 # @since 1.0.0
 class sssd::dbus (
-  String                                          $package_name           = $::sssd::params::dbus_package_name,
-  Boolean                                         $use_socket_activation  = $::sssd::use_socket_activation,
+  String                                          $package_name           = $sssd::params::dbus_package_name,
+  Boolean                                         $use_socket_activation  = $sssd::use_socket_activation,
   # options for any section
   Optional[Integer[0]]                            $debug                  = undef,
   Optional[Integer[0]]                            $debug_level            = undef,
@@ -46,16 +46,16 @@ class sssd::dbus (
   Optional[Array[Variant[Integer[0], String], 1]] $allowed_uids           = undef,
   Optional[Array[String, 1]]                      $user_attributes        = undef,
   Optional[Integer[0]]                            $wildcard_limit         = undef,
-) inherits ::sssd::params {
+) inherits sssd::params {
 
-  if ! defined(Class['::sssd']) {
+  if ! defined(Class['sssd']) {
     fail('You must include the sssd base class before using the sssd::dbus class')
   }
 
-  contain ::sssd::dbus::install
-  contain ::sssd::dbus::config
+  contain sssd::dbus::install
+  contain sssd::dbus::config
 
-  Class['::sssd::dbus::install'] ~> Class['::sssd::dbus::config']
+  Class['sssd::dbus::install'] ~> Class['sssd::dbus::config']
 
-  Class['::dbus'] -> Class['::sssd']
+  Class['dbus'] -> Class['sssd']
 }

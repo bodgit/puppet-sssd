@@ -1,11 +1,11 @@
-Puppet::Type.type(:sssd_conf).provide(:augeas, :parent => Puppet::Type.type(:augeasprovider).provider(:default)) do
+Puppet::Type.type(:sssd_conf).provide(:augeas, parent: Puppet::Type.type(:augeasprovider).provider(:default)) do
   desc 'Uses Augeas API to update an sssd.conf setting.'
 
   default_file { '/etc/sssd/sssd.conf' }
 
   lens { 'Sssd.lns' }
 
-  confine :feature => :augeas
+  confine feature: :augeas
 
   resource_path do |resource|
     section = resource[:section]
@@ -21,11 +21,11 @@ Puppet::Type.type(:sssd_conf).provide(:augeas, :parent => Puppet::Type.type(:aug
         setting = path_label(aug, spath)
         value = aug.get(spath) || ''
         entry = {
-          :name    => "#{section}/#{setting}",
-          :ensure  => :present,
-          :section => section,
-          :setting => setting,
-          :value   => value,
+          name:    "#{section}/#{setting}",
+          ensure:  :present,
+          section: section,
+          setting: setting,
+          value:   value,
         }
         resources << new(entry)
       end
