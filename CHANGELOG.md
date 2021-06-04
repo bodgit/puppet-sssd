@@ -1,102 +1,85 @@
-# Change Log
+# Change log
+
+All notable changes to this project will be documented in this file. The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org).
+
+## [v3.0.0](https://github.com/bodgit/puppet-sssd/tree/v3.0.0) (2021-06-04)
+
+[Full Changelog](https://github.com/bodgit/puppet-sssd/compare/v2.2.2...v3.0.0)
+
+### Changed
+
+- Drop old Puppet versions [\#26](https://github.com/bodgit/puppet-sssd/pull/26) ([bodgit](https://github.com/bodgit))
+
+### Added
+
+- Increase stdlib and bodgitlib upper version [\#29](https://github.com/bodgit/puppet-sssd/pull/29) ([bodgit](https://github.com/bodgit))
+- Use IP types from stdlib [\#28](https://github.com/bodgit/puppet-sssd/pull/28) ([bodgit](https://github.com/bodgit))
+- Convert to PDK [\#27](https://github.com/bodgit/puppet-sssd/pull/27) ([bodgit](https://github.com/bodgit))
 
 ## [v2.2.2](https://github.com/bodgit/puppet-sssd/tree/v2.2.2) (2021-01-15)
+
 [Full Changelog](https://github.com/bodgit/puppet-sssd/compare/v2.2.1...v2.2.2)
 
-**Fixed bugs:**
+### Fixed
 
 - fix pam/pam\_response\_filter [\#21](https://github.com/bodgit/puppet-sssd/pull/21) ([jhoblitt](https://github.com/jhoblitt))
 
 ## [v2.2.1](https://github.com/bodgit/puppet-sssd/tree/v2.2.1) (2020-09-07)
+
 [Full Changelog](https://github.com/bodgit/puppet-sssd/compare/v2.2.0...v2.2.1)
 
-**Fixed bugs:**
-
-- Missing ldap\_sasl\_maxssf parameter [\#19](https://github.com/bodgit/puppet-sssd/issues/19)
-
 ## [v2.2.0](https://github.com/bodgit/puppet-sssd/tree/v2.2.0) (2019-08-10)
+
 [Full Changelog](https://github.com/bodgit/puppet-sssd/compare/v2.1.1...v2.2.0)
 
-**Implemented enhancements:**
+### Added
 
 - Make puppet-sssd work on Ubuntu [\#18](https://github.com/bodgit/puppet-sssd/pull/18) ([weijianwen](https://github.com/weijianwen))
 
 ## [v2.1.1](https://github.com/bodgit/puppet-sssd/tree/v2.1.1) (2018-11-27)
+
 [Full Changelog](https://github.com/bodgit/puppet-sssd/compare/v2.1.0...v2.1.1)
 
-**Fixed bugs:**
-
-- SELinux labelling of directories with Systemd [\#17](https://github.com/bodgit/puppet-sssd/issues/17)
-
 ## [v2.1.0](https://github.com/bodgit/puppet-sssd/tree/v2.1.0) (2018-11-25)
+
 [Full Changelog](https://github.com/bodgit/puppet-sssd/compare/v2.0.3...v2.1.0)
 
-**Implemented enhancements:**
-
-- Allow managing of service\(s\) state [\#16](https://github.com/bodgit/puppet-sssd/issues/16)
-
 ## [v2.0.3](https://github.com/bodgit/puppet-sssd/tree/v2.0.3) (2018-10-13)
+
 [Full Changelog](https://github.com/bodgit/puppet-sssd/compare/v2.0.2...v2.0.3)
 
-**Fixed bugs:**
-
-- Puppet 6 [\#15](https://github.com/bodgit/puppet-sssd/issues/15)
-
 ## [v2.0.2](https://github.com/bodgit/puppet-sssd/tree/v2.0.2) (2018-10-06)
+
 [Full Changelog](https://github.com/bodgit/puppet-sssd/compare/v2.0.1...v2.0.2)
 
-**Implemented enhancements:**
-
-- Socket activation systemd units are slightly broken [\#14](https://github.com/bodgit/puppet-sssd/issues/14)
-
 ## [v2.0.1](https://github.com/bodgit/puppet-sssd/tree/v2.0.1) (2018-09-17)
+
 [Full Changelog](https://github.com/bodgit/puppet-sssd/compare/v2.0.0...v2.0.1)
 
-**Fixed bugs:**
-
-- ipa\_server in version 2 no longer accepts \_srv\_ [\#13](https://github.com/bodgit/puppet-sssd/issues/13)
-
 ## [v2.0.0](https://github.com/bodgit/puppet-sssd/tree/v2.0.0) (2018-07-18)
+
 [Full Changelog](https://github.com/bodgit/puppet-sssd/compare/v1.0.3...v2.0.0)
 
-**Implemented enhancements:**
-
-- Add support for configuring services and domains as class parameters [\#10](https://github.com/bodgit/puppet-sssd/issues/10)
-- Secrets responder [\#6](https://github.com/bodgit/puppet-sssd/issues/6)
-- Support socket activation on Systemd systems [\#5](https://github.com/bodgit/puppet-sssd/issues/5)
-- Puppet 4/5 support [\#3](https://github.com/bodgit/puppet-sssd/issues/3)
-
-**Fixed bugs:**
-
-- undefined method `sort' for nil:NilClass if no domains or services defined [\#8](https://github.com/bodgit/puppet-sssd/issues/8)
-
-**Merged pull requests:**
+### UNCATEGORIZED PRS; LABEL THEM ON GITHUB
 
 - V2 [\#12](https://github.com/bodgit/puppet-sssd/pull/12) ([bodgit](https://github.com/bodgit))
 
 ## [v1.0.3](https://github.com/bodgit/puppet-sssd/tree/v1.0.3) (2018-05-01)
+
 [Full Changelog](https://github.com/bodgit/puppet-sssd/compare/v1.0.2...v1.0.3)
 
-**Implemented enhancements:**
-
-- Update DBus dependency [\#7](https://github.com/bodgit/puppet-sssd/issues/7)
-
 ## [v1.0.2](https://github.com/bodgit/puppet-sssd/tree/v1.0.2) (2017-10-15)
+
 [Full Changelog](https://github.com/bodgit/puppet-sssd/compare/v1.0.1...v1.0.2)
 
-**Implemented enhancements:**
-
-- Bump bodgitlib requirement [\#4](https://github.com/bodgit/puppet-sssd/issues/4)
-
 ## [v1.0.1](https://github.com/bodgit/puppet-sssd/tree/v1.0.1) (2016-05-15)
+
 [Full Changelog](https://github.com/bodgit/puppet-sssd/compare/v1.0.0...v1.0.1)
-
-**Implemented enhancements:**
-
-- Search base validation [\#2](https://github.com/bodgit/puppet-sssd/issues/2)
-- Pull in bodgitlib for LDAP validation [\#1](https://github.com/bodgit/puppet-sssd/issues/1)
 
 ## [v1.0.0](https://github.com/bodgit/puppet-sssd/tree/v1.0.0) (2016-05-09)
 
+[Full Changelog](https://github.com/bodgit/puppet-sssd/compare/dd7946ee9228dda5ceec7e8ecae77c283350a89c...v1.0.0)
 
-\* *This Change Log was automatically generated by [github_changelog_generator](https://github.com/skywinder/Github-Changelog-Generator)*
+
+
+\* *This Changelog was automatically generated by [github_changelog_generator](https://github.com/github-changelog-generator/github-changelog-generator)*
