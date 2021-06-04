@@ -1,10 +1,10 @@
 # sssd
 
-Tested with Travis CI
-
 [![Build Status](https://travis-ci.org/bodgit/puppet-sssd.svg?branch=master)](https://travis-ci.org/bodgit/puppet-sssd)
-[![Coverage Status](https://coveralls.io/repos/bodgit/puppet-sssd/badge.svg?branch=master&service=github)](https://coveralls.io/github/bodgit/puppet-sssd?branch=master)
-[![Puppet Forge](http://img.shields.io/puppetforge/v/bodgit/sssd.svg)](https://forge.puppetlabs.com/bodgit/sssd)
+[![Codecov](https://img.shields.io/codecov/c/github/bodgit/puppet-sssd)](https://codecov.io/gh/bodgit/puppet-sssd)
+[![Puppet Forge version](http://img.shields.io/puppetforge/v/bodgit/sssd)](https://forge.puppetlabs.com/bodgit/sssd)
+[![Puppet Forge downloads](https://img.shields.io/puppetforge/dt/bodgit/sssd)](https://forge.puppetlabs.com/bodgit/sssd)
+[![Puppet Forge - PDK version](https://img.shields.io/puppetforge/pdk-version/bodgit/sssd)](https://forge.puppetlabs.com/bodgit/sssd)
 
 #### Table of Contents
 
@@ -22,7 +22,7 @@ This module will install the SSSD packages, configure any services and domains,
 and optionally configure the D-Bus system service.
 
 CentOS, RHEL, Scientific and Oracle Enterprise Linux is supported using Puppet
-4.6.0 or later.
+5 or later.
 
 ## Setup
 
@@ -103,7 +103,8 @@ Class['::sssd'] -> Class['::nsswitch']
 The reference documentation is generated with
 [puppet-strings](https://github.com/puppetlabs/puppet-strings) and the latest
 version of the documentation is hosted at
-[https://bodgit.github.io/puppet-sssd/](https://bodgit.github.io/puppet-sssd/).
+[https://bodgit.github.io/puppet-sssd/](https://bodgit.github.io/puppet-sssd/)
+and available also in the [REFERENCE.md](https://github.com/bodgit/puppet-postfix/blob/master/REFERENCE.md).
 
 ## Limitations
 
@@ -119,7 +120,7 @@ Currently almost all parameters are optional, the only mandatory parameter is
 that of the identity provider (`id_provider`) for the `sssd::domain` defined
 type. This may change in the future if the logic becomes more obvious.
 
-This module has been built on and tested against Puppet 4.6.0 and higher.
+This module has been built on and tested against Puppet 5 and higher.
 
 The module has been tested on:
 
@@ -127,12 +128,13 @@ The module has been tested on:
 
 ## Development
 
-The module has both [rspec-puppet](http://rspec-puppet.com) and
+The module relies on [PDK](https://puppet.com/docs/pdk/1.x/pdk.html) and has
+both [rspec-puppet](http://rspec-puppet.com) and
 [beaker-rspec](https://github.com/puppetlabs/beaker-rspec) tests. Run them
 with:
 
 ```
-$ bundle exec rake test
+$ bundle exec rake spec
 $ PUPPET_INSTALL_TYPE=agent PUPPET_INSTALL_VERSION=x.y.z bundle exec rake beaker:<nodeset>
 ```
 
