@@ -1,6 +1,6 @@
 # sssd
 
-[![Build Status](https://travis-ci.com/bodgit/puppet-sssd.svg?branch=main)](https://travis-ci.com/bodgit/puppet-sssd)
+[![Build Status](https://img.shields.io/github/workflow/status/bodgit/puppet-sssd/Test)](https://github.com/bodgit/puppet-sssd/actions?query=workflow%3ATest)
 [![Codecov](https://img.shields.io/codecov/c/github/bodgit/puppet-sssd)](https://codecov.io/gh/bodgit/puppet-sssd)
 [![Puppet Forge version](http://img.shields.io/puppetforge/v/bodgit/sssd)](https://forge.puppetlabs.com/bodgit/sssd)
 [![Puppet Forge downloads](https://img.shields.io/puppetforge/dt/bodgit/sssd)](https://forge.puppetlabs.com/bodgit/sssd)
