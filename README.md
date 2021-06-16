@@ -32,8 +32,8 @@ You need to configure at least one domain for SSSD to start up so the bare
 minimum would be:
 
 ```puppet
-include ::sssd
-::sssd::domain { 'example.com':
+include sssd
+sssd::domain { 'example.com':
   id_provider => 'ldap',
   ...
 }
@@ -44,7 +44,7 @@ include ::sssd
 Configure SSSD to use LDAP for NSS:
 
 ```puppet
-class { '::sssd':
+class { 'sssd':
   domains  => {
     'example.com' => {
       'id_provider'           => 'ldap',
@@ -62,22 +62,22 @@ class { '::sssd':
   },
 }
 
-class { '::nsswitch':
+class { 'nsswitch':
   passwd => ['files', 'sss'],
   shadow => ['files', 'sss'],
   group  => ['files', 'sss'],
 }
 
-Class['::sssd'] -> Class['::nsswitch']
+Class['sssd'] -> Class['nsswitch']
 ```
 
 Extend the above example to also make the SSSD data available over D-Bus:
 
 ```puppet
-include ::dbus
-include ::sssd
-::sssd::service { 'nss': }
-::sssd::domain { 'example.com':
+include dbus
+include sssd
+sssd::service { 'nss': }
+sssd::domain { 'example.com':
   id_provider           => 'ldap',
   ldap_schema           => 'rfc2307',
   ldap_uri              => ['ldap://192.0.2.1'],
@@ -87,15 +87,15 @@ include ::sssd
   ldap_default_bind_dn  => 'cn=Manager,dc=example,dc=com',
   ldap_default_authtok  => 'secret',
 }
-include ::sssd::dbus
+include sssd::dbus
 
-class { '::nsswitch':
+class { 'nsswitch':
   passwd => ['files', 'sss'],
   shadow => ['files', 'sss'],
   group  => ['files', 'sss'],
 }
 
-Class['::sssd'] -> Class['::nsswitch']
+Class['sssd'] -> Class['nsswitch']
 ```
 
 ## Reference
@@ -104,7 +104,7 @@ The reference documentation is generated with
 [puppet-strings](https://github.com/puppetlabs/puppet-strings) and the latest
 version of the documentation is hosted at
 [https://bodgit.github.io/puppet-sssd/](https://bodgit.github.io/puppet-sssd/)
-and available also in the [REFERENCE.md](https://github.com/bodgit/puppet-postfix/blob/main/REFERENCE.md).
+and available also in the [REFERENCE.md](https://github.com/bodgit/puppet-sssd/blob/main/REFERENCE.md).
 
 ## Limitations
 
