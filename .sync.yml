@@ -3,6 +3,11 @@ common:
   disable_legacy_facts: true
 appveyor.yml:
   delete: true
+.github/workflows/test.yml:
+  before_ruby:
+    - sudo apt-get update
+    - sudo apt-get install libaugeas-dev
+  simplecov: true
 .gitlab-ci.yml:
   delete: true
 .rubocop.yml:
@@ -15,27 +20,7 @@ appveyor.yml:
       enabled_cops:
         Layout/HashAlignment:
 .travis.yml:
-  before_install_pre:
-    - sudo add-apt-repository -y ppa:raphink/augeas
-    - sudo apt-get update
-    - sudo apt-get install augeas-tools augeas-lenses libaugeas0 libaugeas-dev libxml2-dev
-  includes:
-    - env: CHECK="check:symlinks check:git_ignore check:dot_underscore check:test_file rubocop syntax lint metadata_lint"
-      stage: static
-    - env: PUPPET_GEM_VERSION="~> 5.0" CHECK=parallel_spec
-      rvm: 2.4.5
-      stage: spec
-    - env: PUPPET_GEM_VERSION="~> 6.0" CHECK=parallel_spec
-      rvm: 2.5.7
-      stage: spec
-    - env: PUPPET_GEM_VERSION="~> 7.0" CHECK=parallel_spec
-      rvm: 2.7.2
-      stage: spec
-  notifications:
-    email: true
-  secure: 'k7RTFubN9HStmtxfDZnIg23CS1l66O0BOJk0Faxka2K0d74Dt++gg1KglhRKCkkHMV9kYsQOoJiX7d+cvYzs1mW3xfNiKNNEMPVEqLZdpTV5lbpHSrkTfMJwkMpbrwySbvs2OYUtydubt9khWWKacLSYACk78khJ5S4r/7vROXDFohjDITwuWA1d0JTXIxuy7LhAroc9Y7XyKhMV1gBVnFDQYYLPdZP44/q3K7wnTFjU8Ow1LGC6TFRcyLsidBkQZhvqZv/EIsOqPZW41TV6t7cjq2Dw73K61+f9lwy7jiZPo2HL4YgYindFvXQlPCMXKesrMA0zEl7E0H2+XGAQZCNi2nnnJOTOGPB11ToYVnnopjG6VA5XrippYPsdJBNg+zXS7ve8gApdPQvYhqDDat69mBZxSM3CRSWehshzGUx0Se8Koy2ynjf1bbMEXCgdPHsdgl0+nB+Ep8qHdwPUI8oPDI+jT7US4vdznodBmFUckVHwESlThtu08b/3uH4KbUxBBRBZb+dntYPkMi7agXIhFEyjUVqlPF+Qk37vVOlkuhlogjFmRoMpOagRiShea2yUCYapMhyEDae+H/YvS4cKk3RFw9aCeRHQHn2Z6Km79hZ3/XzguCCK2OwiRVPDGAQbLxBk6/mOLIZsU3+e9scC/pPZJDPlxRzvMb6sh/4='
-  simplecov: true
-  user: 'bodgit'
+  delete: true
 .vscode/extensions.json:
   delete: true
 .devcontainer/Dockerfile:

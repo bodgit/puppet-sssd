@@ -76,6 +76,6 @@
     "ldap"
   ],
   "pdk-version": "2.1.0",
-  "template-url": "https://github.com/puppetlabs/pdk-templates#2.1.0",
-  "template-ref": "tags/2.1.0-0-ga675ea5"
+  "template-url": "https://github.com/bodgit/pdk-templates#bodgit",
+  "template-ref": "remotes/origin/bodgit-0-g022387a"
 }
