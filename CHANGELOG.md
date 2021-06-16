@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org).
 
+## [v3.0.1](https://github.com/bodgit/puppet-sssd/tree/v3.0.1) (2021-06-16)
+
+[Full Changelog](https://github.com/bodgit/puppet-sssd/compare/v3.0.0...v3.0.1)
+
+### Added
+
+- Bump dbus dependency [\#33](https://github.com/bodgit/puppet-sssd/pull/33) ([bodgit](https://github.com/bodgit))
+- Travis -\> Github [\#32](https://github.com/bodgit/puppet-sssd/pull/32) ([bodgit](https://github.com/bodgit))
+
 ## [v3.0.0](https://github.com/bodgit/puppet-sssd/tree/v3.0.0) (2021-06-04)
 
 [Full Changelog](https://github.com/bodgit/puppet-sssd/compare/v2.2.2...v3.0.0)
