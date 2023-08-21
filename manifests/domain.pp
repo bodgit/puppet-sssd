@@ -48,6 +48,7 @@
 # @param subdomains_provider
 # @param autofs_provider
 # @param hostid_provider
+# @param session_provider
 # @param re_expression
 # @param full_name_format
 # @param lookup_family_order
@@ -334,6 +335,7 @@ define sssd::domain (
   Optional[SSSD::Provider::Subdomains]                                                  $subdomains_provider                           = undef,
   Optional[SSSD::Provider::AutoFS]                                                      $autofs_provider                               = undef,
   Optional[SSSD::Provider::HostID]                                                      $hostid_provider                               = undef,
+  Optional[SSSD::Provider::Session]                                                     $session_provider                              = undef,
   Optional[String]                                                                      $re_expression                                 = undef,
   Optional[String]                                                                      $full_name_format                              = undef,
   Optional[Enum['ipv4_first', 'ipv4_only', 'ipv6_first', 'ipv6_only']]                  $lookup_family_order                           = undef,
@@ -632,6 +634,7 @@ define sssd::domain (
     'subdomains_provider'                           => $subdomains_provider,
     'autofs_provider'                               => $autofs_provider,
     'hostid_provider'                               => $hostid_provider,
+    'session_provider'                              => $session_provider,
     're_expression'                                 => $re_expression,
     'full_name_format'                              => $full_name_format,
     'lookup_family_order'                           => $lookup_family_order,
