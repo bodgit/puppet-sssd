@@ -340,7 +340,7 @@ define sssd::service (
 
   if $use_socket_activation {
 
-    if has_key($sssd::socket_services, $service) {
+    if $service in $sssd::socket_services {
       Array($sssd::socket_services[$service], true).each |String $x| {
         service { $x:
           enable  => $sssd::service_enable,
@@ -352,7 +352,7 @@ define sssd::service (
 
     if $facts['service_provider'] == 'systemd' {
 
-      if has_key($sssd::socket_services, $service) {
+      if $service in $sssd::socket_services {
         Array($sssd::socket_services[$service], true).each |String $x| {
           service { $x:
             ensure  => stopped,
