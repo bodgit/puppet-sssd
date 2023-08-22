@@ -31,6 +31,13 @@ class sssd::params {
         default   => false,
       }
     }
+    'Openeuler': {
+      $package_name          = 'sssd'
+      $use_socket_activation = $facts['service_provider'] ? {
+        'systemd' => true,
+        default   => false,
+      }
+    }
     default: {
       fail("The ${module_name} module is not supported on an ${facts['os']['family']} based system.")
     }
