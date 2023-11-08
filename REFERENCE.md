@@ -605,6 +605,7 @@ The following parameters are available in the `sssd::domain` defined type:
 * [`dyndns_server`](#dyndns_server)
 * [`override_homedir`](#override_homedir)
 * [`homedir_substring`](#homedir_substring)
+* [`fallback_homedir`](#fallback_homedir)
 * [`wildcard_limit`](#wildcard_limit)
 * [`simple_allow_users`](#simple_allow_users)
 * [`simple_deny_users`](#simple_deny_users)
@@ -1268,6 +1269,14 @@ Data type: `Optional[Stdlib::Absolutepath]`
 Default value: ``undef``
 
 ##### <a name="homedir_substring"></a>`homedir_substring`
+
+Data type: `Optional[Stdlib::Absolutepath]`
+
+
+
+Default value: ``undef``
+
+##### <a name="fallback_homedir"></a>`fallback_homedir`
 
 Data type: `Optional[Stdlib::Absolutepath]`
 

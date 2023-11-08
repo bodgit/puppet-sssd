@@ -70,6 +70,7 @@
 # @param dyndns_server
 # @param override_homedir
 # @param homedir_substring
+# @param fallback_homedir
 # @param wildcard_limit
 # @param simple_allow_users
 # @param simple_deny_users
@@ -357,6 +358,7 @@ define sssd::domain (
   Optional[Bodgitlib::Host]                                                             $dyndns_server                                 = undef,
   Optional[Stdlib::Absolutepath]                                                        $override_homedir                              = undef,
   Optional[Stdlib::Absolutepath]                                                        $homedir_substring                             = undef,
+  Optional[Stdlib::Absolutepath]                                                        $fallback_homedir                              = undef,
   Optional[Integer[0]]                                                                  $wildcard_limit                                = undef,
   # simple access provider
   Optional[Array[String, 1]]                                                            $simple_allow_users                            = undef,
@@ -662,6 +664,7 @@ define sssd::domain (
     'dyndns_server'                                 => $dyndns_server,
     'override_homedir'                              => $override_homedir,
     'homedir_substring'                             => $homedir_substring,
+    'fallback_homedir'                              => $fallback_homedir,
     'wildcard_limit'                                => $wildcard_limit,
     # simple access provider
     'simple_allow_users'                            => $simple_allow_users ? {
