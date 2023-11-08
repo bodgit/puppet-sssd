@@ -95,6 +95,7 @@ describe 'sssd::service' do
           it { is_expected.to contain_sssd_conf('nss/filter_users').with_value('root') }
           it { is_expected.to contain_sssd_conf('nss/get_domains_timeout').with_value('60') }
           it { is_expected.to contain_sssd_conf('nss/homedir_substring').with_value('/home') }
+          it { is_expected.to contain_sssd_conf('nss/fallback_homedir').with_value('/home/%u') }
           it { is_expected.to contain_sssd_conf('nss/local_negative_timeout').with_value('0') }
           it { is_expected.to contain_sssd_conf('nss/memcache_timeout').with_value('300') }
           it { is_expected.to contain_sssd_conf('nss/offline_timeout').with_value('60') }
